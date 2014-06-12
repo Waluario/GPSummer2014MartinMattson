@@ -1,0 +1,6 @@
+*/Debug/*
+*/Release/*
+*.tlog
+*.sdf
+*.opensdf
+*.log
