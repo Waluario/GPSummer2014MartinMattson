@@ -20,6 +20,6 @@ public:
 	bool IsRunning();
 
 private:
-	std::vector<State*> m_cvStates; // Member_ClassVectorStates
+	std::vector<State*> m_caStates; // Member_ClassVectorStates
 	State *m_cpCurrent; // Member_ClassPointerCurrent
 };
