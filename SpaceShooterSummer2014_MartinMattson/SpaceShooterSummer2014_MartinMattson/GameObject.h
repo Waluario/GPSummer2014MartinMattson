@@ -20,24 +20,26 @@ public:
 	void RemoveChild(GameObject *p_xpChild);
 
 	GameObject* GetChild(int p_i);
-	std::vector<GameObject*>* GetChildren();
+	std::vector<GameObject*> GetChildren();
 
 	bool HasChild();
 	int ChildrenNumber();
 
+	std::vector<std::string> GetTags();
+
 	Hitbox* GetHitbox();
 	bool HasHitbox();
 
-	bool IsColliding();
+	bool IsColliding(sf::Vector2f p_vPos, Hitbox *p_xpHitbox);
 
-	virtual bool OnCreate();
+	virtual void OnCreate();
 	virtual void OnUpdate();
 	virtual void OnFixedUpdate();
 	virtual void OnCollision(GameObject *p_xpCollider);
-	virtual void OnDelete();
+	virtual void OnDestroy();
 
 private:
-	std::string m_sTag;
+	std::vector<std::string> m_saTags;
 
 	std::vector<GameObject*> m_xpaChildren;
 	GameObject *m_xpParent;

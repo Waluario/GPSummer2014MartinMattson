@@ -13,75 +13,105 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\States">
+      <UniqueIdentifier>{36084085-b22c-4fb7-a73c-63a29824aae0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Managers">
+      <UniqueIdentifier>{acd2b1d8-eaa6-4c25-8095-ccf8032e62d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Other">
+      <UniqueIdentifier>{b067a05d-908e-43e3-b071-96cc798dd8d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game Objects">
+      <UniqueIdentifier>{b4bf49a6-42b0-4926-950f-b7fcd09b0811}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game Objects">
+      <UniqueIdentifier>{cc291042-b422-42f0-baf6-bd3e26a92e6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Managers">
+      <UniqueIdentifier>{58f4e279-e3ce-4782-a28f-08d154b0a8c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\States">
+      <UniqueIdentifier>{0d765e4a-302c-48b8-b68c-b4402562d746}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Other">
+      <UniqueIdentifier>{ff8f32c8-08af-49ec-9360-7eb34eb18c7e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Core.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="StateMngr.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="State.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\States</Filter>
     </ClInclude>
     <ClInclude Include="GameState.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\States</Filter>
     </ClInclude>
     <ClInclude Include="KeybMngr.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Button.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Managers</Filter>
     </ClInclude>
     <ClInclude Include="GameObjectMngr.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Managers</Filter>
     </ClInclude>
     <ClInclude Include="GameObject.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Game Objects</Filter>
     </ClInclude>
-    <ClInclude Include="Hitbox.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="StateMngr.h">
+      <Filter>Header Files\Managers</Filter>
     </ClInclude>
     <ClInclude Include="PlayerObject.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Hitbox.h">
+      <Filter>Header Files\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="Core.h">
+      <Filter>Header Files\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Header Files\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files\Other</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Button.cpp">
+      <Filter>Source Files\Other</Filter>
     </ClCompile>
     <ClCompile Include="Core.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="KeybMngr.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Button.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Other</Filter>
     </ClCompile>
     <ClCompile Include="Hitbox.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files\Other</Filter>
     </ClCompile>
     <ClCompile Include="GameObject.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Game Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectMngr.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="GameState.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="KeybMngr.cpp">
+      <Filter>Source Files\Managers</Filter>
     </ClCompile>
     <ClCompile Include="PlayerObject.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Game Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="StateMngr.cpp">
+      <Filter>Source Files\Managers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

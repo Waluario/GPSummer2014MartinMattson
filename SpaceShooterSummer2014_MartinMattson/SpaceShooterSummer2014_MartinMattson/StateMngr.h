@@ -12,7 +12,7 @@ public:
 	void Add(State *p_cpState); // Parameter_ClassPointerState
 	void Update(float p_fDtime); // Parameter_FloatingDtime
 
-	void Setstate(const std::string &p_skrState); // Parameter_StringKonstantReferenceState
+	void SetState(const std::string &p_skrState); // Parameter_StringKonstantReferenceState
 	void ChangeState();
 	void Draw();
 
@@ -20,6 +20,6 @@ public:
 	bool IsRunning();
 
 private:
-	std::vector<State*> m_caStates; // Member_ClassVectorStates
+	std::vector<State*> m_cpaStates; // Member_ClassVectorStates
 	State *m_cpCurrent; // Member_ClassPointerCurrent
 };

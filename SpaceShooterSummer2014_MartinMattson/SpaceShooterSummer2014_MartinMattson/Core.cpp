@@ -16,7 +16,10 @@ Core::~Core(){
 }
 
 bool Core::Init(){
-	m_xpScreen = new sf::Window(sf::VideoMode(800, 600), "Space Shooter Summer 2014", sf::Style::Default);
+	m_xDtime = sf::Time::Zero;
+	m_xFps = sf::seconds(1.f / 60.f);
+
+	m_xpScreen = new sf::RenderWindow(sf::VideoMode(800, 600), "Space Shooter Summer 2014", sf::Style::Default);
 	if (m_xpScreen == NULL){
 		return false;
 	}
@@ -33,31 +36,43 @@ bool Core::Init(){
 
 	m_xpStateMngr->Add(new GameState());
 
-	m_xpStateMngr->Setstate("GameState")
+	m_xpStateMngr->SetState("GameState");
 }
 
 void Core::Run(){
+	m_xpClock = new sf::Clock;
 
+	while (m_xpStateMngr->IsRunning()){
+		UpdEvents();
+
+		while (UpdDtime()){
+			m_xpScreen->clear(sf::Color::Blue);
+
+			m_xpStateMngr->Update(m_xDtime.asSeconds());
+			m_xpStateMngr->Draw();
+
+			m_xpScreen->display();
+		}
+	}
 }
 
 void Core::UpdEvents(){
 
 }
 
-void Core::UpdDtime(){
+bool Core::UpdDtime(){
+	m_xDtime += m_xpClock->restart();
 
-}
+	if (m_xDtime >= m_xFps){
+		m_xDtime = m_xFps;
 
-void Core::UpdFixedDtime(){
-
+		return true;
+	}
+	return false;
 }
 
 float Core::GetDtime(){
-
-}
-
-float Core::GetFixedDtime(){
-
+	return m_xDtime.asSeconds();
 }
 
 void Core::Cleanup(){

@@ -12,20 +12,18 @@ public:
 	void Run();
 
 	void UpdEvents();
-	void UpdDtime();
-	void UpdFixedDtime();
+	bool UpdDtime();
 
 	float GetDtime();
-	float GetFixedDtime();
 
 	void Cleanup();
 
 private:
-	sf::Window *m_xpScreen;
+	sf::RenderWindow *m_xpScreen;
+	sf::Clock *m_xpClock;
+	sf::Time m_xDtime;
+	sf::Time m_xFps;
 
 	KeybMngr *m_xpKeybMngr;
 	StateMngr *m_xpStateMngr;
-
-	float m_fDtime;
-	float m_fFixedDtime;
 };
