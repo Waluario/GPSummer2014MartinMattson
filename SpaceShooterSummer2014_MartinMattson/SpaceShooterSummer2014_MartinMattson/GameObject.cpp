@@ -70,26 +70,28 @@ bool GameObject::HasHitbox(){
 	return (m_xpHitbox != NULL);
 }
 
-bool GameObject::IsColliding(){
+bool GameObject::IsColliding(sf::Vector2f p_vPos, Hitbox *p_xpHitbox){
 	return false;
 }
 
-void GameObject::OnCreate(){
-	
-}
-
 void GameObject::OnUpdate(){
-
+	OnUpdateThis();
+	OnUpdateChildren();
 }
 
-void GameObject::OnFixedUpdate(){
-
+void GameObject::OnDraw(){
+	OnDrawThis();
+	OnDrawChildren();
 }
 
-void GameObject::OnCollision(GameObject *p_xpCollider){
-
+void GameObject::OnUpdateChildren(){
+	for (int i = 0; i < m_xpaChildren.size(); i++){
+		m_xpaChildren[i]->OnUpdate();
+	}
 }
 
-void GameObject::OnDestroy(){
-
+void GameObject::OnDrawChildren(){
+	for (int i = 0; i < m_xpaChildren.size(); i++){
+		m_xpaChildren[i]->OnDraw();
+	}
 }

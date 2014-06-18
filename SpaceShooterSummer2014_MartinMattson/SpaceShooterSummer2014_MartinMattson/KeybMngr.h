@@ -2,7 +2,7 @@
 
 #include <vector>
 
-class Button;
+#include "Button.h"
 
 class KeybMngr {
 public:
@@ -11,8 +11,8 @@ public:
 
 	void Update(float p_fDtime);
 
-	std::vector<Button*> GetVector();
+	static std::vector<Button*> GetVector();
 
 public:
-	std::vector<Button*> m_xaKeybPress;
+	static std::vector<Button*> m_xaKeybPress;
 };

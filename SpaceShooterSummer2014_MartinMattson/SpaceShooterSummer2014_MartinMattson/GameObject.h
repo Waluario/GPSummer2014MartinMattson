@@ -4,7 +4,7 @@
 
 class Hitbox;
 
-class GameObject : public sf::Transformable, sf::Drawable {
+class GameObject : public sf::Transformable {
 public:
 	GameObject();
 	~GameObject();
@@ -32,13 +32,17 @@ public:
 
 	bool IsColliding(sf::Vector2f p_vPos, Hitbox *p_xpHitbox);
 
-	virtual void OnCreate();
-	virtual void OnUpdate();
-	virtual void OnFixedUpdate();
-	virtual void OnCollision(GameObject *p_xpCollider);
-	virtual void OnDestroy();
+	void OnUpdate();
+	void OnDraw();
+	virtual void OnCollision(GameObject *p_xpCollider) = 0;
 
 private:
+	void OnUpdateChildren();
+	virtual void OnUpdateThis() = 0;
+
+	void OnDrawChildren();
+	virtual void OnDrawThis() = 0;
+
 	std::vector<std::string> m_saTags;
 
 	std::vector<GameObject*> m_xpaChildren;

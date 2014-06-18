@@ -2,11 +2,18 @@
 
 #include "GameObject.h"
 
-class PlayerObject : GameObject {
+class PlayerObject : public GameObject {
 public:
+	PlayerObject(sf::Vector2f p_vPos, int p_iLife, float p_fAcceleration);
+	~PlayerObject();
+
+	virtual void OnUpdateThis();
+	virtual void OnCollision(GameObject *p_xpCollider);
 
 private:
 	int m_iLife;
 
-	float m_fSpd;
+	float m_fAcceleration;
+
+	sf::Vector2f m_vSpeed;
 };

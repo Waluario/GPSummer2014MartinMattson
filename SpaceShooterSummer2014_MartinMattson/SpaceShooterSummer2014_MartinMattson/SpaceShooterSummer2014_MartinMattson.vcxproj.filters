@@ -78,6 +78,15 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files\Other</Filter>
     </ClInclude>
+    <ClInclude Include="SpriteMngr.h">
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawMngr.h">
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>Header Files\Other</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Button.cpp">
@@ -111,6 +120,12 @@
       <Filter>Source Files\Game Objects</Filter>
     </ClCompile>
     <ClCompile Include="StateMngr.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>Source Files\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteMngr.cpp">
       <Filter>Source Files\Managers</Filter>
     </ClCompile>
   </ItemGroup>
