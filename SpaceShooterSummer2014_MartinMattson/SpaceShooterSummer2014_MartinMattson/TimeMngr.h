@@ -4,12 +4,12 @@
 
 class TimeMngr {
 public:
-	TimeMngr();
+	TimeMngr(sf::Clock *p_xpClock, sf::Time p_xFps);
 	~TimeMngr();
 
 	static bool UpdDtime();
 
-	static sf::Time GetDtime(bool p_bUsePace = true);
+	static float GetDtime(bool p_bUsePace = true);
 
 	void SetFps(sf::Time p_xFps);
 

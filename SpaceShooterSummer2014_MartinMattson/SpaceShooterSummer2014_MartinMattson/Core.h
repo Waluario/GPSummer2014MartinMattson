@@ -5,6 +5,8 @@
 class DrawMngr;
 class KeybMngr;
 class SpriteMngr;
+class TimeMngr;
+
 class StateMngr;
 
 class Core {
@@ -16,9 +18,6 @@ public:
 	void Run();
 
 	void UpdEvents();
-	bool UpdDtime();
-
-	float GetDtime();
 
 	void Cleanup();
 
@@ -28,5 +27,7 @@ private:
 	DrawMngr *m_xpDrawMngr;
 	KeybMngr *m_xpKeybMngr;
 	SpriteMngr *m_xpSpriteMngr;
+	TimeMngr *m_xpTimeMngr;
+
 	StateMngr *m_xpStateMngr;
 };

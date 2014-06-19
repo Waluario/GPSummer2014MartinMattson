@@ -7,6 +7,7 @@
 #include "DrawMngr.h"
 #include "KeybMngr.h"
 #include "SpriteMngr.h"
+#include "TimeMngr.h"
 
 PlayerObject::PlayerObject(sf::Vector2f p_vPos, int p_iLife, float p_fAcceleration){
 	m_iLife = p_iLife;
@@ -25,11 +26,12 @@ void PlayerObject::OnUpdateThis(){
 
 	m_vSpeed = sf::Vector2f((KeybMngr::GetVector()[3]->IsPressed() - KeybMngr::GetVector()[2]->IsPressed()), (KeybMngr::GetVector()[1]->IsPressed() - KeybMngr::GetVector()[0]->IsPressed()));
 
-	m_vSpeed *= m_fAcceleration;
+	m_vSpeed *= (m_fAcceleration * TimeMngr::GetDtime(false));
 
-	//m_fCdwn -= 
+	m_fCdwn -= (TimeMngr::GetDtime());
 
 	setPosition(getPosition().x + m_vSpeed.x, getPosition().y + m_vSpeed.y);
+	m_xpSprite->setPosition(getPosition());
 }
 
 void PlayerObject::OnDrawThis(){

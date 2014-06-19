@@ -5,6 +5,8 @@
 #include "DrawMngr.h"
 #include "KeybMngr.h"
 #include "SpriteMngr.h"
+#include "TimeMngr.h"
+
 #include "StateMngr.h"
 
 #include "GameState.h"
@@ -18,9 +20,6 @@ Core::~Core(){
 }
 
 bool Core::Init(){
-	m_xDtime = sf::Time::Zero;
-	m_xFps = sf::seconds(1.f / 60.f);
-
 	m_xpScreen = new sf::RenderWindow(sf::VideoMode(800, 600), "Space Shooter Summer 2014", sf::Style::Default);
 	if (m_xpScreen == NULL){
 		return false;
@@ -41,6 +40,11 @@ bool Core::Init(){
 		return false;
 	}
 
+	m_xpTimeMngr = new TimeMngr(new sf::Clock, sf::seconds(1.f / 60.f));
+	if (m_xpTimeMngr == NULL){
+		return false;
+	}
+
 	m_xpStateMngr = new StateMngr();
 	if (m_xpStateMngr == NULL){
 		return false;
@@ -54,40 +58,24 @@ bool Core::Init(){
 }
 
 void Core::Run(){
-	m_xpClock = new sf::Clock;
 
 	while (m_xpStateMngr->IsRunning()){
 		UpdEvents();
 
-		while (UpdDtime()){
-			m_xpScreen->clear(sf::Color::Blue);
+		while (m_xpTimeMngr->UpdDtime()){
+			while (m_xpTimeMngr->UpdDtime()){
+				m_xpStateMngr->Update(m_xpTimeMngr->GetDtime());
+				m_xpStateMngr->Draw();
 
-			m_xpStateMngr->Update(m_xDtime.asSeconds());
-			m_xpStateMngr->Draw();
-
-			m_xpDrawMngr->Present();
-			m_xpDrawMngr->Clear();
+				m_xpDrawMngr->Present();
+				m_xpDrawMngr->Clear();
+			}
 		}
 	}
 }
 
 void Core::UpdEvents(){
 
-}
-
-bool Core::UpdDtime(){
-	m_xDtime += m_xpClock->restart();
-
-	if (m_xDtime >= m_xFps){
-		m_xDtime = m_xFps;
-
-		return true;
-	}
-	return false;
-}
-
-float Core::GetDtime(){
-	return m_xDtime.asSeconds();
 }
 
 void Core::Cleanup(){
