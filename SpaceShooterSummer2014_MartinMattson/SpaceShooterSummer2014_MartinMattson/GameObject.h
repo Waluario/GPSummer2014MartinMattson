@@ -1,5 +1,7 @@
 // GameObject.h //
 
+#pragma once
+
 #include <vector>
 
 class Hitbox;
@@ -9,7 +11,7 @@ public:
 	GameObject();
 	~GameObject();
 
-	void AddParent(GameObject *p_xpChild);
+	void AddParent(GameObject *p_xpParent);
 	void RemoveParent(GameObject *p_xpChild);
 
 	bool HasParent();
@@ -25,6 +27,7 @@ public:
 	bool HasChild();
 	int ChildrenNumber();
 
+	bool HasTag(std::string p_sTag);
 	std::vector<std::string> GetTags();
 
 	Hitbox* GetHitbox();
@@ -34,7 +37,6 @@ public:
 
 	void OnUpdate();
 	void OnDraw();
-	virtual void OnCollision(GameObject *p_xpCollider) = 0;
 
 private:
 	void OnUpdateChildren();
@@ -42,6 +44,8 @@ private:
 
 	void OnDrawChildren();
 	virtual void OnDrawThis() = 0;
+
+	virtual void OnCollision(GameObject *p_xpCollider) = 0;
 
 	std::vector<std::string> m_saTags;
 

@@ -1,6 +1,8 @@
 // Sprite.h //
 
-class Sprite : sf::Sprite {
+#pragma once
+
+class Sprite : public sf::Sprite {
 public:
 	Sprite();
 	~Sprite();

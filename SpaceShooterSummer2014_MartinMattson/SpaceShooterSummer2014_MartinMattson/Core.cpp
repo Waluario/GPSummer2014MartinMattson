@@ -2,7 +2,9 @@
 
 #include "Core.h"
 
+#include "DrawMngr.h"
 #include "KeybMngr.h"
+#include "SpriteMngr.h"
 #include "StateMngr.h"
 
 #include "GameState.h"
@@ -24,8 +26,18 @@ bool Core::Init(){
 		return false;
 	}
 	
+	m_xpDrawMngr = new DrawMngr(m_xpScreen);
+	if (m_xpDrawMngr == NULL){
+		return false;
+	}
+
 	m_xpKeybMngr = new KeybMngr();
 	if (m_xpKeybMngr == NULL){
+		return false;
+	}
+
+	m_xpSpriteMngr = new SpriteMngr("../rec/Graphics/");
+	if (m_xpSpriteMngr == NULL){
 		return false;
 	}
 
@@ -37,6 +49,8 @@ bool Core::Init(){
 	m_xpStateMngr->Add(new GameState());
 
 	m_xpStateMngr->SetState("GameState");
+
+	return true;
 }
 
 void Core::Run(){
@@ -51,7 +65,8 @@ void Core::Run(){
 			m_xpStateMngr->Update(m_xDtime.asSeconds());
 			m_xpStateMngr->Draw();
 
-			m_xpScreen->display();
+			m_xpDrawMngr->Present();
+			m_xpDrawMngr->Clear();
 		}
 	}
 }

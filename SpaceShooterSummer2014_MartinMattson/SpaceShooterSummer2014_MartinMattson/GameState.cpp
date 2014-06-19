@@ -2,6 +2,9 @@
 
 #include "GameState.h"
 
+#include "PlayerObject.h"
+#include "SceneObject.h"
+
 GameState::GameState(){
 
 }
@@ -11,6 +14,10 @@ GameState::~GameState(){
 }
 
 bool GameState::Enter(){
+	m_xpScene = new SceneObject();
+
+	m_xpScene->AddChild(new PlayerObject(sf::Vector2f(0, 0), 5, 1.0f));
+
 	return true;
 }
 
@@ -19,11 +26,13 @@ void GameState::Exit(){
 }
 
 bool GameState::Update(float p_fDtime){
+	m_xpScene->OnUpdate();
+
 	return true;
 }
 
 void GameState::Draw(){
-
+	m_xpScene->OnDraw();
 }
 
 std::string GameState::Next(){

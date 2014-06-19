@@ -1,5 +1,7 @@
 // Hitbox.h //
 
+#pragma once
+
 class Hitbox {
 public:
 	Hitbox();

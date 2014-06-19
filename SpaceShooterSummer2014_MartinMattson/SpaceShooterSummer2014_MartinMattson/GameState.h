@@ -1,6 +1,10 @@
 // GameState.h //
 
+#pragma once
+
 #include "State.h"
+
+class SceneObject;
 
 class GameState : public State {
 public:
@@ -16,4 +20,6 @@ public:
 
 private:
 	std::string m_sNext;
+
+	SceneObject *m_xpScene;
 };

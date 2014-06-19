@@ -1,6 +1,10 @@
 // Core.h //
 
+#pragma once
+
+class DrawMngr;
 class KeybMngr;
+class SpriteMngr;
 class StateMngr;
 
 class Core {
@@ -20,10 +24,9 @@ public:
 
 private:
 	sf::RenderWindow *m_xpScreen;
-	sf::Clock *m_xpClock;
-	sf::Time m_xDtime;
-	sf::Time m_xFps;
 
+	DrawMngr *m_xpDrawMngr;
 	KeybMngr *m_xpKeybMngr;
+	SpriteMngr *m_xpSpriteMngr;
 	StateMngr *m_xpStateMngr;
 };

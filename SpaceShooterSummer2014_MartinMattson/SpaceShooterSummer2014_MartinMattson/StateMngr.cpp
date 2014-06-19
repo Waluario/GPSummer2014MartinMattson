@@ -4,6 +4,9 @@
 
 #include "State.h"
 
+std::vector<State*> StateMngr::m_cpaStates;
+State *StateMngr::m_cpCurrent;
+
 StateMngr::StateMngr(){
 	m_cpCurrent = NULL;
 }

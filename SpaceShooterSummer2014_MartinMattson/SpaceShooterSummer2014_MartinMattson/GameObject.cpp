@@ -10,12 +10,14 @@ GameObject::~GameObject(){
 
 }
 
-void GameObject::AddParent(GameObject *p_xpChild){
-	m_xpParent = p_xpChild;
+void GameObject::AddParent(GameObject *p_xpParent){
+	RemoveParent(GetParent());
+	m_xpParent = p_xpParent;
 }
 
 void GameObject::RemoveParent(GameObject *p_xpChild){
 	m_xpParent = NULL;
+	delete m_xpParent;
 }
 
 bool GameObject::HasParent(){
@@ -27,7 +29,7 @@ GameObject* GameObject::GetParent(){
 }
 
 void GameObject::AddChild(GameObject *p_xpChild){
-
+	m_xpaChildren.push_back(p_xpChild);
 }
 
 void GameObject::RemoveChild(GameObject *p_xpChild){
@@ -56,6 +58,16 @@ bool GameObject::HasChild(){
 
 int GameObject::ChildrenNumber(){
 	return m_xpaChildren.size();
+}
+
+bool GameObject::HasTag(std::string p_sTag){
+	for (int i = 0; i < m_saTags.size(); i++){
+		if (m_saTags[i].compare(p_sTag) == 0){
+			return true;
+		}
+	}
+
+	return false;
 }
 
 std::vector<std::string> GameObject::GetTags(){

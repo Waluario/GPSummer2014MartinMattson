@@ -1,20 +1,18 @@
 // SpriteMngr.h //
 
+#pragma once
+
 class Sprite;
 
 class SpriteMngr {
 public:
-	SpriteMngr();
+	SpriteMngr(std::string p_sDir);
 	~SpriteMngr();
 
-	bool Init(std::string p_sFname);
-
-	Sprite* Load();
-
-	Sprite* Load(std::string p_sFname);
+	static Sprite* LoadSprite(std::string p_sFname, sf::IntRect p_xRect = sf::IntRect(0, 0, 0, 0));
 
 private:
-	std::string m_sDir;
+	static std::string m_sDir;
 	
-	std::map<std::string, Sprite*> m_xpaSprites;
+	static std::map<std::string, Sprite*> m_xpaSprites;
 };

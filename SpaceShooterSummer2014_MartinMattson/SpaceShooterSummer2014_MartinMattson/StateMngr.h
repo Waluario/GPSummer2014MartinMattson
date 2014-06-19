@@ -1,5 +1,7 @@
 // StateMngr.h //
 
+#pragma once
+
 #include <vector>
 
 class State;

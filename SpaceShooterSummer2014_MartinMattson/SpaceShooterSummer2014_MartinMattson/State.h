@@ -1,5 +1,7 @@
 // State.h //
 
+#pragma once
+
 class State {
 public:
 	virtual ~State() {};

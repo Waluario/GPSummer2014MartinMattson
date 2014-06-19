@@ -1,5 +1,7 @@
 // KeybMngr.h //
 
+#pragma once
+
 #include <vector>
 
 #include "Button.h"
@@ -13,6 +15,6 @@ public:
 
 	static std::vector<Button*> GetVector();
 
-public:
+private:
 	static std::vector<Button*> m_xaKeybPress;
 };

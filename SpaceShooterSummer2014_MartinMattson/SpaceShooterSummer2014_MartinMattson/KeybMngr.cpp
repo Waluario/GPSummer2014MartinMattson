@@ -2,14 +2,16 @@
 
 #include "KeybMngr.h"
 
+std::vector<Button*> KeybMngr::m_xaKeybPress;
+
 KeybMngr::KeybMngr(){
-	KeybMngr::m_xaKeybPress[0] = new Button(sf::Keyboard::Up);
-	KeybMngr::m_xaKeybPress[1] = new Button(sf::Keyboard::Down);
-	KeybMngr::m_xaKeybPress[2] = new Button(sf::Keyboard::Left);
-	KeybMngr::m_xaKeybPress[3] = new Button(sf::Keyboard::Right);
-	KeybMngr::m_xaKeybPress[4] = new Button(sf::Keyboard::Z);
-	KeybMngr::m_xaKeybPress[5] = new Button(sf::Keyboard::LShift);
-	KeybMngr::m_xaKeybPress[6] = new Button(sf::Keyboard::RShift);
+	KeybMngr::m_xaKeybPress.push_back(new Button(sf::Keyboard::Up));
+	KeybMngr::m_xaKeybPress.push_back(new Button(sf::Keyboard::Down));
+	KeybMngr::m_xaKeybPress.push_back(new Button(sf::Keyboard::Left));
+	KeybMngr::m_xaKeybPress.push_back(new Button(sf::Keyboard::Right));
+	KeybMngr::m_xaKeybPress.push_back(new Button(sf::Keyboard::Z));
+	KeybMngr::m_xaKeybPress.push_back(new Button(sf::Keyboard::LShift));
+	KeybMngr::m_xaKeybPress.push_back(new Button(sf::Keyboard::RShift));
 }
 
 KeybMngr::~KeybMngr(){
