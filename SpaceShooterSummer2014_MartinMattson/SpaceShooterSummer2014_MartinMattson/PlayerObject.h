@@ -22,7 +22,5 @@ private:
 		m_fCdwn,
 		m_fMaxCdwn;
 
-	sf::Vector2f m_vSpeed;
-
 	Sprite *m_xpSprite;
 };

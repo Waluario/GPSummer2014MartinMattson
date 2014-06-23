@@ -10,6 +10,7 @@ public:
 	~DrawMngr();
 
 	static void DrawSprite(Sprite *p_xpSprite);
+	static void DrawTexture(sf::Texture *p_xpTexture);
 	static void Present();
 	static void Clear();
 

@@ -27,6 +27,7 @@ public:
 	bool HasChild();
 	int ChildrenNumber();
 
+	void AddTag(std::string p_sTag);
 	bool HasTag(std::string p_sTag);
 	std::vector<std::string> GetTags();
 

@@ -24,6 +24,7 @@ TimeMngr::~TimeMngr(){
 
 bool TimeMngr::UpdDtime(){
 	m_xDtime += m_xpClock->restart();
+	//std::cout << m_xDtime.asSeconds() << std::endl;
 
 	if (m_xDtime >= m_xFps){
 		m_xDtime = m_xFps;

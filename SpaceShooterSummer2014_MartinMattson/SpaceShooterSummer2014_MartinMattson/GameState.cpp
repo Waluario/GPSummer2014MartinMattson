@@ -2,6 +2,7 @@
 
 #include "GameState.h"
 
+#include "EnemyObject0.h"
 #include "PlayerObject.h"
 #include "SceneObject.h"
 
@@ -16,7 +17,8 @@ GameState::~GameState(){
 bool GameState::Enter(){
 	m_xpScene = new SceneObject();
 
-	m_xpScene->AddChild(new PlayerObject(sf::Vector2f(0, 0), 5, 1.0f));
+	m_xpScene->AddChild(new PlayerObject(sf::Vector2f(0, 0), 5, 8.0f));
+	m_xpScene->AddChild(new EnemyObject0());
 
 	return true;
 }

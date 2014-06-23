@@ -16,8 +16,12 @@ void GameObject::AddParent(GameObject *p_xpParent){
 }
 
 void GameObject::RemoveParent(GameObject *p_xpChild){
-	m_xpParent = NULL;
-	delete m_xpParent;
+	if (HasParent()){
+		m_xpParent->RemoveChild(this);
+
+		m_xpParent = NULL;
+		delete m_xpParent;
+	}
 }
 
 bool GameObject::HasParent(){
@@ -30,6 +34,7 @@ GameObject* GameObject::GetParent(){
 
 void GameObject::AddChild(GameObject *p_xpChild){
 	m_xpaChildren.push_back(p_xpChild);
+	p_xpChild->AddParent(this);
 }
 
 void GameObject::RemoveChild(GameObject *p_xpChild){
@@ -58,6 +63,10 @@ bool GameObject::HasChild(){
 
 int GameObject::ChildrenNumber(){
 	return m_xpaChildren.size();
+}
+
+void GameObject::AddTag(std::string p_sTag){
+	m_saTags.push_back(p_sTag);
 }
 
 bool GameObject::HasTag(std::string p_sTag){

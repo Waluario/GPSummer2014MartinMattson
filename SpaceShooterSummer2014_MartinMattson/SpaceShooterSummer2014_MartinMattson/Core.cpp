@@ -61,23 +61,53 @@ void Core::Run(){
 
 	while (m_xpStateMngr->IsRunning()){
 		UpdEvents();
+		m_xpKeybMngr->Update(m_xpTimeMngr->GetDtime());
 
-		while (m_xpTimeMngr->UpdDtime()){
-			while (m_xpTimeMngr->UpdDtime()){
-				m_xpStateMngr->Update(m_xpTimeMngr->GetDtime());
-				m_xpStateMngr->Draw();
+		if (m_xpTimeMngr->UpdDtime()){
+			m_xpStateMngr->Update(m_xpTimeMngr->GetDtime());
+			m_xpStateMngr->Draw();
 
-				m_xpDrawMngr->Present();
-				m_xpDrawMngr->Clear();
-			}
+			m_xpDrawMngr->Present();
+			m_xpDrawMngr->Clear();
 		}
 	}
 }
 
 void Core::UpdEvents(){
-
+	sf::Event event;
+	while (m_xpScreen->pollEvent(event)){
+		switch (event.type){
+			case sf::Event::Closed:
+				m_xpScreen->close();
+				m_xpStateMngr->Quit();
+				break;
+		}
+	}
 }
 
 void Core::Cleanup(){
+	if (m_xpDrawMngr != NULL){
+		delete m_xpDrawMngr;
+		m_xpDrawMngr = NULL;
+	}
 
+	if (m_xpKeybMngr != NULL){
+		delete m_xpKeybMngr;
+		m_xpKeybMngr = NULL;
+	}
+
+	if (m_xpSpriteMngr != NULL){
+		delete m_xpSpriteMngr;
+		m_xpSpriteMngr = NULL;
+	}
+
+	if (m_xpTimeMngr != NULL){
+		delete m_xpTimeMngr;
+		m_xpTimeMngr = NULL;
+	}
+
+	if (m_xpStateMngr != NULL){
+		delete m_xpStateMngr;
+		m_xpStateMngr = NULL;
+	}
 }

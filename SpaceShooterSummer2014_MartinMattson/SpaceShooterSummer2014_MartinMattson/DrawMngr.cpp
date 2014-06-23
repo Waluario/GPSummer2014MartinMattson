@@ -18,6 +18,10 @@ void DrawMngr::DrawSprite(Sprite *p_xpSprite){
 	m_xpScreen->draw(*p_xpSprite);
 }
 
+void DrawMngr::DrawTexture(sf::Texture *p_xpTexture){
+	//m_xpScreen->draw(*p_xpTexture);
+}
+
 void DrawMngr::Present(){
 	m_xpScreen->display();
 }
