@@ -3,25 +3,29 @@
 #include "GameObject.h"
 
 GameObject::GameObject(){
-
+	
 }
 
 GameObject::~GameObject(){
-
+	/*RemoveParent();
+	
+	for (int i = m_xpaChildren.size() - 1; i >= 0; i--){
+		RemoveChild(m_xpaChildren[i]);
+	}*/
 }
 
 void GameObject::AddParent(GameObject *p_xpParent){
-	RemoveParent(GetParent());
+	RemoveParent();
 	m_xpParent = p_xpParent;
 }
 
-void GameObject::RemoveParent(GameObject *p_xpChild){
+void GameObject::RemoveParent(){
 	if (HasParent()){
-		m_xpParent->RemoveChild(this);
-
-		m_xpParent = NULL;
-		delete m_xpParent;
+		//m_xpParent->RemoveChild(this);
 	}
+
+	m_xpParent = NULL;
+	delete m_xpParent;
 }
 
 bool GameObject::HasParent(){
@@ -38,16 +42,21 @@ void GameObject::AddChild(GameObject *p_xpChild){
 }
 
 void GameObject::RemoveChild(GameObject *p_xpChild){
-	for (int i = m_xpaChildren.size() - 1; i >= 0; i++){
-		if (m_xpaChildren[i] == p_xpChild){
-			m_xpaChildren[i] = NULL;
+	if (HasChild()){
+		for (int i = m_xpaChildren.size() - 1; i >= 0; i--){
+			if (m_xpaChildren[i] == p_xpChild){
+				delete m_xpaChildren[i];
+				m_xpaChildren[i] = NULL;
+			}
 		}
 	}
 }
 
-GameObject* GameObject::GetChild(int p_i){
-	if (m_xpaChildren.size() > p_i){
-		return m_xpaChildren[p_i];
+GameObject* GameObject::GetChild(GameObject *p_xpChild){
+	for (int i = m_xpaChildren.size() - 1; i >= 0; i--){
+		if (m_xpaChildren[i] == p_xpChild){
+			return m_xpaChildren[i];
+		}
 	}
 
 	return NULL;

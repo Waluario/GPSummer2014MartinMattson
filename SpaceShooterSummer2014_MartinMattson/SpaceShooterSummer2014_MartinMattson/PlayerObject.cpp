@@ -34,7 +34,7 @@ void PlayerObject::OnUpdateThis(){
 	l_vSpeed *= (m_fAcceleration * TimeMngr::GetDtime(false));
 
 	if (_Keys[4]->IsPressed()){
-		AddChild(new PlayerBulletObject(sf::Vector2f(0, 1), 1.0f));
+		AddChild(new PlayerBulletObject(getPosition(), sf::Vector2f(0, -1), 1.0f));
 	}
 
 	m_fCdwn -= (TimeMngr::GetDtime());

@@ -12,7 +12,7 @@ public:
 	~GameObject();
 
 	void AddParent(GameObject *p_xpParent);
-	void RemoveParent(GameObject *p_xpChild);
+	void RemoveParent();
 
 	bool HasParent();
 
@@ -21,7 +21,7 @@ public:
 	void AddChild(GameObject *p_xpChild);
 	void RemoveChild(GameObject *p_xpChild);
 
-	GameObject* GetChild(int p_i);
+	GameObject* GetChild(GameObject *p_xpChild);
 	std::vector<GameObject*> GetChildren();
 
 	bool HasChild();
