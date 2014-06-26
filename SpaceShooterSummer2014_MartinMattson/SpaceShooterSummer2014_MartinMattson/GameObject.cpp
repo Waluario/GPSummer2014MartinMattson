@@ -7,25 +7,15 @@ GameObject::GameObject(){
 }
 
 GameObject::~GameObject(){
-	/*RemoveParent();
-	
-	for (int i = m_xpaChildren.size() - 1; i >= 0; i--){
-		RemoveChild(m_xpaChildren[i]);
-	}*/
+
 }
 
 void GameObject::AddParent(GameObject *p_xpParent){
-	RemoveParent();
 	m_xpParent = p_xpParent;
 }
 
 void GameObject::RemoveParent(){
-	if (HasParent()){
-		//m_xpParent->RemoveChild(this);
-	}
-
 	m_xpParent = NULL;
-	delete m_xpParent;
 }
 
 bool GameObject::HasParent(){
@@ -37,16 +27,24 @@ GameObject* GameObject::GetParent(){
 }
 
 void GameObject::AddChild(GameObject *p_xpChild){
-	m_xpaChildren.push_back(p_xpChild);
+	/*for (int i = 0; i < m_xpaChildren.size(); i++){
+		if (m_xpaChildren[i] == NULL){
+			m_xpaChildren[i] = std::unique_ptr<GameObject>(p_xpChild);
+			return;
+		}
+	}*/
+
+	m_xpaChildren.push_back(std::unique_ptr<GameObject>(p_xpChild));
 	p_xpChild->AddParent(this);
 }
 
 void GameObject::RemoveChild(GameObject *p_xpChild){
 	if (HasChild()){
 		for (int i = m_xpaChildren.size() - 1; i >= 0; i--){
-			if (m_xpaChildren[i] == p_xpChild){
-				delete m_xpaChildren[i];
+			if (m_xpaChildren[i].get() == p_xpChild){
+				//delete m_xpaChildren[i];
 				m_xpaChildren[i] = NULL;
+				m_xpaChildren.erase(m_xpaChildren.begin() + i);
 			}
 		}
 	}
@@ -54,17 +52,17 @@ void GameObject::RemoveChild(GameObject *p_xpChild){
 
 GameObject* GameObject::GetChild(GameObject *p_xpChild){
 	for (int i = m_xpaChildren.size() - 1; i >= 0; i--){
-		if (m_xpaChildren[i] == p_xpChild){
-			return m_xpaChildren[i];
+		if (m_xpaChildren[i].get() == p_xpChild){
+			return m_xpaChildren[i].get();
 		}
 	}
 
 	return NULL;
 }
 
-std::vector<GameObject*> GameObject::GetChildren(){
+/*std::vector<std::unique_ptr<GameObject>> GameObject::GetChildren(){
 	return m_xpaChildren;
-}
+}*/
 
 bool GameObject::HasChild(){
 	return (m_xpaChildren.size() > 0);
@@ -115,13 +113,23 @@ void GameObject::OnDraw(){
 }
 
 void GameObject::OnUpdateChildren(){
-	for (int i = 0; i < m_xpaChildren.size(); i++){
-		m_xpaChildren[i]->OnUpdate();
+	for (int i = m_xpaChildren.size() - 1; i >= 0; i--){
+		if (m_xpaChildren[i] != NULL){
+			m_xpaChildren[i]->OnUpdate();
+		}
+		else {
+			break;
+		}
 	}
 }
 
 void GameObject::OnDrawChildren(){
-	for (int i = 0; i < m_xpaChildren.size(); i++){
-		m_xpaChildren[i]->OnDraw();
+	for (int i = m_xpaChildren.size() - 1; i >= 0; i--){
+		if (m_xpaChildren[i] != NULL){
+			m_xpaChildren[i]->OnDraw();
+		}
+		else {
+			break;
+		}
 	}
 }

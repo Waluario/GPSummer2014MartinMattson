@@ -20,9 +20,7 @@ PlayerBulletObject::PlayerBulletObject(sf::Vector2f p_vPos, sf::Vector2f p_vDir,
 	m_xpSprite = SpriteMngr::LoadSprite("ShipSprite.png");
 }
 
-PlayerBulletObject::~PlayerBulletObject(){
-	RemoveParent();
-	
+PlayerBulletObject::~PlayerBulletObject(){	
 	delete m_xpSprite;
 	m_xpSprite = NULL;
 }
@@ -35,11 +33,13 @@ void PlayerBulletObject::OnUpdateThis(){
 
 	if (getPosition().x > DrawMngr::GetScreen()->getDefaultView().getSize().x || getPosition().x/* + m_xpSprite->getTexture()->getSize().x*/ < 0.f){
 		std::cout << "Delete!";
+		//RemoveParent();
 		GetParent()->RemoveChild(this); //this->~PlayerBulletObject();
 	}
 
 	if (getPosition().y > DrawMngr::GetScreen()->getDefaultView().getSize().y || getPosition().y/* + m_xpSprite->getTexture()->getSize().y*/ < 0.f){
 		std::cout << "Delete!";
+		//RemoveParent();
 		GetParent()->RemoveChild(this); //this->~PlayerBulletObject();
 	}
 }
