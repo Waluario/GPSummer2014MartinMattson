@@ -23,7 +23,7 @@ public:
 	void RemoveChild(GameObject *p_xpChild);
 
 	GameObject* GetChild(GameObject *p_xpChild);
-	//std::vector<std::unique_ptr<GameObject>> GetChildren();
+	std::vector<GameObject*> GetChildren();
 
 	bool HasChild();
 	int ChildrenNumber();
@@ -51,7 +51,7 @@ private:
 
 	std::vector<std::string> m_saTags;
 
-	std::vector<std::unique_ptr<GameObject>> m_xpaChildren;
+	std::vector<GameObject*> m_xpaChildren;
 	GameObject* m_xpParent;
 
 	Hitbox *m_xpHitbox;

@@ -2,17 +2,26 @@
 
 #pragma once
 
+class GameObject;
+
 class Hitbox {
 public:
-	Hitbox();
-	Hitbox(float p_f);
+	Hitbox(GameObject *p_xpGameObject);
+	Hitbox(GameObject *p_xpGameObject, float p_fSize);
 	~Hitbox();
 
 	float GetSize();
 	void SetSize(float p_f);
 
-	bool Overlap(sf::Vector2f p_vPos0, sf::Vector2f p_vPos1, float p_fSize);
+	GameObject* GetGameObject();
+	void SetGameObject(GameObject *p_xpGameObject);
+
+	bool Overlap(Hitbox *p_xpHitbox);
 
 private:
 	float m_fSize;
+
+	sf::Vector2f m_vPos;
+
+	GameObject *m_xpGameObject;
 };

@@ -114,6 +114,9 @@
     <ClInclude Include="PlayerBulletObject.h">
       <Filter>Header Files\Game Objects\Player</Filter>
     </ClInclude>
+    <ClInclude Include="CollisionMngr.h">
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Button.cpp">
@@ -172,6 +175,9 @@
     </ClCompile>
     <ClCompile Include="PlayerBulletObject.cpp">
       <Filter>Source Files\Game Objects\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionMngr.cpp">
+      <Filter>Source Files\Managers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

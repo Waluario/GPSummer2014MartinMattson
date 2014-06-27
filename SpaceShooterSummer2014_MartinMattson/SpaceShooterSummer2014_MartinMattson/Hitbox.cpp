@@ -2,12 +2,13 @@
 
 #include "Hitbox.h"
 
-Hitbox::Hitbox(){
+Hitbox::Hitbox(GameObject *p_xpGameObject){
 	m_fSize = 0.0f;
 }
 
-Hitbox::Hitbox(float p_f){
-	m_fSize = p_f;
+Hitbox::Hitbox(GameObject *p_xpGameObject, float p_fSize){
+	m_fSize = p_fSize;
+	m_xpGameObject = p_xpGameObject;
 }
 
 Hitbox::~Hitbox(){
@@ -22,6 +23,14 @@ void Hitbox::SetSize(float p_f){
 	m_fSize = p_f;
 }
 
-bool Hitbox::Overlap(sf::Vector2f p_vPos0, sf::Vector2f p_vPos, float p_fSize){
-	return true;
+GameObject* Hitbox::GetGameObject(){
+	return m_xpGameObject;
+}
+
+void Hitbox::SetGameObject(GameObject *p_xpGameObject){
+	m_xpGameObject = p_xpGameObject;
+}
+
+bool Hitbox::Overlap(Hitbox *p_xpHitbox){
+	return false;
 }
