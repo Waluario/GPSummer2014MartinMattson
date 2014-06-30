@@ -11,6 +11,7 @@ public:
 	PlayerObject(sf::Vector2f p_vPos, int p_iLife, float p_fAcceleration);
 	~PlayerObject();
 
+	virtual void OnCreate();
 	virtual void OnUpdateThis();
 	virtual void OnDrawThis();
 	virtual void OnCollision(GameObject *p_xpCollider);

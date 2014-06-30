@@ -14,7 +14,7 @@ public:
 
 	static void CheckForCollisions();
 
-	static Hitbox* NewHitbox(float p_fSize, GameObject* p_xpGameObject);
+	static Hitbox* NewHitbox(GameObject* p_xpGameObject, sf::Vector2f p_vPosition, float p_fSize);
 	static void DeleteHitbox(Hitbox* p_xpHitbox);
 
 private:

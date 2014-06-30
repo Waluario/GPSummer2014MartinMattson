@@ -4,3 +4,8 @@
 *.sdf
 *.opensdf
 *.log
+*.suo
+*.ilk
+*.pdb
+*.exe
+*.ipch

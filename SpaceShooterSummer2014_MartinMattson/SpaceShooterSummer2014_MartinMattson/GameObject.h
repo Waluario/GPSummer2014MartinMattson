@@ -2,7 +2,6 @@
 
 #pragma once
 
-#include <memory>
 #include <vector>
 
 class Hitbox;
@@ -33,21 +32,26 @@ public:
 	std::vector<std::string> GetTags();
 
 	Hitbox* GetHitbox();
+	void SetHitbox(Hitbox *p_xpHitbox);
 	bool HasHitbox();
 
-	bool IsColliding(sf::Vector2f p_vPos, Hitbox *p_xpHitbox);
+	void DeleteMe();
+	bool CanDelete();
+	void DeleteChildren();
 
 	void OnUpdate();
 	void OnDraw();
+	
+	virtual void OnCollision(GameObject *p_xpCollider) = 0;
 
 private:
+	virtual void OnCreate() = 0;
+
 	void OnUpdateChildren();
 	virtual void OnUpdateThis() = 0;
 
 	void OnDrawChildren();
 	virtual void OnDrawThis() = 0;
-
-	virtual void OnCollision(GameObject *p_xpCollider) = 0;
 
 	std::vector<std::string> m_saTags;
 
@@ -55,4 +59,7 @@ private:
 	GameObject* m_xpParent;
 
 	Hitbox *m_xpHitbox;
+
+	bool m_bDeleteMe;
+	bool m_bJustBorn;
 };

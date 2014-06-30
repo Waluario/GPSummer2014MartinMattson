@@ -26,6 +26,10 @@ PlayerObject::~PlayerObject(){
 
 }
 
+void PlayerObject::OnCreate(){
+
+}
+
 void PlayerObject::OnUpdateThis(){
 	std::vector<Button*> _Keys = KeybMngr::GetVector();
 

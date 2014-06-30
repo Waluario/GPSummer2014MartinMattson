@@ -1,13 +1,20 @@
 // GameObject.cpp //
 
+#include "CollisionMngr.h"
+
 #include "GameObject.h"
 
 GameObject::GameObject(){
-	
+	m_bDeleteMe = false;
+	m_bJustBorn = true;
 }
 
 GameObject::~GameObject(){
+	if (HasHitbox()){
+		CollisionMngr::DeleteHitbox(m_xpHitbox);
+	}
 
+	m_xpHitbox = NULL;
 }
 
 void GameObject::AddParent(GameObject *p_xpParent){
@@ -27,13 +34,6 @@ GameObject* GameObject::GetParent(){
 }
 
 void GameObject::AddChild(GameObject *p_xpChild){
-	/*for (int i = 0; i < m_xpaChildren.size(); i++){
-		if (m_xpaChildren[i] == NULL){
-			m_xpaChildren[i] = std::unique_ptr<GameObject>(p_xpChild);
-			return;
-		}
-	}*/
-
 	m_xpaChildren.push_back(p_xpChild);
 	p_xpChild->AddParent(this);
 }
@@ -60,9 +60,9 @@ GameObject* GameObject::GetChild(GameObject *p_xpChild){
 	return NULL;
 }
 
-/*std::vector<std::unique_ptr<GameObject>> GameObject::GetChildren(){
+std::vector<GameObject*> GameObject::GetChildren(){
 	return m_xpaChildren;
-}*/
+}
 
 bool GameObject::HasChild(){
 	return (m_xpaChildren.size() > 0);
@@ -94,17 +94,42 @@ Hitbox* GameObject::GetHitbox(){
 	return m_xpHitbox;
 }
 
+void GameObject::SetHitbox(Hitbox *p_xpHitbox){
+	m_xpHitbox = p_xpHitbox;
+}
+
 bool GameObject::HasHitbox(){
 	return (m_xpHitbox != NULL);
 }
 
-bool GameObject::IsColliding(sf::Vector2f p_vPos, Hitbox *p_xpHitbox){
-	return false;
+void GameObject::DeleteMe(){
+	m_bDeleteMe = true;
+}
+
+bool GameObject::CanDelete(){
+	return m_bDeleteMe;
+}
+
+void GameObject::DeleteChildren(){
+	for (int i = m_xpaChildren.size() - 1; i >= 0; i--){
+		if (m_xpaChildren[i]->CanDelete()){
+			delete m_xpaChildren[i];
+			m_xpaChildren[i] = NULL;
+			m_xpaChildren.erase(m_xpaChildren.begin() + i);
+		}
+	}
 }
 
 void GameObject::OnUpdate(){
+	if (m_bJustBorn){
+		OnCreate();
+		m_bJustBorn = false;
+	}
+
 	OnUpdateThis();
 	OnUpdateChildren();
+
+	DeleteChildren();
 }
 
 void GameObject::OnDraw(){

@@ -2,6 +2,7 @@
 
 #include "GameState.h"
 
+#include "CollisionMngr.h"
 #include "EnemyObject0.h"
 #include "PlayerObject.h"
 #include "SceneObject.h"
@@ -18,7 +19,7 @@ bool GameState::Enter(){
 	m_xpScene = new SceneObject();
 
 	m_xpScene->AddChild(new PlayerObject(sf::Vector2f(0, 0), 5, 8.0f));
-	m_xpScene->AddChild(new EnemyObject0());
+	m_xpScene->AddChild(new EnemyObject0(sf::Vector2f(0, 0), .03125, .25, 0.0001, 20));
 
 	return true;
 }
@@ -29,6 +30,8 @@ void GameState::Exit(){
 
 bool GameState::Update(float p_fDtime){
 	m_xpScene->OnUpdate();
+
+	CollisionMngr::CheckForCollisions();
 
 	return true;
 }

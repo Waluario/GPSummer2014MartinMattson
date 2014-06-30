@@ -10,6 +10,10 @@ SceneObject::~SceneObject(){
 
 }
 
+void SceneObject::OnCreate(){
+
+}
+
 void SceneObject::OnUpdateThis(){
 
 }
