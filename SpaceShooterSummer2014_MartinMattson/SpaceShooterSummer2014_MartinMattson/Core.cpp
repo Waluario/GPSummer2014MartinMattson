@@ -2,6 +2,7 @@
 
 #include "Core.h"
 
+#include "CollisionMngr.h"
 #include "DrawMngr.h"
 #include "KeybMngr.h"
 #include "SpriteMngr.h"
@@ -10,6 +11,7 @@
 #include "StateMngr.h"
 
 #include "GameState.h"
+#include "MenuState.h"
 
 Core::Core(){
 
@@ -50,9 +52,12 @@ bool Core::Init(){
 		return false;
 	}
 
-	m_xpStateMngr->Add(new GameState());
+	CollisionMngr::NewList();
 
-	m_xpStateMngr->SetState("GameState");
+	m_xpStateMngr->Add(new GameState());
+	m_xpStateMngr->Add(new MenuState());
+
+	m_xpStateMngr->SetState("MenuState");
 
 	return true;
 }
@@ -61,9 +66,10 @@ void Core::Run(){
 
 	while (m_xpStateMngr->IsRunning()){
 		UpdEvents();
-		m_xpKeybMngr->Update(m_xpTimeMngr->GetDtime());
 
 		if (m_xpTimeMngr->UpdDtime()){
+			m_xpKeybMngr->Update(m_xpTimeMngr->GetDtime());
+
 			m_xpStateMngr->Update(m_xpTimeMngr->GetDtime());
 			m_xpStateMngr->Draw();
 

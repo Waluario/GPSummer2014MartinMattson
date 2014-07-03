@@ -21,7 +21,7 @@ EnemyObject0::EnemyObject0(sf::Vector2f p_vPosition, float p_fHorizontalSpd, flo
 	m_xpSprite = SpriteMngr::LoadSprite("ShipSprite.png");
 	AddTag("Enemy");
 
-	SetHitbox(CollisionMngr::NewHitbox(this, getPosition(), 64.0f));
+	SetHitbox(CollisionMngr::NewHitbox(this, getPosition(), 64.0f, 0));
 }
 
 EnemyObject0::~EnemyObject0(){
@@ -36,7 +36,7 @@ void EnemyObject0::OnUpdateThis(){
 	m_fVerticalSpd -= m_fDeaccel;
 	sf::Vector2f _vSpeed(m_fHorizontalSpd, m_fVerticalSpd);
 
-	setPosition(getPosition() + _vSpeed);
+	setPosition(TimeMngr::GetDtime() * (getPosition() + _vSpeed));
 
 	m_xpSprite->setPosition(getPosition());
 	GetHitbox()->SetPosition(getPosition());

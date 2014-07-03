@@ -2,6 +2,8 @@
 
 #include "TimeMngr.h"
 
+#include <iostream>
+
 float TimeMngr::m_fPace;
 
 sf::Clock *TimeMngr::m_xpClock;
@@ -23,12 +25,15 @@ TimeMngr::~TimeMngr(){
 }
 
 bool TimeMngr::UpdDtime(){
+	if (m_xDtime >= m_xFps){
+		m_xDtime = sf::Time::Zero;
+	}
+
 	m_xDtime += m_xpClock->restart();
-	//std::cout << m_xDtime.asSeconds() << std::endl;
 
 	if (m_xDtime >= m_xFps){
-		m_xDtime = m_xFps;
-
+		//std::cout << m_xDtime.asSeconds() << std::endl;
+		
 		return true;
 	}
 

@@ -35,6 +35,8 @@ public:
 	void SetHitbox(Hitbox *p_xpHitbox);
 	bool HasHitbox();
 
+	virtual void SetAllPositions(sf::Vector2f p_vPosition);
+
 	void DeleteMe();
 	bool CanDelete();
 	void DeleteChildren();

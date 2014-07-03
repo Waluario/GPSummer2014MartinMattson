@@ -18,14 +18,15 @@ GameState::~GameState(){
 bool GameState::Enter(){
 	m_xpScene = new SceneObject();
 
-	m_xpScene->AddChild(new PlayerObject(sf::Vector2f(0, 0), 5, 8.0f));
-	m_xpScene->AddChild(new EnemyObject0(sf::Vector2f(0, 0), .03125, .25, 0.0001, 20));
+	m_xpScene->AddChild(new PlayerObject(sf::Vector2f(0, 0), 5, 256.0f));
+	m_xpScene->AddChild(new EnemyObject0(sf::Vector2f(0, 0), 64.f, 256.f, 0.0001, 20));
 
 	return true;
 }
 
 void GameState::Exit(){
-
+	delete m_xpScene;
+	m_xpScene = NULL;
 }
 
 bool GameState::Update(float p_fDtime){

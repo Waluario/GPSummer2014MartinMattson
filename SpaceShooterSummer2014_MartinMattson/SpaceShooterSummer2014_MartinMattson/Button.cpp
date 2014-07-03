@@ -2,6 +2,8 @@
 
 #include "Button.h"
 
+#include <iostream>
+
 Button::Button(){
 	m_xKey = sf::Keyboard::Unknown;
 }
@@ -17,10 +19,10 @@ Button::~Button(){
 void Button::Update(float p_fDtime){
 	if (sf::Keyboard::isKeyPressed(m_xKey)){
 		if (IsPressed()){
-			m_bPressedOnce = true;
+			m_bPressedOnce = false;
 		}
 		else {
-			m_bPressedOnce = false;
+			m_bPressedOnce = true;
 		}
 
 		m_fTimer += p_fDtime;

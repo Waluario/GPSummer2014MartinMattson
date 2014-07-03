@@ -48,8 +48,6 @@ bool Hitbox::Overlap(Hitbox *p_xpHitbox){
 		_b = m_vPosition.y - p_xpHitbox->GetPosition().y,
 		_c = sqrtf((_a * _a) + (_b * _b));
 
-	std::cout << _c << std::endl;
-
 	if (_c < (m_fSize + p_xpHitbox->GetSize())){
 		return true;
 	}

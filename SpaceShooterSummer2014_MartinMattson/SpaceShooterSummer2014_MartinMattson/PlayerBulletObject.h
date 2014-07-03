@@ -11,6 +11,8 @@ public:
 	PlayerBulletObject(sf::Vector2f p_vPos, sf::Vector2f p_vDir, float p_fAcceleration);
 	~PlayerBulletObject();
 
+	void SetAllPositions(sf::Vector2f p_vPosition);
+
 	virtual void OnCreate();
 	virtual void OnUpdateThis();
 	virtual void OnDrawThis();

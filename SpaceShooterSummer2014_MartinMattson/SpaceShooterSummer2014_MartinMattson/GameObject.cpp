@@ -102,6 +102,10 @@ bool GameObject::HasHitbox(){
 	return (m_xpHitbox != NULL);
 }
 
+void GameObject::SetAllPositions(sf::Vector2f p_vPosition){
+	setPosition(p_vPosition);
+}
+
 void GameObject::DeleteMe(){
 	m_bDeleteMe = true;
 }

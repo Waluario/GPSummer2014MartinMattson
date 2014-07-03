@@ -16,5 +16,5 @@ public:
 	static std::vector<Button*> GetVector();
 
 private:
-	static std::vector<Button*> m_xaKeybPress;
+	static std::vector<Button*> m_xpaKeybPress;
 };
