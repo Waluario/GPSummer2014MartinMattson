@@ -4,7 +4,12 @@
 
 #include "Core.h"
 
+#include <stdlib.h>
+#include <time.h>
+
 int _tmain(int argc, _TCHAR* argv[]){
+	srand(time(NULL));
+
 	Core m_xCore;
 
 	if (!m_xCore.Init()){

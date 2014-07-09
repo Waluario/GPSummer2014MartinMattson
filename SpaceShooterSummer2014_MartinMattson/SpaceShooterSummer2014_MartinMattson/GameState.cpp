@@ -4,6 +4,7 @@
 
 #include "CollisionMngr.h"
 #include "EnemyObject0.h"
+#include "HUDObject.h"
 #include "PlayerObject.h"
 #include "SceneObject.h"
 
@@ -18,8 +19,10 @@ GameState::~GameState(){
 bool GameState::Enter(){
 	m_xpScene = new SceneObject();
 
-	m_xpScene->AddChild(new PlayerObject(sf::Vector2f(0, 0), 5, 256.0f));
-	m_xpScene->AddChild(new EnemyObject0(sf::Vector2f(0, 0), 64.f, 256.f, 0.0001, 20));
+	m_xpScene->AddChild(new HUDObject());
+	m_xpScene->AddChild(new PlayerObject(sf::Vector2f(400, 500), 5, 256.0f));
+	m_xpScene->AddChild(new EnemyObject0(sf::Vector2f(200, 0), sf::Vector2f(80.f, 256.f), sf::Vector2f(0, 128.f), sf::Vector2f(80.f, 256.f)));
+	m_xpScene->AddChild(new EnemyObject0(sf::Vector2f(600, 0), sf::Vector2f(-80.f, 256.f), sf::Vector2f(0, 128.f), sf::Vector2f(80.f, 256.f)));
 
 	return true;
 }

@@ -36,3 +36,15 @@ void KeybMngr::Update(float p_fDtime){
 std::vector<Button*> KeybMngr::GetVector(){
 	return KeybMngr::m_xpaKeybPress;
 }
+
+float KeybMngr::GetButtonPressedTime(int p_iKey){
+	return m_xpaKeybPress[p_iKey]->GetTimer();
+}
+
+bool KeybMngr::GetButtonPressed(int p_iKey){
+	return (m_xpaKeybPress[p_iKey]->IsPressed());
+}
+
+bool KeybMngr::GetButtonPressedOnce(int p_iKey){
+	return m_xpaKeybPress[p_iKey]->IsPressedOnce();
+}

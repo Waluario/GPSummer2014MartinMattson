@@ -21,7 +21,8 @@ TimeMngr::TimeMngr(sf::Clock *p_xpClock, sf::Time p_xFps){
 }
 
 TimeMngr::~TimeMngr(){
-
+	delete m_xpClock;
+	m_xpClock = NULL;
 }
 
 bool TimeMngr::UpdDtime(){

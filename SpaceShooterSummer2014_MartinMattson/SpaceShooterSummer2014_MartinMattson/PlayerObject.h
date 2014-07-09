@@ -22,13 +22,15 @@ public:
 	bool CanFire();
 
 private:
-	int m_iLife;
-
 	float m_fAcceleration,
 		m_fCdwn,
 		m_fMaxCdwn,
 		m_fFirerate,
-		m_fFirerateMax;
+		m_fFirerateMax,
+		m_fFireRange,
+		m_fFireRangeMax;
+
+	bool m_bFireRangeUp;
 
 	Sprite *m_xpSprite;
 };

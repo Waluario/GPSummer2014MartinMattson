@@ -36,6 +36,7 @@ public:
 	bool HasHitbox();
 
 	virtual void SetAllPositions(sf::Vector2f p_vPosition);
+	virtual bool OnScreen();
 
 	void DeleteMe();
 	bool CanDelete();

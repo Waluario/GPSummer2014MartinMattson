@@ -13,6 +13,11 @@ public:
 
 	void Update(float p_fDtime);
 
+	static float GetButtonPressedTime(int p_iKey);
+
+	static bool GetButtonPressed(int p_iKey);
+	static bool GetButtonPressedOnce(int p_iKey);
+
 	static std::vector<Button*> GetVector();
 
 private:

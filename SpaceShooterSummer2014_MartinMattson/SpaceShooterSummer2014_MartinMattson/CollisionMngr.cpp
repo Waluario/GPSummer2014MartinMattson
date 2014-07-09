@@ -22,20 +22,6 @@ void CollisionMngr::NewList(){
 }
 
 void CollisionMngr::CheckForCollisions(){
-	/*for (int i = 0; i < m_xpaHitboxes.size(); i++){
-		for (int ii = 0; ii < m_xpaHitboxes.size(); ii++){
-			if (i != ii){
-				for (int iii = 0; iii < m_xpaHitboxes[i].size(); iii++){
-					for (int i4 = 0; i4 < m_xpaHitboxes[ii].size(); i4++){
-						if (m_xpaHitboxes[i][iii]->Overlap(m_xpaHitboxes[ii][i4])){
-							m_xpaHitboxes[i][iii]->GetGameObject()->OnCollision(m_xpaHitboxes[ii][i4]->GetGameObject());
-						}
-					}
-				}
-			}
-		}
-	}*/
-
 	for (int i = 0; i < m_xpaHitboxes[0].size(); i++){
 		for (int ii = 0; ii < m_xpaHitboxes[0].size(); ii++){
 			if (m_xpaHitboxes[0][i] != m_xpaHitboxes[0][ii]){

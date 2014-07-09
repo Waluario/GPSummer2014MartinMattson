@@ -13,7 +13,7 @@ public:
 
 	static void NewFont(std::string p_sName, std::string p_sFname);
 
-	static std::vector<Font*> GetFont();
+	static sf::Font* GetFont(std::string p_sName);
 
 private:
 	static std::string m_sPath;

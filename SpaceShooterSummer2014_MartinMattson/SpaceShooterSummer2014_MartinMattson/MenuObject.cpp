@@ -13,7 +13,9 @@ MenuObject::MenuObject(){
 	m_iCurrentChoice = 0;
 
 	m_xpaItems.push_back(new MenuItem("GameState", "Start Game", sf::Vector2f(0, 0)));
-	m_xpaItems.push_back(new MenuItem("EndState", "Exit", sf::Vector2f(0, 0)));
+	m_xpaItems.push_back(new MenuItem("EndState", "How To Play", sf::Vector2f(0, 35)));
+	m_xpaItems.push_back(new MenuItem("EndState", "Options", sf::Vector2f(0, 70)));
+	m_xpaItems.push_back(new MenuItem("EndState", "Exit", sf::Vector2f(0, 105)));
 }
 
 MenuObject::~MenuObject(){
@@ -49,16 +51,11 @@ void MenuObject::OnUpdateThis(){
 void MenuObject::OnDrawThis(){
 	for (int i = 0; i < m_xpaItems.size(); i++){
 		if (i == m_iCurrentChoice){
-			std::cout << "<";
+			m_xpaItems[i]->OnDrawWhenChosen();
 		}
-
-		std::cout << m_xpaItems[i]->GetChoice();
-
-		if (i == m_iCurrentChoice){
-			std::cout << ">";
+		else {
+			m_xpaItems[i]->OnDraw();
 		}
-
-		std::cout << std::endl;
 	}
 }
 

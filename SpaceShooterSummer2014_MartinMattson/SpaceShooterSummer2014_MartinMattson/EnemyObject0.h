@@ -8,19 +8,31 @@ class Sprite;
 
 class EnemyObject0 : public EnemyObject {
 public:
-	EnemyObject0(sf::Vector2f p_vPositionfloat, float p_fHorizontalSpd, float p_fVerticalSpd, float p_fDeaccel, float p_fMaxSpd);
+	EnemyObject0(sf::Vector2f p_vPosition, sf::Vector2f p_vSpd, sf::Vector2f p_vDeaccel, sf::Vector2f p_vMaxSpd);
 	~EnemyObject0();
+
+	void SetAllPositions(sf::Vector2f p_vPosition);
 
 	virtual void OnCreate();
 	virtual void OnUpdateThis();
 	virtual void OnDrawThis();
 	virtual void OnCollision(GameObject *p_xpCollider);
 
+	bool CanFire();
+
 private:
-	float m_fHorizontalSpd,
-		m_fVerticalSpd,
-		m_fDeaccel,
-		m_fMaxSpd;
+	sf::Vector2f m_vSpd,
+		m_vDeaccel,
+		m_vMaxSpd;
+
+	float m_fFireRate,
+		m_fFireRateMax;
+
+	int m_iBulletAmmo,
+		m_iLife,
+		m_iScore;
 
 	Sprite *m_xpSprite;
+
+	GameObject *m_xpPlayer;
 };

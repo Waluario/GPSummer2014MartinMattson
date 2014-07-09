@@ -13,14 +13,14 @@ public:
 	std::string GetState();
 	void SetState(std::string p_sState);
 
-	std::string GetChoice();
-	void SetChoice(std::string p_sChoice);
+	sf::Text* GetText();
+	void SetText(sf::Text *p_xpChoice);
+
+	void OnDraw();
+	void OnDrawWhenChosen();
 
 private:
-	std::string m_sState,
-		m_sChoice;
+	std::string m_sState;
 
-	sf::Vector2f m_vPosition;
-
-	// ~Insert graphics here~
+	sf::Text *m_xpChoice;
 };

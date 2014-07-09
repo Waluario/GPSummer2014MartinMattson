@@ -4,7 +4,10 @@
 
 #include "CollisionMngr.h"
 #include "DrawMngr.h"
+#include "FontMngr.h"
+#include "GameObjectMngr.h"
 #include "KeybMngr.h"
+#include "ScoreMngr.h"
 #include "SpriteMngr.h"
 #include "TimeMngr.h"
 
@@ -27,8 +30,27 @@ bool Core::Init(){
 		return false;
 	}
 	
+	m_xpCollisionMngr = new CollisionMngr();
+	if (m_xpCollisionMngr == NULL){
+		return false;
+	}
+
+	CollisionMngr::NewList();
+
 	m_xpDrawMngr = new DrawMngr(m_xpScreen);
 	if (m_xpDrawMngr == NULL){
+		return false;
+	}
+
+	m_xpFontMngr = new FontMngr("../rec/Fonts/");
+	if (m_xpFontMngr == NULL){
+		return false;
+	}
+
+	m_xpFontMngr->NewFont("Arial", "arial/arial.ttf");
+
+	m_xpGameObjectMngr = new GameObjectMngr();
+	if (m_xpGameObjectMngr == NULL){
 		return false;
 	}
 
@@ -37,10 +59,20 @@ bool Core::Init(){
 		return false;
 	}
 
+	m_xpScoreMngr = new ScoreMngr(0, 0, 2000, 500, 2);
+	if (m_xpScoreMngr == NULL){
+		return false;
+	}
+
 	m_xpSpriteMngr = new SpriteMngr("../rec/Graphics/");
 	if (m_xpSpriteMngr == NULL){
 		return false;
 	}
+
+	m_xpSpriteMngr->LoadTexture("Ship", "ShipSprite.png");
+	m_xpSpriteMngr->LoadTexture("Enemy0", "EnemySprite0.png");
+	m_xpSpriteMngr->LoadTexture("PBullet", "PBulletSprite.png");
+	m_xpSpriteMngr->LoadTexture("EBullet", "EBulletSprite.png");
 
 	m_xpTimeMngr = new TimeMngr(new sf::Clock, sf::seconds(1.f / 60.f));
 	if (m_xpTimeMngr == NULL){
@@ -51,8 +83,6 @@ bool Core::Init(){
 	if (m_xpStateMngr == NULL){
 		return false;
 	}
-
-	CollisionMngr::NewList();
 
 	m_xpStateMngr->Add(new GameState());
 	m_xpStateMngr->Add(new MenuState());
@@ -92,9 +122,19 @@ void Core::UpdEvents(){
 }
 
 void Core::Cleanup(){
+	if (m_xpCollisionMngr != NULL){
+		delete m_xpCollisionMngr;
+		m_xpCollisionMngr = NULL;
+	}
+
 	if (m_xpDrawMngr != NULL){
 		delete m_xpDrawMngr;
 		m_xpDrawMngr = NULL;
+	}
+
+	if (m_xpFontMngr != NULL){
+		delete m_xpFontMngr;
+		m_xpFontMngr = NULL;
 	}
 
 	if (m_xpKeybMngr != NULL){

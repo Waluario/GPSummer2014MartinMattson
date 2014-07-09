@@ -1,10 +1,14 @@
 // GameObject.cpp //
 
-#include "CollisionMngr.h"
-
 #include "GameObject.h"
 
+#include "CollisionMngr.h"
+#include "DrawMngr.h"
+#include "GameObjectMngr.h"
+
 GameObject::GameObject(){
+	GameObjectMngr::AddGameObject(this);
+
 	m_bDeleteMe = false;
 	m_bJustBorn = true;
 }
@@ -15,6 +19,12 @@ GameObject::~GameObject(){
 	}
 
 	m_xpHitbox = NULL;
+
+	for (int i = m_xpaChildren.size() - 1; i >= 0; i--){
+		delete m_xpaChildren[i];
+		m_xpaChildren[i] = NULL;
+		m_xpaChildren.erase(m_xpaChildren.begin() + i);
+	}
 }
 
 void GameObject::AddParent(GameObject *p_xpParent){
@@ -104,6 +114,18 @@ bool GameObject::HasHitbox(){
 
 void GameObject::SetAllPositions(sf::Vector2f p_vPosition){
 	setPosition(p_vPosition);
+}
+
+bool GameObject::OnScreen(){
+	if (getPosition().x > DrawMngr::GetScreen()->getDefaultView().getSize().x || getPosition().x < 0.f){
+		return false;
+	}
+
+	if (getPosition().y > DrawMngr::GetScreen()->getDefaultView().getSize().y || getPosition().y < 0.f){
+		return false;
+	}
+
+	return true;
 }
 
 void GameObject::DeleteMe(){
