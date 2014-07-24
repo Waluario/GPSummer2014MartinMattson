@@ -44,7 +44,8 @@ void MenuObject::OnUpdateThis(){
 	}
 
 	if (KeybMngr::GetVector()[4]->IsPressedOnce()){
-		StateMngr::SetState(m_xpaItems[m_iCurrentChoice]->GetState());
+		StateMngr::SetNextState(m_xpaItems[m_iCurrentChoice]->GetState());
+		StateMngr::ChangeState();
 	}
 }
 

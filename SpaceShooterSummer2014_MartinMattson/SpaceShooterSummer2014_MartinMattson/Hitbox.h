@@ -19,6 +19,8 @@ public:
 	GameObject* GetGameObject();
 	void SetGameObject(GameObject *p_xpGameObject);
 
+	sf::CircleShape* GetShape();
+
 	bool Overlap(Hitbox *p_xpHitbox);
 
 private:

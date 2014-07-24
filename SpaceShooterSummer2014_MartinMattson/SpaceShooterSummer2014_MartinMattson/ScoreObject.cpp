@@ -34,13 +34,14 @@ ScoreObject::ScoreObject(sf::Vector2f p_vPosition){
 	m_vSpd = sf::Vector2f(rand() % 32 - 16, -32);
 	m_vMaxSpd = sf::Vector2f(16, 256);
 	m_vAcceleration = sf::Vector2f(0, 64 + rand() % 32);
-	m_fRotationSpeed = rand() % 3 - 6;
+	m_fRotationSpeed = rand() % 12 - 6;
 
 	SetAllPositions(p_vPosition);
 }
 
 ScoreObject::~ScoreObject(){
-
+	delete m_xpSprite;
+	m_xpSprite = NULL;
 }
 
 void ScoreObject::SetAllPositions(sf::Vector2f p_vPosition){
@@ -73,6 +74,10 @@ void ScoreObject::OnUpdateThis(){
 
 	SetAllPositions(sf::Vector2f(getPosition() + m_vSpd * TimeMngr::GetDtime()));
 	m_xpSprite->GetSprite()->setRotation(m_xpSprite->GetSprite()->getRotation() + m_fRotationSpeed);
+
+	if (!OnScreen()){
+		DeleteMe();
+	}
 }
 
 void ScoreObject::OnDrawThis(){

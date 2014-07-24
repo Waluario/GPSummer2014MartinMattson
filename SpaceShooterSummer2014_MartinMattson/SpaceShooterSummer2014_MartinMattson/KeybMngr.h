@@ -11,14 +11,14 @@ public:
 	KeybMngr();
 	~KeybMngr();
 
-	void Update(float p_fDtime);
+	void Update(float p_fDtime); // Updates the Keyboard Manager using the Delta TIme
 
-	static float GetButtonPressedTime(int p_iKey);
+	static float GetButtonPressedTime(int p_iKey); // Returns for how long a button has been pressed
 
-	static bool GetButtonPressed(int p_iKey);
-	static bool GetButtonPressedOnce(int p_iKey);
+	static bool GetButtonPressed(int p_iKey); // Returns wether or not a button is being pressed
+	static bool GetButtonPressedOnce(int p_iKey); // Returns wther or not a buttin is being pressed once
 
-	static std::vector<Button*> GetVector();
+	static std::vector<Button*> GetVector(); // Returns the entire vector
 
 private:
 	static std::vector<Button*> m_xpaKeybPress;

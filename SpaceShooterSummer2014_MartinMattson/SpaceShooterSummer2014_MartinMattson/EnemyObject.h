@@ -9,7 +9,20 @@ public:
 	EnemyObject();
 	~EnemyObject();
 
-	virtual void OnUpdateThis();
-	virtual void OnDrawThis();
-	virtual void OnCollision(GameObject *p_xpCollider);
+	bool CanFire();
+
+	void DropScore();
+
+protected:
+	sf::Vector2f m_vSpd,
+		m_vMaxSpd;
+
+	float m_fFireRate,
+		m_fFireRateMax;
+
+	int m_iBulletAmmo,
+		m_iLife,
+		m_iScore;
+
+	GameObject *m_xpPlayer;
 };

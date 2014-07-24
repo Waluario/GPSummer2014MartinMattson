@@ -12,4 +12,6 @@ public:
 	virtual void Draw() = 0;
 	virtual std::string Next() = 0;
 	virtual bool IsType(const std::string &p_sType) = 0; // Parameter_StringType
+
+	std::string m_sNext;
 };

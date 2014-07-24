@@ -2,12 +2,15 @@
 
 #include "SceneObject.h"
 
-SceneObject::SceneObject(){
+#include <iostream>
+#include <sstream>
 
+SceneObject::SceneObject(int p_iScene){
+	AddTag("Scene" + static_cast<std::ostringstream*>(&(std::ostringstream() << p_iScene))->str());
 }
 
 SceneObject::~SceneObject(){
-
+	std::cout << "Scene Deleted";
 }
 
 void SceneObject::OnCreate(){

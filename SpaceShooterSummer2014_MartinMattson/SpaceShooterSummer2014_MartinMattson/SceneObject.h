@@ -6,7 +6,7 @@
 
 class SceneObject : public GameObject {
 public:
-	SceneObject();
+	SceneObject(int p_iScene);
 	~SceneObject();
 
 private:

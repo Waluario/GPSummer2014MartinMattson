@@ -6,7 +6,7 @@
 #include "SceneObject.h"
 
 MenuState::MenuState(){
-	m_xpScene = new SceneObject();
+	m_xpScene = new SceneObject(0);
 
 	m_xpScene->AddChild(new MenuObject());
 }

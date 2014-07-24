@@ -13,18 +13,17 @@
 #include "Sprite.h"
 
 #include "EnemyBulletObject.h"
-#include "ScoreObject.h"
 
 #include <iostream>
 
-EnemyObject0::EnemyObject0(sf::Vector2f p_vPosition, sf::Vector2f p_vSpd, sf::Vector2f p_vDeaccel, sf::Vector2f p_vMaxSpd){
+EnemyObject0::EnemyObject0(sf::Vector2f p_vPosition, sf::Vector2f p_vSpd, sf::Vector2f p_vDeaccel){
 	setPosition(p_vPosition);
 	m_vSpd = p_vSpd;
 	m_vDeaccel = p_vDeaccel;
-	m_vMaxSpd = p_vMaxSpd;
+	m_vMaxSpd = sf::Vector2f(100, 100);
 
 	m_iBulletAmmo = 4;
-	m_iLife = 45;
+	m_iLife = 16;
 	m_iScore = 8;
 
 	m_fFireRateMax = .8f;
@@ -33,15 +32,13 @@ EnemyObject0::EnemyObject0(sf::Vector2f p_vPosition, sf::Vector2f p_vSpd, sf::Ve
 	m_xpSprite = SpriteMngr::GetSprite("Enemy0");
 	AddTag("Enemy");
 
-	SetHitbox(CollisionMngr::NewHitbox(this, getPosition(), 64.0f, 0));
+	SetHitbox(CollisionMngr::NewHitbox(this, getPosition(), 35.0f, 0));
 
 	m_xpPlayer = GameObjectMngr::GetGameObject("Player");
 }
 
 EnemyObject0::~EnemyObject0(){
-	for (int i = 0; i < m_iScore; i++){
-		GetParent()->AddChild(new ScoreObject(getPosition()));
-	}
+	
 }
 
 void EnemyObject0::SetAllPositions(sf::Vector2f p_vPosition){
@@ -73,6 +70,7 @@ void EnemyObject0::OnUpdateThis(){
 
 void EnemyObject0::OnDrawThis(){
 	DrawMngr::DrawSprite(m_xpSprite);
+	DrawMngr::Draw(GetHitbox()->GetShape());
 }
 
 void EnemyObject0::OnCollision(GameObject *p_xpCollider){
@@ -81,23 +79,8 @@ void EnemyObject0::OnCollision(GameObject *p_xpCollider){
 
 		if (m_iLife <= 0){
 			std::cout << "Dead!";
+			DropScore();
 			DeleteMe();
 		}
 	}
-}
-
-bool EnemyObject0::CanFire(){
-	if (m_iBulletAmmo > 0){
-
-		if (m_fFireRate <= 0.f){
-			m_iBulletAmmo--;
-			m_fFireRate = m_fFireRateMax;
-
-			return true;
-		}
-
-		m_fFireRate -= TimeMngr::GetDtime();
-	}
-
-	return false;
 }

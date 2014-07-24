@@ -19,7 +19,5 @@ public:
 	bool IsType(const std::string &p_sType);// Parameter_StringType
 
 private:
-	std::string m_sNext;
-
 	SceneObject *m_xpScene;
 };

@@ -35,17 +35,17 @@ PlayerObject::PlayerObject(sf::Vector2f p_vPos, int p_iLife, float p_fAccelerati
 	AddTag("Player");
 
 	m_xpSprite = SpriteMngr::GetSprite("Ship");
-	SetHitbox(CollisionMngr::NewHitbox(this, getPosition(), 8.0f, 0));
+	SetHitbox(CollisionMngr::NewHitbox(this, getPosition(), 4.0f, 0));
 }
 
 PlayerObject::~PlayerObject(){
-
+	delete m_xpSprite;
+	m_xpSprite = NULL;
 }
 
 void PlayerObject::SetAllPositions(sf::Vector2f p_vPosition){
 	setPosition(p_vPosition);
 
-	//m_xpSprite->setPosition(getPosition().x - m_xpSprite->getTextureRect().width / 2, getPosition().y - m_xpSprite->getTextureRect().height / 2);
 	m_xpSprite->SetPosition(getPosition());
 	GetHitbox()->SetPosition(getPosition());
 }
@@ -61,8 +61,8 @@ void PlayerObject::OnUpdateThis(){
 
 	if (_Keys[4]->IsPressed() && CanFire()){
 		//AddChild(new PlayerBulletObject(sf::Vector2f(getPosition().x, getPosition().y), sf::Vector2f(0, -1), 1024.0f));
-		AddChild(new PlayerBulletObject(sf::Vector2f(getPosition().x - ((m_fFireRangeMax / m_fFireRangeMax) * (m_xpSprite->GetSprite()->getTextureRect().width / 3)), getPosition().y), sf::Vector2f(0, -1), 1024.0f));
-		AddChild(new PlayerBulletObject(sf::Vector2f(getPosition().x + ((m_fFireRangeMax / m_fFireRangeMax) * (m_xpSprite->GetSprite()->getTextureRect().width / 3)), getPosition().y), sf::Vector2f(0, -1), 1024.0f));
+		GetParent()->AddChild(new PlayerBulletObject(sf::Vector2f(getPosition().x - ((m_fFireRangeMax / m_fFireRangeMax) * (m_xpSprite->GetSprite()->getTextureRect().width / 3)), getPosition().y), sf::Vector2f(0, -1), 1024.0f));
+		GetParent()->AddChild(new PlayerBulletObject(sf::Vector2f(getPosition().x + ((m_fFireRangeMax / m_fFireRangeMax) * (m_xpSprite->GetSprite()->getTextureRect().width / 3)), getPosition().y), sf::Vector2f(0, -1), 1024.0f));
 		/*
 		AddChild(new PlayerBulletObject(sf::Vector2f(getPosition().x - ((m_fFireRange / m_fFireRangeMax) * (m_xpSprite->getTextureRect().width / 5)), getPosition().y), sf::Vector2f(0, -1), 1024.0f));
 		AddChild(new PlayerBulletObject(sf::Vector2f(getPosition().x + ((m_fFireRange / m_fFireRangeMax) * (m_xpSprite->getTextureRect().width / 5)), getPosition().y), sf::Vector2f(0, -1), 1024.0f));
@@ -74,11 +74,15 @@ void PlayerObject::OnUpdateThis(){
 		m_fCdwn -= (TimeMngr::GetDtime());
 	}
 
-	SetAllPositions(getPosition() + (_vSpeed * m_fAcceleration * TimeMngr::GetDtime(false)));
+	SetAllPositions(getPosition() + ((_vSpeed * m_fAcceleration * TimeMngr::GetDtime(false)) / (1.f + KeybMngr::GetButtonPressed(4))) / (1.f + KeybMngr::GetButtonPressed(5)));
 }
 
 void PlayerObject::OnDrawThis(){
 	DrawMngr::Draw(m_xpSprite->GetSprite());
+
+	if (KeybMngr::GetButtonPressed(5)){
+		DrawMngr::Draw(GetHitbox()->GetShape());
+	}
 }
 
 void PlayerObject::OnCollision(GameObject *p_xpCollider){
@@ -90,7 +94,8 @@ void PlayerObject::OnCollision(GameObject *p_xpCollider){
 			ScoreMngr::MinusLife();
 
 			if (ScoreMngr::GetLifes() < 0){
-				StateMngr::Quit();
+				StateMngr::SetNextState("MenuState");
+				StateMngr::ChangeState();
 			}
 		}
 	}

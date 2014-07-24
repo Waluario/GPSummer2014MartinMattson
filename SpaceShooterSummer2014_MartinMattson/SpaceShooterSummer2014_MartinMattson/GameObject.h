@@ -20,6 +20,7 @@ public:
 
 	void AddChild(GameObject *p_xpChild);
 	void RemoveChild(GameObject *p_xpChild);
+	void ClearChild(GameObject *p_xpChild);
 
 	GameObject* GetChild(GameObject *p_xpChild);
 	std::vector<GameObject*> GetChildren();
@@ -30,6 +31,7 @@ public:
 	void AddTag(std::string p_sTag);
 	bool HasTag(std::string p_sTag);
 	std::vector<std::string> GetTags();
+	void WriteTags();
 
 	Hitbox* GetHitbox();
 	void SetHitbox(Hitbox *p_xpHitbox);
@@ -45,10 +47,10 @@ public:
 	void OnUpdate();
 	void OnDraw();
 	
+	virtual void OnCreate() = 0;
 	virtual void OnCollision(GameObject *p_xpCollider) = 0;
 
 private:
-	virtual void OnCreate() = 0;
 
 	void OnUpdateChildren();
 	virtual void OnUpdateThis() = 0;

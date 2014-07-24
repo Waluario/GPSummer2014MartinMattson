@@ -153,7 +153,22 @@
     <ClInclude Include="ScoreObject.h">
       <Filter>Header Files\Game Objects</Filter>
     </ClInclude>
-    <ClInclude Include="AudioMngr.h">
+    <ClInclude Include="Sfx.h">
+      <Filter>Header Files\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="Bgm.h">
+      <Filter>Header Files\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundMngr.h">
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="MusicMngr.h">
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyObject1.h">
+      <Filter>Header Files\Game Objects\EnemyObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelMngr.h">
       <Filter>Header Files\Managers</Filter>
     </ClInclude>
   </ItemGroup>
@@ -248,7 +263,22 @@
     <ClCompile Include="ScoreObject.cpp">
       <Filter>Source Files\Game Objects</Filter>
     </ClCompile>
-    <ClCompile Include="AudioMngr.cpp">
+    <ClCompile Include="Bgm.cpp">
+      <Filter>Source Files\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="Sfx.cpp">
+      <Filter>Source Files\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundMngr.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="MusicMngr.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyObject1.cpp">
+      <Filter>Source Files\Game Objects\EnemyObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelMngr.cpp">
       <Filter>Source Files\Managers</Filter>
     </ClCompile>
   </ItemGroup>

@@ -12,6 +12,7 @@ sf::Time TimeMngr::m_xDtime,
 TimeMngr::m_xFps;
 
 TimeMngr::TimeMngr(sf::Clock *p_xpClock, sf::Time p_xFps){
+	// Sets all of the standard variables
 	m_xpClock = p_xpClock;
 	m_xFps = p_xFps;
 
@@ -21,38 +22,47 @@ TimeMngr::TimeMngr(sf::Clock *p_xpClock, sf::Time p_xFps){
 }
 
 TimeMngr::~TimeMngr(){
+	//Deletes the clock
 	delete m_xpClock;
 	m_xpClock = NULL;
 }
 
 bool TimeMngr::UpdDtime(){
+	// Checks if the Delta time is greater or equal to the Fps and resets it if it is
 	if (m_xDtime >= m_xFps){
 		m_xDtime = sf::Time::Zero;
 	}
 
+	// Restarts the clock and adds time passed to the Delta TIme
 	m_xDtime += m_xpClock->restart();
 
 	if (m_xDtime >= m_xFps){
-		//std::cout << m_xDtime.asSeconds() << std::endl;
-		
+		// If the Delta TIme is equal or greater tahn the Fps this method returns true
+		// This means that the game will update at a steady speed
 		return true;
 	}
 
+	// Returns false if the Delta TIme isn't equal or greater than the Fps yet
 	return false;
 }
 
 float TimeMngr::GetDtime(bool p_bUsePace){
+	// Returns the Delta TIme
+	// If the pace is used (deafault)
 	if (p_bUsePace){
 		return (TimeMngr::m_xDtime.asSeconds() * m_fPace);
 	}
 
+	// Without using the pace
 	return TimeMngr::m_xDtime.asSeconds();
 }
 
 void TimeMngr::SetFps(sf::Time p_xFps){
+	// Sets the Fps
 	m_xFps = p_xFps;
 }
 
 void TimeMngr::SetPace(float p_fPace){
+	// Sets the pace to be used hwen obtaining the Delta TIme
 	m_fPace = p_fPace;
 }

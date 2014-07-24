@@ -8,7 +8,7 @@ class SceneObject;
 
 class GameState : public State {
 public:
-	GameState();
+	GameState(float p_fStageTimeStart);
 	~GameState();
 
 	bool Enter();
@@ -19,7 +19,8 @@ public:
 	bool IsType(const std::string &p_sType);// Parameter_StringType
 
 private:
-	std::string m_sNext;
-
 	SceneObject *m_xpScene;
+
+	float m_fStageTime,
+		m_fStageTimeStart;
 };

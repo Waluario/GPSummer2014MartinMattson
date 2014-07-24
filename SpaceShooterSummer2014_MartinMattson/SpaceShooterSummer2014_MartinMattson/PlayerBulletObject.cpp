@@ -4,6 +4,7 @@
 
 #include "CollisionMngr.h"
 #include "DrawMngr.h"
+#include "SoundMngr.h"
 #include "SpriteMngr.h"
 #include "TimeMngr.h"
 
@@ -11,7 +12,6 @@
 #include "Sprite.h"
 
 PlayerBulletObject::PlayerBulletObject(sf::Vector2f p_vPos, sf::Vector2f p_vDir, float p_fAcceleration){
-	setPosition(p_vPos);
 	m_vDir = p_vDir;
 
 	m_fAcceleration = p_fAcceleration;
@@ -21,6 +21,10 @@ PlayerBulletObject::PlayerBulletObject(sf::Vector2f p_vPos, sf::Vector2f p_vDir,
 	SetHitbox(CollisionMngr::NewHitbox(this, getPosition(), 8.0f, 0));
 
 	AddTag("PBullet");
+
+	SoundMngr::Play("Sfx00");
+
+	SetAllPositions(p_vPos);
 }
 
 PlayerBulletObject::~PlayerBulletObject(){	
@@ -42,10 +46,6 @@ void PlayerBulletObject::OnCreate(){
 void PlayerBulletObject::OnUpdateThis(){
 	SetAllPositions(getPosition() + (TimeMngr::GetDtime() * (m_vDir * m_fAcceleration)));
 	
-	if (!OnScreen()){
-		DeleteMe();
-	}
-
 	if (!OnScreen()){
 		DeleteMe();
 	}
