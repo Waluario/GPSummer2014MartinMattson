@@ -11,9 +11,9 @@ public:
 
 	static float GetDtime(bool p_bUsePace = true); // Returns the Delta time, Can be called without using the Pace variable if needed
 
-	void SetFps(sf::Time p_xFps); // Sets the Fps
+	static void SetFps(sf::Time p_xFps); // Sets the Fps
 
-	void SetPace(float p_fPace); // Sets the Pace
+	static void SetPace(float p_fPace); // Sets the Pace
 
 private:
 	static float m_fPace; // The speed at which everything in-game moves

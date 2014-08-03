@@ -51,7 +51,6 @@ public:
 	virtual void OnCollision(GameObject *p_xpCollider) = 0;
 
 private:
-
 	void OnUpdateChildren();
 	virtual void OnUpdateThis() = 0;
 

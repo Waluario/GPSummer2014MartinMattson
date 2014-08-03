@@ -8,6 +8,7 @@
 #include "CollisionMngr.h"
 #include "DrawMngr.h"
 #include "ScoreMngr.h"
+#include "SoundMngr.h"
 #include "SpriteMngr.h"
 #include "TimeMngr.h"
 
@@ -25,7 +26,7 @@ ScoreObject::ScoreObject(sf::Vector2f p_vPosition){
 			_i[i] = 255 * _iR;
 		}
 
-	} while (_i[0] == 0 && _i[1] == 0 && _i[2] == 0);
+	} while ((_i[0] == 0 && _i[1] == 0 && _i[2] == 0) || (_i[0] == 255 && _i[1] == 255 && _i[2] == 255));
 
 	m_xpSprite->GetSprite()->setColor(sf::Color(_i[0], _i[1], _i[2]));
 
@@ -86,8 +87,8 @@ void ScoreObject::OnDrawThis(){
 
 void ScoreObject::OnCollision(GameObject *p_xpCollider){
 	if (p_xpCollider->HasTag("Player")){
-		std::cout << "Bling!";
-		ScoreMngr::PlusScore(ScoreMngr::GetScoreModifier() * 20);
+		SoundMngr::Play("Sfx_Point");
+		ScoreMngr::PlusScore(20);
 		DeleteMe();
 	}
 }

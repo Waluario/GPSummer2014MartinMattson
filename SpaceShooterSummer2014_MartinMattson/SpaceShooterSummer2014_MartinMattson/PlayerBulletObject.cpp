@@ -22,8 +22,6 @@ PlayerBulletObject::PlayerBulletObject(sf::Vector2f p_vPos, sf::Vector2f p_vDir,
 
 	AddTag("PBullet");
 
-	SoundMngr::Play("Sfx00");
-
 	SetAllPositions(p_vPos);
 }
 

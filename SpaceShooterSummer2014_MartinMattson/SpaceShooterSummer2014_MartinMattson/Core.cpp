@@ -7,6 +7,7 @@
 #include "FontMngr.h"
 #include "GameObjectMngr.h"
 #include "KeybMngr.h"
+#include "LevelMngr.h"
 #include "MusicMngr.h"
 #include "ScoreMngr.h"
 #include "SoundMngr.h"
@@ -15,8 +16,13 @@
 
 #include "StateMngr.h"
 
+#include "CreditsState.h"
+#include "GameOverState.h"
 #include "GameState.h"
+#include "HowToPlayState.h"
 #include "MenuState.h"
+
+#include <windows.h>
 
 Core::Core(){
 
@@ -27,9 +33,27 @@ Core::~Core(){
 }
 
 bool Core::Init(){
-	// Initializes the window
-	m_xpScreen = new sf::RenderWindow(sf::VideoMode(800, 600), "Space Shooter Summer 2014", sf::Style::Default);
-	if (m_xpScreen == NULL){
+	INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow);
+
+	int q = MessageBox(NULL, L"Play game in Fullscreen?", L"Space Shooter Summer 2014", MB_YESNO);
+
+	if (q == 6){
+		// Initializes the window
+		m_xpScreen = new sf::RenderWindow(sf::VideoMode(800, 600), "Space Shooter Summer 2014", sf::Style::Fullscreen);
+		if (m_xpScreen == NULL){
+			return false;
+		}
+
+		m_xpScreen->setPosition(sf::Vector2i(0, 0));
+	}
+	else if (q == 7){
+		// Initializes the window
+		m_xpScreen = new sf::RenderWindow(sf::VideoMode(800, 600), "Space Shooter Summer 2014", sf::Style::Default);
+		if (m_xpScreen == NULL){
+			return false;
+		}
+	}
+	else {
 		return false;
 	}
 	
@@ -68,6 +92,12 @@ bool Core::Init(){
 		return false;
 	}
 
+	// Initializes the Level Manager
+	m_xpLevelMngr = new LevelMngr("../rec/Levels/");
+	if (m_xpLevelMngr == NULL){
+		return false;
+	}
+
 	// Initializes the Music Manager
 	m_xpMusicMngr = new MusicMngr("../rec/Audio/Bgm/");
 	if (m_xpMusicMngr == NULL){
@@ -79,7 +109,7 @@ bool Core::Init(){
 	m_xpMusicMngr->SetVolume(0.f);
 
 	// Initializes the Score Manager
-	m_xpScoreMngr = new ScoreMngr(0, 0, 2000, 500, 0);
+	m_xpScoreMngr = new ScoreMngr(0, ScoreMngr::LoadHiScore("../rec/High_Score.txt"), 2000, 500, INT_MAX);
 	if (m_xpScoreMngr == NULL){
 		return false;
 	}
@@ -92,6 +122,11 @@ bool Core::Init(){
 
 	// Loads all of the games sound effects
 	m_xpSoundMngr->Load("Sfx00.wav", "Sfx00");
+	m_xpSoundMngr->Load("Shot_Fired.wav", "Sfx_Shot");
+	m_xpSoundMngr->Load("Point_Collected.wav", "Sfx_Point");
+	m_xpSoundMngr->Load("Enemy_Death.wav", "Sfx_EnemyDeath");
+	m_xpSoundMngr->Load("Player_Hit.wav", "Sfx_PlayerHit");
+	//m_xpSoundMngr->SetVolume(100.f);
 
 	// Initializes the Sprite Mngr
 	m_xpSpriteMngr = new SpriteMngr("../rec/Graphics/");
@@ -103,6 +138,9 @@ bool Core::Init(){
 	m_xpSpriteMngr->LoadTexture("Ship", "ShipSprite.png");
 	m_xpSpriteMngr->LoadTexture("Enemy0", "EnemySprite0.png");
 	m_xpSpriteMngr->LoadTexture("Enemy1", "EnemySprite1.png");
+	m_xpSpriteMngr->LoadTexture("Enemy2", "EnemySprite2.png");
+	m_xpSpriteMngr->LoadTexture("Enemy3", "EnemySprite3.png");
+	m_xpSpriteMngr->LoadTexture("Enemy4", "EnemySprite4.png");
 	m_xpSpriteMngr->LoadTexture("PBullet", "PBulletSprite.png");
 	m_xpSpriteMngr->LoadTexture("EBullet", "EBulletSprite.png");
 
@@ -119,7 +157,10 @@ bool Core::Init(){
 	}
 
 	// Creates all of the games states
+	m_xpStateMngr->Add(new CreditsState(0.5f, "../rec/Credits.txt"));
+	m_xpStateMngr->Add(new GameOverState(0.5f));
 	m_xpStateMngr->Add(new GameState(15.f));
+	m_xpStateMngr->Add(new HowToPlayState(0.5f, "../rec/HowToPlay.txt"));
 	m_xpStateMngr->Add(new MenuState());
 
 	m_xpStateMngr->SetState("MenuState");
@@ -165,6 +206,11 @@ void Core::UpdEvents(){
 
 void Core::Cleanup(){
 	// Cleans up all of the Managers
+	if (m_xpStateMngr != NULL){
+		delete m_xpStateMngr;
+		m_xpStateMngr = NULL;
+	}
+
 	if (m_xpCollisionMngr != NULL){
 		delete m_xpCollisionMngr;
 		m_xpCollisionMngr = NULL;
@@ -213,10 +259,5 @@ void Core::Cleanup(){
 	if (m_xpTimeMngr != NULL){
 		delete m_xpTimeMngr;
 		m_xpTimeMngr = NULL;
-	}
-
-	if (m_xpStateMngr != NULL){
-		delete m_xpStateMngr;
-		m_xpStateMngr = NULL;
 	}
 }

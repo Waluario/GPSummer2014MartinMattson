@@ -85,7 +85,15 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="EnemyObject2.h" />
+    <ClInclude Include="EnemyObject3.h" />
+    <ClInclude Include="EnemyObject4.h" />
+    <ClInclude Include="HowToPlayState.h" />
+    <ClInclude Include="InfoObject.h" />
+    <ClInclude Include="CreditsState.h" />
     <ClInclude Include="EnemyObject1.h" />
+    <ClInclude Include="GameOverState.h" />
+    <ClInclude Include="LevelItem.h" />
     <ClInclude Include="LevelMngr.h" />
     <ClInclude Include="MusicMngr.h" />
     <ClInclude Include="SoundMngr.h" />
@@ -124,7 +132,15 @@
     <ClInclude Include="TimeMngr.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="EnemyObject2.cpp" />
+    <ClCompile Include="EnemyObject3.cpp" />
+    <ClCompile Include="EnemyObject4.cpp" />
+    <ClCompile Include="HowToPlayState.cpp" />
+    <ClCompile Include="InfoObject.cpp" />
+    <ClCompile Include="CreditsState.cpp" />
     <ClCompile Include="EnemyObject1.cpp" />
+    <ClCompile Include="GameOverState.cpp" />
+    <ClCompile Include="LevelItem.cpp" />
     <ClCompile Include="LevelMngr.cpp" />
     <ClCompile Include="MusicMngr.cpp" />
     <ClCompile Include="SoundMngr.cpp" />

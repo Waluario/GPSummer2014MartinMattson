@@ -1,0 +1,15 @@
+
+Use Use the arrow keys (< /\ > \/) to navigate you ship
+
+Press (Z) to fire,
+when firing, your ship will move slower than normal
+
+Hold (LShift) to focus,
+while focusing you will move slower and
+your hitbox will be visible
+
+Try to survive until the end by any means necessary.
+
+(Note: All controls are described with the default setup)
+
+Press Z/Enter to continue

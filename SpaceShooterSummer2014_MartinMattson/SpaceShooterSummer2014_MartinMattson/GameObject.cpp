@@ -12,12 +12,15 @@ GameObject::GameObject(){
 	GameObjectMngr::AddGameObject(this);
 
 	m_xpParent = NULL;
+	m_xpHitbox = NULL;
 
 	m_bDeleteMe = false;
 	m_bJustBorn = true;
 }
 
 GameObject::~GameObject(){
+	WriteTags();
+	std::cout << " deleted!\n";
 	if (HasHitbox()){
 		CollisionMngr::DeleteHitbox(m_xpHitbox);
 	}
@@ -27,8 +30,8 @@ GameObject::~GameObject(){
 	if (HasChild()){
 		for (int i = m_xpaChildren.size() - 1; i >= 0; i--){
 			delete m_xpaChildren[i];
-			m_xpaChildren[i] = NULL;
-			m_xpaChildren.erase(m_xpaChildren.begin() + i);
+			/*m_xpaChildren[i] = NULL;
+			m_xpaChildren.erase(m_xpaChildren.begin() + i);*/
 		}
 	}
 

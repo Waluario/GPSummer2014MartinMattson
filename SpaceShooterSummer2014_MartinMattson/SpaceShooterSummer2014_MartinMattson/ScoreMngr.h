@@ -13,6 +13,8 @@ public:
 
 	static int GetHiScore(); // Returns HiScore
 	static void SetHiScore(int p_iHiScore); // Sets HiScore
+	static float LoadHiScore(std::string p_sFile); // Loads High-Score data from a file
+	static void WriteHiScore(std::string p_sFile, float p_fHiScore); // Writes Hich-Score data to a file
 
 	static int GetNextScore(); // Returns NextScore
 	static void SetNextScore(int p_iNextScore); // SetsNextScore
@@ -31,6 +33,9 @@ public:
 
 	static float GetScoreModifier(); // Returns the Score Modifier that is calculated from the amount of lifes the player started out with
 
+	static bool GetSpawn(); // Returns the Spawn value
+	static void SetSpawn(bool p_bSpawn); // Sets the Spawn value
+
 private:
 	static int m_iScore, // The basic score in the game
 		m_iHiScore, // The highest score achieved.To be loaded from a text file in the near future
@@ -38,4 +43,6 @@ private:
 		m_iNextScoreUp, // How much NextScore is to be increased by every time an extra life is gained
 		m_iLifes, // How many lifes the player has left
 		m_iStartLifes; // How many lifes the player starts with
+
+	static bool m_bSpawn; // Determines if the level time will pass and if more enemies will spawn
 };

@@ -24,7 +24,14 @@ HUDObject::HUDObject(){
 }
 
 HUDObject::~HUDObject(){
+	delete m_xpScore;
+	m_xpScore = NULL;
 
+	delete m_xpHiScore;
+	m_xpHiScore = NULL;
+
+	delete m_xpLife;
+	m_xpLife = NULL;
 }
 
 void HUDObject::SetAllPositions(sf::Vector2f p_vPosition){

@@ -54,7 +54,7 @@ float TimeMngr::GetDtime(bool p_bUsePace){
 	}
 
 	// Without using the pace
-	return TimeMngr::m_xDtime.asSeconds();
+	return m_xDtime.asSeconds();
 }
 
 void TimeMngr::SetFps(sf::Time p_xFps){

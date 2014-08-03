@@ -5,8 +5,9 @@
 #include "CollisionMngr.h"
 #include "DrawMngr.h"
 #include "KeybMngr.h"
-#include "SpriteMngr.h"
 #include "ScoreMngr.h"
+#include "SoundMngr.h"
+#include "SpriteMngr.h"
 #include "StateMngr.h"
 #include "TimeMngr.h"
 
@@ -24,6 +25,9 @@ PlayerObject::PlayerObject(sf::Vector2f p_vPos, int p_iLife, float p_fAccelerati
 
 	m_fMaxCdwn = 2.f;
 	m_fCdwn = 0.f;
+
+	m_fBlinkTimeMax = 1.f / 64.f;
+	m_fBlinkTime = 0.f;
 
 	m_fFirerateMax = .0625f;
 	m_fFirerate = m_fFirerateMax;
@@ -59,26 +63,46 @@ void PlayerObject::OnUpdateThis(){
 
 	sf::Vector2f _vSpeed = sf::Vector2f((KeybMngr::GetVector()[3]->IsPressed() - KeybMngr::GetVector()[2]->IsPressed()), (KeybMngr::GetVector()[1]->IsPressed() - KeybMngr::GetVector()[0]->IsPressed()));
 
+	if (KeybMngr::GetButtonPressed(6)){
+		TimeMngr::SetPace(4);
+	}
+	else {
+		TimeMngr::SetPace(1);
+	}
+
 	if (_Keys[4]->IsPressed() && CanFire()){
-		//AddChild(new PlayerBulletObject(sf::Vector2f(getPosition().x, getPosition().y), sf::Vector2f(0, -1), 1024.0f));
+		SoundMngr::Play("Sfx_Shot", 25.f);
 		GetParent()->AddChild(new PlayerBulletObject(sf::Vector2f(getPosition().x - ((m_fFireRangeMax / m_fFireRangeMax) * (m_xpSprite->GetSprite()->getTextureRect().width / 3)), getPosition().y), sf::Vector2f(0, -1), 1024.0f));
 		GetParent()->AddChild(new PlayerBulletObject(sf::Vector2f(getPosition().x + ((m_fFireRangeMax / m_fFireRangeMax) * (m_xpSprite->GetSprite()->getTextureRect().width / 3)), getPosition().y), sf::Vector2f(0, -1), 1024.0f));
-		/*
-		AddChild(new PlayerBulletObject(sf::Vector2f(getPosition().x - ((m_fFireRange / m_fFireRangeMax) * (m_xpSprite->getTextureRect().width / 5)), getPosition().y), sf::Vector2f(0, -1), 1024.0f));
-		AddChild(new PlayerBulletObject(sf::Vector2f(getPosition().x + ((m_fFireRange / m_fFireRangeMax) * (m_xpSprite->getTextureRect().width / 5)), getPosition().y), sf::Vector2f(0, -1), 1024.0f));
-		AddChild(new PlayerBulletObject(sf::Vector2f(getPosition().x - ((m_fFireRange / m_fFireRangeMax) * (m_xpSprite->getTextureRect().width / 9)), getPosition().y), sf::Vector2f(0, -1), 1024.0f));
-		AddChild(new PlayerBulletObject(sf::Vector2f(getPosition().x + ((m_fFireRange / m_fFireRangeMax) * (m_xpSprite->getTextureRect().width / 9)), getPosition().y), sf::Vector2f(0, -1), 1024.0f));*/
 	}
 
 	if (m_fCdwn > 0.f){
 		m_fCdwn -= (TimeMngr::GetDtime());
+
+		if (m_fBlinkTime > 0.f){
+			m_fBlinkTime -= TimeMngr::GetDtime();
+		}
+		else {
+			m_fBlinkTime = m_fBlinkTimeMax;
+			if (m_bDrawSprite){
+				m_bDrawSprite = false;
+			}
+			else {
+				m_bDrawSprite = true;
+			}
+		}
+	}
+	else {
+		m_bDrawSprite = true;
 	}
 
 	SetAllPositions(getPosition() + ((_vSpeed * m_fAcceleration * TimeMngr::GetDtime(false)) / (1.f + KeybMngr::GetButtonPressed(4))) / (1.f + KeybMngr::GetButtonPressed(5)));
 }
 
 void PlayerObject::OnDrawThis(){
-	DrawMngr::Draw(m_xpSprite->GetSprite());
+	if (m_bDrawSprite){
+		DrawMngr::Draw(m_xpSprite->GetSprite());
+	}
 
 	if (KeybMngr::GetButtonPressed(5)){
 		DrawMngr::Draw(GetHitbox()->GetShape());
@@ -90,11 +114,11 @@ void PlayerObject::OnCollision(GameObject *p_xpCollider){
 		if (m_fCdwn <= 0.0f){
 			m_fCdwn = m_fMaxCdwn;
 
-			std::cout << "Hit!";
+			SoundMngr::Play("Sfx_PlayerHit");
 			ScoreMngr::MinusLife();
 
 			if (ScoreMngr::GetLifes() < 0){
-				StateMngr::SetNextState("MenuState");
+				StateMngr::SetNextState("GameOverState");
 				StateMngr::ChangeState();
 			}
 		}

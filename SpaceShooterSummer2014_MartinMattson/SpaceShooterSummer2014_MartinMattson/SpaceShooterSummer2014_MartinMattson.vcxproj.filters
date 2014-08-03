@@ -171,6 +171,30 @@
     <ClInclude Include="LevelMngr.h">
       <Filter>Header Files\Managers</Filter>
     </ClInclude>
+    <ClInclude Include="LevelItem.h">
+      <Filter>Header Files\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOverState.h">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="CreditsState.h">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="InfoObject.h">
+      <Filter>Header Files\Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="HowToPlayState.h">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyObject2.h">
+      <Filter>Header Files\Game Objects\EnemyObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyObject3.h">
+      <Filter>Header Files\Game Objects\EnemyObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyObject4.h">
+      <Filter>Header Files\Game Objects\EnemyObjects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Button.cpp">
@@ -280,6 +304,30 @@
     </ClCompile>
     <ClCompile Include="LevelMngr.cpp">
       <Filter>Source Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelItem.cpp">
+      <Filter>Source Files\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOverState.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="CreditsState.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="InfoObject.cpp">
+      <Filter>Source Files\Game Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="HowToPlayState.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyObject2.cpp">
+      <Filter>Source Files\Game Objects\EnemyObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyObject3.cpp">
+      <Filter>Source Files\Game Objects\EnemyObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyObject4.cpp">
+      <Filter>Source Files\Game Objects\EnemyObjects</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

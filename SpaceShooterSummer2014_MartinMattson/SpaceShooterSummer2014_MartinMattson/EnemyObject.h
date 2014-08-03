@@ -1,15 +1,17 @@
 // EnemyObject.h //
 
-#include "GameObject.h"
-
 #pragma once
+
+#include "GameObject.h"
 
 class EnemyObject : public GameObject {
 public:
 	EnemyObject();
 	~EnemyObject();
 
-	bool CanFire();
+	virtual bool OnScreen();
+
+	virtual bool CanFire();
 
 	void DropScore();
 

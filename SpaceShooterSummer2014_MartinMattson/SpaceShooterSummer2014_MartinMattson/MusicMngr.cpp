@@ -51,8 +51,9 @@ void MusicMngr::Play(std::string p_sName, float p_fVolume){
 	for (int i = 0; i < m_xpaMusic.size(); i++){
 		if (m_xpaMusic[i]->GetName().compare(p_sName) == 0){
 			m_xpCurrent = m_xpaMusic[i];
-			m_xpCurrent->GetMusic()->setVolume((100.f / m_fVolume) * p_fVolume);
 			Play();
+			m_fVolume = p_fVolume;
+			m_xpCurrent->GetMusic()->setVolume(m_fVolume);
 		}
 	}
 }

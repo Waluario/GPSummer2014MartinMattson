@@ -5,7 +5,7 @@
 #include "CollisionMngr.h"
 #include "DrawMngr.h"
 #include "GameObjectMngr.h"
-#include "KeybMngr.h"
+#include "SoundMngr.h"
 #include "SpriteMngr.h"
 #include "TimeMngr.h"
 
@@ -22,7 +22,7 @@ EnemyObject1::EnemyObject1(sf::Vector2f p_vPosition, sf::Vector2f p_vSpd, sf::Ve
 	m_vMaxSpd = sf::Vector2f(100, 100);
 	m_vBulletDir = p_vFire;
 
-	m_iBulletAmmo = 6;
+	m_iBulletAmmo = INT_MAX;
 	m_iLife = 8;
 	m_iScore = 4;
 
@@ -58,27 +58,17 @@ void EnemyObject1::OnCreate(){
 void EnemyObject1::OnUpdateThis(){
 	SetAllPositions(sf::Vector2f(getPosition() + (m_vSpd * TimeMngr::GetDtime())));
 
-	if (OnScreen()){
-		if (CanFire()){
-			/*if (!m_bBulletDirSet){
-				/*float _iA = m_xpPlayer->getPosition().x - getPosition().x;
-				float _iB = m_xpPlayer->getPosition().y - getPosition().y;
-				float _iC = sqrt((_iA * _iA) + (_iB * _iB));
+	if (CanFire()){
+		GetParent()->AddChild(new EnemyBulletObject(getPosition(), m_vBulletDir, 145.f));
+	}
 
-				//m_vBulletDir = sf::Vector2f((_iA / _iC), (_iB / _iC));
-				m_vBulletDir = sf::Vector2f(0, 1);
-
-				m_bBulletDirSet = true;
-			}*/
-
-			GetParent()->AddChild(new EnemyBulletObject(getPosition(), m_vBulletDir, 145.f));
-		}
+	if (!OnScreen()){
+		DeleteMe();
 	}
 }
 
 void EnemyObject1::OnDrawThis(){
 	DrawMngr::Draw(m_xpSprite->GetSprite());
-	DrawMngr::Draw(GetHitbox()->GetShape());
 }
 
 void EnemyObject1::OnCollision(GameObject *p_xpCollider){
@@ -86,6 +76,7 @@ void EnemyObject1::OnCollision(GameObject *p_xpCollider){
 		m_iLife--;
 
 		if (m_iLife <= 0){
+			SoundMngr::Play("Sfx_EnemyDeath");
 			DropScore();
 			DeleteMe();
 		}

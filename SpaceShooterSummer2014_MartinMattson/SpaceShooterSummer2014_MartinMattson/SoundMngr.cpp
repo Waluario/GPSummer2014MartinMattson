@@ -73,7 +73,8 @@ sf::Sound* SoundMngr::Play(std::string p_sName, sf::Vector2f p_vPos, float p_fVo
 			//m_xpaSounds[m_xpaSounds.size() - 1]->setBuffer(*m_xpaSoundBuffers[i]->GetSoundBuffer());
 			// Plays the sound and sets the volume
 			m_xpaSounds[m_xpaSounds.size() - 1]->play();
-			m_xpaSounds[m_xpaSounds.size() - 1]->setVolume((100.f / m_fVolume) * p_fVolume);
+			m_fVolume = p_fVolume;
+			m_xpaSounds[m_xpaSounds.size() - 1]->setVolume(m_fVolume);
 
 			// CHecks if the sound was created successfully
 			if (m_xpaSounds[m_xpaSounds.size() - 1]->getBuffer() == NULL){

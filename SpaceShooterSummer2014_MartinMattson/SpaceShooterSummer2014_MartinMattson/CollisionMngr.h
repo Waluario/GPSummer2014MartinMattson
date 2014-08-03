@@ -19,6 +19,7 @@ public:
 
 	static Hitbox* NewHitbox(GameObject* p_xpGameObject, sf::Vector2f p_vPosition, float p_fSize, int p_iList); // Creates a new hitbox in the expected list
 	static void DeleteHitbox(Hitbox* p_xpHitbox); // Delets the expected Hitbox from the manager
+	static void ClearList(int p_iList); // Clears the requested list of hitboxes completely
 
 private:
 	static std::vector<std::vector<Hitbox*>> m_xpaHitboxes; // a vector of a vector of hitboxes that allows for there to be severla scenes where differenct hitboxes clash

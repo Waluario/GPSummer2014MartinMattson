@@ -1,8 +1,8 @@
 // EnemyObject0.h //
 
-#include "EnemyObject.h"
-
 #pragma once
+
+#include "EnemyObject.h"
 
 class Sprite;
 

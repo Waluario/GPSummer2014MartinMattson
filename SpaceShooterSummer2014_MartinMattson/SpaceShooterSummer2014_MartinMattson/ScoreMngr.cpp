@@ -2,12 +2,17 @@
 
 #include "ScoreMngr.h"
 
+#include <fstream>
+#include <sstream>
+
 int ScoreMngr::m_iScore;
 int ScoreMngr::m_iHiScore;
 int ScoreMngr::m_iNextScore;
 int ScoreMngr::m_iNextScoreUp;
 int ScoreMngr::m_iLifes;
 int ScoreMngr::m_iStartLifes;
+
+bool ScoreMngr::m_bSpawn;
 
 ScoreMngr::ScoreMngr(int p_iScore, int p_iHiScore, int p_iNextScore, int p_iNextScoreUp, int p_iLifes){
 	// Sets all of the preset valies
@@ -16,7 +21,9 @@ ScoreMngr::ScoreMngr(int p_iScore, int p_iHiScore, int p_iNextScore, int p_iNext
 	m_iNextScore = p_iNextScore;
 	m_iNextScoreUp = p_iNextScoreUp;
 	m_iLifes = p_iLifes;
-	m_iStartLifes = p_iLifes;;
+	m_iStartLifes = p_iLifes;
+
+	m_bSpawn = true;
 }
 
 ScoreMngr::~ScoreMngr(){
@@ -35,7 +42,7 @@ void ScoreMngr::SetScore(int p_iScore){
 
 void ScoreMngr::PlusScore(int p_iScore, bool p_bModifier){
 	// Increases score by a set amount, the Score Modifier can be used if one so wishes
-	m_iScore += (p_iScore + p_bModifier * GetScoreModifier());
+	m_iScore += (p_iScore * GetScoreModifier());
 }
 
 int ScoreMngr::GetHiScore(){
@@ -46,6 +53,46 @@ int ScoreMngr::GetHiScore(){
 void ScoreMngr::SetHiScore(int p_iHiScore){
 	// Sets HiScore
 	m_iHiScore = p_iHiScore;
+}
+
+float ScoreMngr::LoadHiScore(std::string p_sFile){
+	std::ifstream stream;
+	stream.open(p_sFile.c_str());
+
+	if (!stream.is_open()){
+		return false;
+	}
+
+	std::string row;
+	stream >> row;
+
+	std::getline(stream, row);
+
+	while (stream.is_open()){
+		if (row.length() == 0){
+			continue;
+		}
+		else if (row.length() != 0){
+			std::stringstream ss(row);
+
+			float _fHiScore;
+
+			ss >> _fHiScore;
+
+			SetHiScore(_fHiScore);
+
+			return _fHiScore;
+		}
+	}
+}
+
+void ScoreMngr::WriteHiScore(std::string p_sFile, float p_fHiScore){
+	std::ofstream _xFile(p_sFile);
+	if (_xFile.is_open()){
+		_xFile << ("\n" + static_cast<std::ostringstream*>(&(std::ostringstream() << p_fHiScore))->str());
+	}
+
+	_xFile.close();
 }
 
 int ScoreMngr::GetNextScore(){
@@ -112,4 +159,12 @@ float ScoreMngr::GetScoreModifier(){
 	// 4 StartLifes = .5x
 	// 5 StartLifes = .25x
 	return (1.5f - (.25f * GetStartLifes()));
+}
+
+bool ScoreMngr::GetSpawn(){
+	return m_bSpawn;
+}
+
+void ScoreMngr::SetSpawn(bool p_bSpawn){
+	m_bSpawn = p_bSpawn;
 }

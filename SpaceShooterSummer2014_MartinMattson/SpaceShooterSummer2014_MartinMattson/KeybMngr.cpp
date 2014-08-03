@@ -12,6 +12,7 @@ KeybMngr::KeybMngr(){
 	KeybMngr::m_xpaKeybPress.push_back(new Button(sf::Keyboard::Right));
 	KeybMngr::m_xpaKeybPress.push_back(new Button(sf::Keyboard::Z));
 	KeybMngr::m_xpaKeybPress.push_back(new Button(sf::Keyboard::LShift));
+	KeybMngr::m_xpaKeybPress.push_back(new Button(sf::Keyboard::X));
 }
 
 KeybMngr::~KeybMngr(){

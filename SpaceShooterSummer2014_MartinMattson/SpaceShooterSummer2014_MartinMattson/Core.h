@@ -7,6 +7,7 @@ class DrawMngr;
 class FontMngr;
 class GameObjectMngr;
 class KeybMngr;
+class LevelMngr;
 class MusicMngr;
 class ScoreMngr;
 class SoundMngr;
@@ -35,6 +36,7 @@ private:
 	FontMngr *m_xpFontMngr; // Handles fonts and texts
 	GameObjectMngr *m_xpGameObjectMngr; // Handles Game Objects
 	KeybMngr *m_xpKeybMngr; // Handles keyboard presses
+	LevelMngr *m_xpLevelMngr;
 	MusicMngr *m_xpMusicMngr; // Handles music
 	ScoreMngr *m_xpScoreMngr; // Handles in-game stats such as Score and Lives
 	SoundMngr *m_xpSoundMngr; // Handles sound effects and sound sources

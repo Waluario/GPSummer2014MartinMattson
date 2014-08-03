@@ -28,9 +28,12 @@ private:
 		m_fFirerate,
 		m_fFirerateMax,
 		m_fFireRange,
-		m_fFireRangeMax;
+		m_fFireRangeMax,
+		m_fBlinkTime,
+		m_fBlinkTimeMax;
 
-	bool m_bFireRangeUp;
+	bool m_bFireRangeUp,
+		m_bDrawSprite;
 
 	Sprite *m_xpSprite;
 };
