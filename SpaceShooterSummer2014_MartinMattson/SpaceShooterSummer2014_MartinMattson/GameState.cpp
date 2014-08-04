@@ -36,7 +36,7 @@ bool GameState::Enter(){
 	ScoreMngr::SetLifes(ScoreMngr::GetStartLifes());
 	ScoreMngr::SetSpawn(true);
 
-	MusicMngr::Play("Bgm00", 0);
+	MusicMngr::Play("Bgm_Stage", 10);
 
 	m_fStageTime = m_fStageTimeStart;
 

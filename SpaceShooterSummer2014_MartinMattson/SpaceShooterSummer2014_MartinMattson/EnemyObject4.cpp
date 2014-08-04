@@ -5,6 +5,7 @@
 #include "CollisionMngr.h"
 #include "DrawMngr.h"
 #include "GameObjectMngr.h"
+#include "MusicMngr.h"
 #include "ScoreMngr.h"
 #include "SoundMngr.h"
 #include "SpriteMngr.h"
@@ -63,6 +64,8 @@ void EnemyObject4::OnCreate(){
 	ScoreMngr::SetSpawn(false);
 
 	m_eStage = AIStage::e_Stage0;
+
+	MusicMngr::Play("Bgm_Boss");
 }
 
 void EnemyObject4::OnUpdateThis(){

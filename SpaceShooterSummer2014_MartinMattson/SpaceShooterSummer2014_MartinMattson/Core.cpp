@@ -106,7 +106,10 @@ bool Core::Init(){
 
 	// Loads all of the games music
 	m_xpMusicMngr->Load("Bgm00.wav", "Bgm00");
-	m_xpMusicMngr->SetVolume(0.f);
+	m_xpMusicMngr->Load("Bgm_Boss.wav", "Bgm_Boss");
+	m_xpMusicMngr->Load("Bgm_Menu.wav", "Bgm_Menu");
+	m_xpMusicMngr->Load("Bgm_Stage.wav", "Bgm_Stage");
+	//m_xpMusicMngr->SetVolume(50.f);
 
 	// Initializes the Score Manager
 	m_xpScoreMngr = new ScoreMngr(0, ScoreMngr::LoadHiScore("../rec/High_Score.txt"), 2000, 500, INT_MAX);

@@ -2,6 +2,8 @@
 
 #include "MenuState.h"
 
+#include "MusicMngr.h"
+
 #include "MenuObject.h"
 #include "SceneObject.h"
 
@@ -16,6 +18,8 @@ MenuState::~MenuState(){
 }
 
 bool MenuState::Enter(){
+	MusicMngr::Play("Bgm_Menu", 50);
+
 	return true;
 }
 
