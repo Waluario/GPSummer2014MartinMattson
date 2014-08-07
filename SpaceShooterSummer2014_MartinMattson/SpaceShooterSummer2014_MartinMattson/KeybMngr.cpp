@@ -6,13 +6,20 @@ std::vector<Button*> KeybMngr::m_xpaKeybPress;
 
 KeybMngr::KeybMngr(){
 	// Sets the predetermined keys
-	KeybMngr::m_xpaKeybPress.push_back(new Button(sf::Keyboard::Up));
-	KeybMngr::m_xpaKeybPress.push_back(new Button(sf::Keyboard::Down));
-	KeybMngr::m_xpaKeybPress.push_back(new Button(sf::Keyboard::Left));
-	KeybMngr::m_xpaKeybPress.push_back(new Button(sf::Keyboard::Right));
-	KeybMngr::m_xpaKeybPress.push_back(new Button(sf::Keyboard::Z));
-	KeybMngr::m_xpaKeybPress.push_back(new Button(sf::Keyboard::LShift));
-	KeybMngr::m_xpaKeybPress.push_back(new Button(sf::Keyboard::X));
+	KeybMngr::m_xpaKeybPress.push_back(new Button(sf::Keyboard::Up)); // 0
+	KeybMngr::m_xpaKeybPress.push_back(new Button(sf::Keyboard::Down)); // 1
+	KeybMngr::m_xpaKeybPress.push_back(new Button(sf::Keyboard::Left)); // 2
+	KeybMngr::m_xpaKeybPress.push_back(new Button(sf::Keyboard::Right)); // 3
+	KeybMngr::m_xpaKeybPress.push_back(new Button(sf::Keyboard::Z)); // 4
+	KeybMngr::m_xpaKeybPress.push_back(new Button(sf::Keyboard::LShift)); // 5
+	KeybMngr::m_xpaKeybPress.push_back(new Button(sf::Keyboard::X)); // 6
+
+	KeybMngr::m_xpaKeybPress.push_back(new Button(sf::Keyboard::Up)); // 7
+	KeybMngr::m_xpaKeybPress.push_back(new Button(sf::Keyboard::Down)); // 8
+	KeybMngr::m_xpaKeybPress.push_back(new Button(sf::Keyboard::Left)); // 9
+	KeybMngr::m_xpaKeybPress.push_back(new Button(sf::Keyboard::Right)); // 10
+	KeybMngr::m_xpaKeybPress.push_back(new Button(sf::Keyboard::Z)); // 11
+	KeybMngr::m_xpaKeybPress.push_back(new Button(sf::Keyboard::Return)); // 12
 }
 
 KeybMngr::~KeybMngr(){
@@ -48,4 +55,8 @@ bool KeybMngr::GetButtonPressed(int p_iKey){
 bool KeybMngr::GetButtonPressedOnce(int p_iKey){
 	// Returns wehter or not the button in question is pressed once
 	return m_xpaKeybPress[p_iKey]->IsPressedOnce();
+}
+
+std::string KeybMngr::GetButtonSymbol(int p_iKey){
+	return "Pirates are great!";
 }

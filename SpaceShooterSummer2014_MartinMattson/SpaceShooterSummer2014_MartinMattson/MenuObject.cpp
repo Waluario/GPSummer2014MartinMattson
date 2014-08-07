@@ -14,7 +14,7 @@ MenuObject::MenuObject(){
 
 	m_xpaItems.push_back(new MenuItem("GameState", "Start Game", sf::Vector2f(0, 0)));
 	m_xpaItems.push_back(new MenuItem("HowToPlayState", "How To Play", sf::Vector2f(0, 35)));
-	m_xpaItems.push_back(new MenuItem("EndState", "Options", sf::Vector2f(0, 70)));
+	m_xpaItems.push_back(new MenuItem("OptionsState", "Options", sf::Vector2f(0, 70)));
 	m_xpaItems.push_back(new MenuItem("CreditsState", "Credits", sf::Vector2f(0, 105)));
 	m_xpaItems.push_back(new MenuItem("EndState", "Exit", sf::Vector2f(0, 140)));
 }

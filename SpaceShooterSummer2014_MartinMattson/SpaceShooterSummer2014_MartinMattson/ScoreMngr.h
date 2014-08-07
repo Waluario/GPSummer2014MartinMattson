@@ -29,6 +29,7 @@ public:
 	static void PlusLife(); // Increases lifes by 1
 
 	static int GetStartLifes(); // Returns StartLifes
+	static int* GetStartLifesPointer();
 	static void SetStartLifes(int p_iStartLifes); // Sets StartLifes
 
 	static float GetScoreModifier(); // Returns the Score Modifier that is calculated from the amount of lifes the player started out with

@@ -96,6 +96,13 @@
     <ClInclude Include="LevelItem.h" />
     <ClInclude Include="LevelMngr.h" />
     <ClInclude Include="MusicMngr.h" />
+    <ClInclude Include="OptionsItem.h" />
+    <ClInclude Include="OptionsItem0.h" />
+    <ClInclude Include="OptionsItem1.h" />
+    <ClInclude Include="OptionsItem2.h" />
+    <ClInclude Include="OptionsItem3.h" />
+    <ClInclude Include="OptionsObject.h" />
+    <ClInclude Include="OptionsState.h" />
     <ClInclude Include="SoundMngr.h" />
     <ClInclude Include="Bgm.h" />
     <ClInclude Include="Button.h" />
@@ -143,6 +150,12 @@
     <ClCompile Include="LevelItem.cpp" />
     <ClCompile Include="LevelMngr.cpp" />
     <ClCompile Include="MusicMngr.cpp" />
+    <ClCompile Include="OptionsItem0.cpp" />
+    <ClCompile Include="OptionsItem2.cpp" />
+    <ClCompile Include="OptionsItem3.cpp" />
+    <ClCompile Include="OptionsObject.cpp" />
+    <ClCompile Include="OptionsItem1.cpp" />
+    <ClCompile Include="OptionsState.cpp" />
     <ClCompile Include="SoundMngr.cpp" />
     <ClCompile Include="Bgm.cpp" />
     <ClCompile Include="Button.cpp" />

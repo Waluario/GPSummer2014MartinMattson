@@ -4,6 +4,8 @@
 
 #include "DrawMngr.h"
 #include "FontMngr.h"
+#include "KeybMngr.h"
+#include "StateMngr.h"
 
 MenuItem::MenuItem(std::string p_sState, std::string p_sChoice, sf::Vector2f p_vPosition){
 	m_sState = p_sState;
@@ -52,4 +54,15 @@ void MenuItem::OnDrawWhenChosen(){
 
 	delete _xpText;
 	_xpText = NULL;
+}
+
+void MenuItem::OnChosen(){
+	if (KeybMngr::GetButtonPressedOnce(11) || KeybMngr::GetButtonPressedOnce(12)){
+		StateMngr::SetNextState(m_sState);
+		StateMngr::ChangeState();
+	}
+}
+
+bool MenuItem::CanMovePointer(){
+	return true;
 }

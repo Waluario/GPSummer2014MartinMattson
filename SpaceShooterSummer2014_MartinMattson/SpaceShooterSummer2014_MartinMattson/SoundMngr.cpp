@@ -13,7 +13,7 @@ float SoundMngr::m_fListenerZ,
 SoundMngr::m_fAttenuation,
 SoundMngr::m_fMinDistance2D,
 SoundMngr::m_fMinDistance3D,
-SoundMngr::m_fVolume;
+*SoundMngr::m_fpVolume;
 
 SoundMngr::SoundMngr(std::string p_sDir){
 	// Sets all of the preset values
@@ -23,7 +23,7 @@ SoundMngr::SoundMngr(std::string p_sDir){
 	m_fAttenuation = 8.f;
 	m_fMinDistance2D = 200.f;
 	m_fMinDistance3D = std::sqrt(m_fMinDistance2D*m_fMinDistance2D + m_fListenerZ*m_fListenerZ);
-	m_fVolume = 100.f;
+	m_fpVolume = new float(100.f);
 }
 
 SoundMngr::~SoundMngr(){
@@ -73,8 +73,7 @@ sf::Sound* SoundMngr::Play(std::string p_sName, sf::Vector2f p_vPos, float p_fVo
 			//m_xpaSounds[m_xpaSounds.size() - 1]->setBuffer(*m_xpaSoundBuffers[i]->GetSoundBuffer());
 			// Plays the sound and sets the volume
 			m_xpaSounds[m_xpaSounds.size() - 1]->play();
-			m_fVolume = p_fVolume;
-			m_xpaSounds[m_xpaSounds.size() - 1]->setVolume(m_fVolume);
+			m_xpaSounds[m_xpaSounds.size() - 1]->setVolume((p_fVolume / 100.f) * *m_fpVolume);
 
 			// CHecks if the sound was created successfully
 			if (m_xpaSounds[m_xpaSounds.size() - 1]->getBuffer() == NULL){
@@ -114,12 +113,16 @@ sf::Vector2f SoundMngr::GetListenerPosition(){
 
 void SoundMngr::SetVolume(float p_fVolume){
 	// Sets the volume
-	m_fVolume = p_fVolume;
+	*m_fpVolume = p_fVolume;
 }
 
 float SoundMngr::GetVolume(){
 	// Returns the volume
-	return m_fVolume;
+	return *m_fpVolume;
+}
+
+float* SoundMngr::GetVolumePointer(){
+	return m_fpVolume;
 }
 
 std::vector<sf::Sound*> SoundMngr::GetSoundVector(){

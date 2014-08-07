@@ -19,6 +19,9 @@ public:
 	void OnDraw();
 	void OnDrawWhenChosen();
 
+	virtual void OnChosen();
+	virtual bool CanMovePointer();
+
 private:
 	std::string m_sState;
 

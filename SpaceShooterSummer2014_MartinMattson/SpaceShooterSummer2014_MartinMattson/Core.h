@@ -29,6 +29,9 @@ public:
 	void Cleanup(); // Cleans up all of the managers
 
 private:
+	bool *m_bFullScreen0,
+		m_bFullScreen1;
+
 	sf::RenderWindow *m_xpScreen; //  The main screen for easy access
 
 	CollisionMngr *m_xpCollisionMngr; // Handles collision

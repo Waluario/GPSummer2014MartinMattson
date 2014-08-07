@@ -21,8 +21,18 @@
 #include "GameState.h"
 #include "HowToPlayState.h"
 #include "MenuState.h"
+#include "OptionsState.h"
+
+#include "OptionsItem.h"
+#include "OptionsItem0.h"
+#include "OptionsItem1.h"
+#include "OptionsItem2.h"
+
+#include "OptionsObject.h"
 
 #include <windows.h>
+
+#include <iostream>
 
 Core::Core(){
 
@@ -45,6 +55,8 @@ bool Core::Init(){
 		}
 
 		m_xpScreen->setPosition(sf::Vector2i(0, 0));
+		m_bFullScreen0 = new bool(true);
+		m_bFullScreen1 = true;
 	}
 	else if (q == 7){
 		// Initializes the window
@@ -52,6 +64,9 @@ bool Core::Init(){
 		if (m_xpScreen == NULL){
 			return false;
 		}
+
+		m_bFullScreen0 = new bool(false);
+		m_bFullScreen1 = false;
 	}
 	else {
 		return false;
@@ -109,10 +124,10 @@ bool Core::Init(){
 	m_xpMusicMngr->Load("Bgm_Boss.wav", "Bgm_Boss");
 	m_xpMusicMngr->Load("Bgm_Menu.wav", "Bgm_Menu");
 	m_xpMusicMngr->Load("Bgm_Stage.wav", "Bgm_Stage");
-	//m_xpMusicMngr->SetVolume(50.f);
+	m_xpMusicMngr->SetVolume(100.f);
 
 	// Initializes the Score Manager
-	m_xpScoreMngr = new ScoreMngr(0, ScoreMngr::LoadHiScore("../rec/High_Score.txt"), 2000, 500, INT_MAX);
+	m_xpScoreMngr = new ScoreMngr(0, ScoreMngr::LoadHiScore("../rec/High_Score.txt"), 2000, 500, 2);
 	if (m_xpScoreMngr == NULL){
 		return false;
 	}
@@ -159,12 +174,22 @@ bool Core::Init(){
 		return false;
 	}
 
+	// Sets up the game options menu
+	std::vector<OptionsItem*> _xpaOptions;
+	_xpaOptions.push_back(new OptionsItem1(sf::Vector2f(0, 0), "Lifes", m_xpScoreMngr->GetStartLifesPointer(), 0, 5));
+	_xpaOptions.push_back(new OptionsItem2(sf::Vector2f(0, 0), "Sfx Volume", m_xpSoundMngr->GetVolumePointer(), 0.f, 100.f, 5.f));
+	_xpaOptions.push_back(new OptionsItem2(sf::Vector2f(0, 0), "Bgm Volume", m_xpMusicMngr->GetVolumePointer(), 0.f, 100.f, 5.f));
+	_xpaOptions.push_back(new OptionsItem0(sf::Vector2f(0, 0), "Fullscreen", m_bFullScreen0));
+
+	OptionsObject *_xpOptionsObject = new OptionsObject(sf::Vector2f(0, 0), _xpaOptions);
+
 	// Creates all of the games states
 	m_xpStateMngr->Add(new CreditsState(0.5f, "../rec/Credits.txt"));
 	m_xpStateMngr->Add(new GameOverState(0.5f));
 	m_xpStateMngr->Add(new GameState(15.f));
 	m_xpStateMngr->Add(new HowToPlayState(0.5f, "../rec/HowToPlay.txt"));
 	m_xpStateMngr->Add(new MenuState());
+	m_xpStateMngr->Add(new OptionsState(.5f, _xpaOptions));
 
 	m_xpStateMngr->SetState("MenuState");
 
@@ -205,6 +230,36 @@ void Core::UpdEvents(){
 				break;
 		}
 	}
+
+	if (*m_bFullScreen0 != m_bFullScreen1){
+		if (*m_bFullScreen0){
+			m_xpScreen->close();
+			delete m_xpScreen;
+
+			// Initializes the window
+			m_xpScreen = new sf::RenderWindow(sf::VideoMode(800, 600), "Space Shooter Summer 2014", sf::Style::Fullscreen);
+			m_xpDrawMngr->SetScreen(m_xpScreen);
+
+			m_xpScreen->setPosition(sf::Vector2i(0, 0));
+			*m_bFullScreen0 = true;
+			m_bFullScreen1 = true;
+		}
+		else if (!*m_bFullScreen0){
+			m_xpScreen->close();
+			delete m_xpScreen;
+
+			// Initializes the window
+			m_xpScreen = new sf::RenderWindow(sf::VideoMode(800, 600), "Space Shooter Summer 2014", sf::Style::Default);
+			m_xpDrawMngr->SetScreen(m_xpScreen);
+
+			*m_bFullScreen0 = false;
+			m_bFullScreen1 = false;
+		}
+	}
+
+	std::cout << m_xpScoreMngr->GetStartLifes() << " " << m_xpSoundMngr->GetVolume() << " " << m_xpMusicMngr->GetVolume() << std::endl;
+
+	m_xpMusicMngr->SetVolume(m_xpMusicMngr->GetVolume());
 }
 
 void Core::Cleanup(){

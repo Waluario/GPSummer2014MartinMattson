@@ -16,6 +16,8 @@ public:
 
 	void SetKey(sf::Keyboard::Key p_xKey);
 
+	std::string GetKeySymbol();
+
 private:
 	float m_fTimer;
 	bool m_bPressedOnce;

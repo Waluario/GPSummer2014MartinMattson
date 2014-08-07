@@ -145,6 +145,10 @@ int ScoreMngr::GetStartLifes(){
 	return m_iStartLifes;
 }
 
+int* ScoreMngr::GetStartLifesPointer(){
+	return new int(m_iStartLifes);
+}
+
 void ScoreMngr::SetStartLifes(int p_iStartLifes){
 	// Sets StartLifes
 	m_iStartLifes = p_iStartLifes;

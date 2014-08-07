@@ -9,10 +9,12 @@ std::string MusicMngr::m_sDir;
 std::vector<Bgm*> MusicMngr::m_xpaMusic;
 Bgm *MusicMngr::m_xpCurrent;
 
-float MusicMngr::m_fVolume;
+float* MusicMngr::m_fpVolume;
 
 MusicMngr::MusicMngr(std::string p_sDir){
 	m_sDir = p_sDir;
+
+	m_fpVolume = new float(100.f);
 }
 
 MusicMngr::~MusicMngr(){
@@ -52,12 +54,12 @@ void MusicMngr::Play(std::string p_sName, float p_fVolume){
 		if (m_xpaMusic[i]->GetName().compare(p_sName) == 0){
 			m_xpCurrent = m_xpaMusic[i];
 			Play();
-			m_fVolume = p_fVolume;
-			m_xpCurrent->GetMusic()->setVolume(m_fVolume);
+			//m_fVolume = p_fVolume;
+			m_xpCurrent->GetMusic()->setVolume(*m_fpVolume);
+			m_xpCurrent->GetMusic()->setLoop(true);
 		}
 	}
 }
-
 
 void MusicMngr::Pause(){
 	// pauses the current piece of music
@@ -71,10 +73,18 @@ void MusicMngr::Stop(){
 
 void MusicMngr::SetVolume(float p_fVolume){
 	// Sets the volume
-	m_fVolume = p_fVolume;
+	*m_fpVolume = p_fVolume;
+
+	if (m_xpCurrent != NULL){
+		m_xpCurrent->GetMusic()->setVolume(*m_fpVolume);
+	}
 }
 
 float MusicMngr::GetVolume(){
 	// Returns the current volume
-	return m_fVolume;
+	return *m_fpVolume;
+}
+
+float* MusicMngr::GetVolumePointer(){
+	return m_fpVolume;
 }

@@ -18,6 +18,8 @@ public:
 	static bool GetButtonPressed(int p_iKey); // Returns wether or not a button is being pressed
 	static bool GetButtonPressedOnce(int p_iKey); // Returns wther or not a buttin is being pressed once
 
+	static std::string GetButtonSymbol(int p_iKey); // Returns a string of the button
+
 	static std::vector<Button*> GetVector(); // Returns the entire vector
 
 private:
