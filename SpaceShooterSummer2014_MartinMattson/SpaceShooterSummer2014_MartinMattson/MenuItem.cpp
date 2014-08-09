@@ -66,3 +66,7 @@ void MenuItem::OnChosen(){
 bool MenuItem::CanMovePointer(){
 	return true;
 }
+
+bool MenuItem::IgnoreOption(){
+	return false;
+}

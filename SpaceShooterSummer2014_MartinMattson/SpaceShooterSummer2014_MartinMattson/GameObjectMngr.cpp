@@ -13,9 +13,9 @@ GameObjectMngr::GameObjectMngr(){
 GameObjectMngr::~GameObjectMngr(){
 	// Deletes all game objects. The game objects are not cleared since the game objects take care of that by themsevles
 	for (int i = m_xpaGameObjects.size() - 1; i >= 0; i--){
-		delete m_xpaGameObjects[i];
-		/*m_xpaGameObjects[i] = NULL;
-		m_xpaGameObjects.erase(m_xpaGameObjects.begin() + i);*/
+		if (i < m_xpaGameObjects.size()){
+			delete m_xpaGameObjects[i];
+		}
 	}
 }
 

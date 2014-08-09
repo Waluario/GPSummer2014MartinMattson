@@ -2,6 +2,8 @@
 
 #include "KeybMngr.h"
 
+#include "Button.h"
+
 std::vector<Button*> KeybMngr::m_xpaKeybPress;
 
 KeybMngr::KeybMngr(){
@@ -58,5 +60,5 @@ bool KeybMngr::GetButtonPressedOnce(int p_iKey){
 }
 
 std::string KeybMngr::GetButtonSymbol(int p_iKey){
-	return "Pirates are great!";
+	return m_xpaKeybPress[p_iKey]->GetKeySymbol();
 }

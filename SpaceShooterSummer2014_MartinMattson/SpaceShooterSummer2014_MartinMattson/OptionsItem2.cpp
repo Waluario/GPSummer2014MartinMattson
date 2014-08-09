@@ -8,7 +8,8 @@
 
 #include <sstream>
 
-OptionsItem2::OptionsItem2(sf::Vector2f p_vPos, std::string p_sText, float *p_fpOption, float p_fMin, float p_fMax, float p_fChange){
+OptionsItem2::OptionsItem2(sf::Vector2f p_vPos, std::string p_sText, float *p_fpOption, float p_fMin, float p_fMax, float p_fChange)
+: MenuItem(" ", p_sText, p_vPos){
 	m_fpOption = p_fpOption;
 	m_sChoice = p_sText;
 

@@ -10,7 +10,7 @@ int ScoreMngr::m_iHiScore;
 int ScoreMngr::m_iNextScore;
 int ScoreMngr::m_iNextScoreUp;
 int ScoreMngr::m_iLifes;
-int ScoreMngr::m_iStartLifes;
+int *ScoreMngr::m_ipStartLifes;
 
 bool ScoreMngr::m_bSpawn;
 
@@ -21,7 +21,7 @@ ScoreMngr::ScoreMngr(int p_iScore, int p_iHiScore, int p_iNextScore, int p_iNext
 	m_iNextScore = p_iNextScore;
 	m_iNextScoreUp = p_iNextScoreUp;
 	m_iLifes = p_iLifes;
-	m_iStartLifes = p_iLifes;
+	m_ipStartLifes = new int(p_iLifes);
 
 	m_bSpawn = true;
 }
@@ -142,16 +142,16 @@ void ScoreMngr::PlusLife(){
 
 int ScoreMngr::GetStartLifes(){
 	// Returns StartLifes
-	return m_iStartLifes;
+	return *m_ipStartLifes;
 }
 
 int* ScoreMngr::GetStartLifesPointer(){
-	return new int(m_iStartLifes);
+	return m_ipStartLifes;
 }
 
 void ScoreMngr::SetStartLifes(int p_iStartLifes){
 	// Sets StartLifes
-	m_iStartLifes = p_iStartLifes;
+	*m_ipStartLifes = p_iStartLifes;
 }
 
 float ScoreMngr::GetScoreModifier(){

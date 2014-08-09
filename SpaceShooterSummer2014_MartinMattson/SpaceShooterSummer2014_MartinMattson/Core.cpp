@@ -23,10 +23,12 @@
 #include "MenuState.h"
 #include "OptionsState.h"
 
-#include "OptionsItem.h"
+#include "MenuItem.h"
 #include "OptionsItem0.h"
 #include "OptionsItem1.h"
 #include "OptionsItem2.h"
+#include "OptionsItem3.h"
+#include "TextItem.h"
 
 #include "OptionsObject.h"
 
@@ -175,11 +177,21 @@ bool Core::Init(){
 	}
 
 	// Sets up the game options menu
-	std::vector<OptionsItem*> _xpaOptions;
+	std::vector<MenuItem*> _xpaOptions;
 	_xpaOptions.push_back(new OptionsItem1(sf::Vector2f(0, 0), "Lifes", m_xpScoreMngr->GetStartLifesPointer(), 0, 5));
 	_xpaOptions.push_back(new OptionsItem2(sf::Vector2f(0, 0), "Sfx Volume", m_xpSoundMngr->GetVolumePointer(), 0.f, 100.f, 5.f));
 	_xpaOptions.push_back(new OptionsItem2(sf::Vector2f(0, 0), "Bgm Volume", m_xpMusicMngr->GetVolumePointer(), 0.f, 100.f, 5.f));
 	_xpaOptions.push_back(new OptionsItem0(sf::Vector2f(0, 0), "Fullscreen", m_bFullScreen0));
+	
+	_xpaOptions.push_back(new TextItem("Controls:", sf::Vector2f(0, 0)));
+	_xpaOptions.push_back(new OptionsItem3(sf::Vector2f(0, 0), "- Up", 0));
+	_xpaOptions.push_back(new OptionsItem3(sf::Vector2f(0, 0), "- Down", 1));
+	_xpaOptions.push_back(new OptionsItem3(sf::Vector2f(0, 0), "- Left", 2));
+	_xpaOptions.push_back(new OptionsItem3(sf::Vector2f(0, 0), "- Right", 3));
+	_xpaOptions.push_back(new OptionsItem3(sf::Vector2f(0, 0), "- Fire", 4));
+	_xpaOptions.push_back(new OptionsItem3(sf::Vector2f(0, 0), "- Focus", 5));
+
+	_xpaOptions.push_back(new MenuItem("MenuState", "Back", sf::Vector2f(0, 0)));
 
 	OptionsObject *_xpOptionsObject = new OptionsObject(sf::Vector2f(0, 0), _xpaOptions);
 
@@ -197,7 +209,6 @@ bool Core::Init(){
 }
 
 void Core::Run(){
-	
 	while (m_xpStateMngr->IsRunning()){
 		// Updates the window events and removes all fo the stopped sounds
 		UpdEvents();
@@ -257,13 +268,18 @@ void Core::UpdEvents(){
 		}
 	}
 
-	std::cout << m_xpScoreMngr->GetStartLifes() << " " << m_xpSoundMngr->GetVolume() << " " << m_xpMusicMngr->GetVolume() << std::endl;
-
 	m_xpMusicMngr->SetVolume(m_xpMusicMngr->GetVolume());
+
+	// std::cout << m_xpScoreMngr->GetStartLifes() << " " << m_xpSoundMngr->GetVolume() << " " << m_xpMusicMngr->GetVolume() << std::endl;
 }
 
 void Core::Cleanup(){
 	// Cleans up all of the Managers
+	delete m_bFullScreen0;
+	m_bFullScreen0 = NULL;
+
+	m_xpScreen = NULL;
+
 	if (m_xpStateMngr != NULL){
 		delete m_xpStateMngr;
 		m_xpStateMngr = NULL;
@@ -292,6 +308,11 @@ void Core::Cleanup(){
 	if (m_xpKeybMngr != NULL){
 		delete m_xpKeybMngr;
 		m_xpKeybMngr = NULL;
+	}
+
+	if (m_xpLevelMngr != NULL){
+		delete m_xpLevelMngr;
+		m_xpLevelMngr = NULL;
 	}
 
 	if (m_xpMusicMngr != NULL){

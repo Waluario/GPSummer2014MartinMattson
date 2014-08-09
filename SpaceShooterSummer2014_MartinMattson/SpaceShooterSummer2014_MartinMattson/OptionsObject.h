@@ -4,11 +4,11 @@
 
 #include "GameObject.h"
 
-class OptionsItem;
+class MenuItem;
 
 class OptionsObject : public GameObject {
 public:
-	OptionsObject(sf::Vector2f p_vPos, std::vector<OptionsItem*> p_xpaOptions);
+	OptionsObject(sf::Vector2f p_vPos, std::vector<MenuItem*> p_xpaOptions);
 	~OptionsObject();
 
 	void SetAllPositions(sf::Vector2f p_vPosition);
@@ -21,5 +21,5 @@ public:
 private:
 	int m_iCurrentChoice;
 
-	std::vector<OptionsItem*> m_xpaOptions;
+	std::vector<MenuItem*> m_xpaOptions;
 };

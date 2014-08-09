@@ -2,13 +2,14 @@
 
 #include "OptionsObject.h"
 
-#include "OptionsItem.h"
+#include "MenuItem.h"
+
 #include "OptionsItem0.h"
 #include "OptionsItem1.h"
 
 #include "KeybMngr.h"
 
-OptionsObject::OptionsObject(sf::Vector2f p_vPos, std::vector<OptionsItem*> p_xpaOptions){
+OptionsObject::OptionsObject(sf::Vector2f p_vPos, std::vector<MenuItem*> p_xpaOptions){
 	m_iCurrentChoice = 0;
 
 	m_xpaOptions = p_xpaOptions;
@@ -31,19 +32,27 @@ void OptionsObject::OnCreate(){
 }
 
 void OptionsObject::OnUpdateThis(){
-	if (KeybMngr::GetVector()[0]->IsPressedOnce()){
+	if (KeybMngr::GetVector()[7]->IsPressedOnce() && m_xpaOptions[m_iCurrentChoice]->CanMovePointer()){
 		m_iCurrentChoice--;
 
 		if (m_iCurrentChoice < 0.f){
 			m_iCurrentChoice = m_xpaOptions.size() - 1;
 		}
+
+		if (m_xpaOptions[m_iCurrentChoice]->IgnoreOption()){
+			m_iCurrentChoice--;
+		}
 	}
 
-	if (KeybMngr::GetVector()[1]->IsPressedOnce()){
+	if (KeybMngr::GetVector()[8]->IsPressedOnce() && m_xpaOptions[m_iCurrentChoice]->CanMovePointer()){
 		m_iCurrentChoice++;
 
 		if (m_iCurrentChoice >= m_xpaOptions.size()){
 			m_iCurrentChoice = 0;
+		}
+
+		if (m_xpaOptions[m_iCurrentChoice]->IgnoreOption()){
+			m_iCurrentChoice++;
 		}
 	}
 

@@ -55,10 +55,10 @@
     <Filter Include="Source Files\Game Objects\MenuObjects">
       <UniqueIdentifier>{e377d17c-1876-482d-9ba9-5b0e3269557c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Other\Options">
+    <Filter Include="Source Files\Other\Menu">
       <UniqueIdentifier>{62cb2bd5-b28a-4bab-b51b-09e4ea8beeb8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Other\Options">
+    <Filter Include="Header Files\Other\Menu">
       <UniqueIdentifier>{675aec7a-1fa1-49a4-b133-deb79b9fee42}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -131,9 +131,6 @@
     </ClInclude>
     <ClInclude Include="MenuObject.h">
       <Filter>Header Files\Game Objects\MenuObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuItem.h">
-      <Filter>Header Files\Other</Filter>
     </ClInclude>
     <ClInclude Include="MenuState.h">
       <Filter>Header Files\States</Filter>
@@ -208,19 +205,25 @@
       <Filter>Header Files\Game Objects</Filter>
     </ClInclude>
     <ClInclude Include="OptionsItem0.h">
-      <Filter>Header Files\Other\Options</Filter>
+      <Filter>Header Files\Other\Menu</Filter>
     </ClInclude>
     <ClInclude Include="OptionsItem1.h">
-      <Filter>Header Files\Other\Options</Filter>
+      <Filter>Header Files\Other\Menu</Filter>
     </ClInclude>
     <ClInclude Include="OptionsItem.h">
-      <Filter>Header Files\Other\Options</Filter>
+      <Filter>Header Files\Other\Menu</Filter>
     </ClInclude>
     <ClInclude Include="OptionsItem2.h">
-      <Filter>Header Files\Other\Options</Filter>
+      <Filter>Header Files\Other\Menu</Filter>
     </ClInclude>
     <ClInclude Include="OptionsItem3.h">
-      <Filter>Header Files\Other\Options</Filter>
+      <Filter>Header Files\Other\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuItem.h">
+      <Filter>Header Files\Other\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="TextItem.h">
+      <Filter>Header Files\Other\Menu</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -283,9 +286,6 @@
     </ClCompile>
     <ClCompile Include="CollisionMngr.cpp">
       <Filter>Source Files\Managers</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuItem.cpp">
-      <Filter>Source Files\Other</Filter>
     </ClCompile>
     <ClCompile Include="MenuObject.cpp">
       <Filter>Source Files\Game Objects\MenuObjects</Filter>
@@ -363,16 +363,22 @@
       <Filter>Source Files\Game Objects</Filter>
     </ClCompile>
     <ClCompile Include="OptionsItem0.cpp">
-      <Filter>Source Files\Other\Options</Filter>
+      <Filter>Source Files\Other\Menu</Filter>
     </ClCompile>
     <ClCompile Include="OptionsItem1.cpp">
-      <Filter>Source Files\Other\Options</Filter>
+      <Filter>Source Files\Other\Menu</Filter>
     </ClCompile>
     <ClCompile Include="OptionsItem2.cpp">
-      <Filter>Source Files\Other\Options</Filter>
+      <Filter>Source Files\Other\Menu</Filter>
     </ClCompile>
     <ClCompile Include="OptionsItem3.cpp">
-      <Filter>Source Files\Other\Options</Filter>
+      <Filter>Source Files\Other\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuItem.cpp">
+      <Filter>Source Files\Other\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="TextItem.cpp">
+      <Filter>Source Files\Other\Menu</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

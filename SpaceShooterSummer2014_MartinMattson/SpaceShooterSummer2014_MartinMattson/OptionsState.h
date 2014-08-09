@@ -4,13 +4,13 @@
 
 #include "State.h"
 
-class OptionsItem;
+class MenuItem;
 
 class SceneObject;
 
 class OptionsState : public State {
 public:
-	OptionsState(float p_fWaitTimeStart, std::vector<OptionsItem*> p_xpaOptions);
+	OptionsState(float p_fWaitTimeStart, std::vector<MenuItem*> p_xpaOptions);
 	~OptionsState();
 
 	bool Enter();

@@ -68,7 +68,9 @@ void MusicMngr::Pause(){
 
 void MusicMngr::Stop(){
 	// Stops the current piece of music
-	m_xpCurrent->GetMusic()->stop();
+	if (m_xpCurrent != NULL){
+		m_xpCurrent->GetMusic()->stop();
+	}
 }
 
 void MusicMngr::SetVolume(float p_fVolume){

@@ -24,7 +24,7 @@ EnemyObject4::EnemyObject4(sf::Vector2f p_vPosition, sf::Vector2f p_vSpd){
 	setPosition(p_vPosition);
 
 	m_iBulletAmmo = INT_MAX;
-	m_iLife = 360;
+	m_iLife = 600;
 	m_iScore = 120;
 
 	m_fFireRateMax = 2.f;
@@ -65,6 +65,7 @@ void EnemyObject4::OnCreate(){
 
 	m_eStage = AIStage::e_Stage0;
 
+	MusicMngr::Stop();
 	MusicMngr::Play("Bgm_Boss");
 }
 
@@ -80,7 +81,7 @@ void EnemyObject4::OnUpdateThis(){
 		m_fRingFire -= TimeMngr::GetDtime();
 
 		if (m_fRingFire <= 0){
-			for (float i = 0; i <= 360; i += 22.5f){
+			for (float i = 0; i <= 360; i += 11.25f){
 				GetParent()->AddChild(new EnemyBulletObject(getPosition(), sf::Vector2f(cosf(i * 3.141592 / 180), sinf(i * 3.141592 / 180)), 95.f));
 			}
 
@@ -209,19 +210,19 @@ void EnemyObject4::OnUpdateThis(){
 		}
 	}
 
-	if (m_iLife > 240 && m_fMoveInTime <= 0.f){
+	if (m_iLife > 480 && m_fMoveInTime <= 0.f){
 		m_eStage = e_Stage1;
 	}
-	else if (m_iLife > 120 && m_iLife <= 240){
+	else if (m_iLife > 360 && m_iLife <= 240){
 		m_eStage = e_Stage2;
 	}
-	else if (m_iLife > 80 && m_iLife <= 120){
+	else if (m_iLife > 240 && m_iLife <= 120){
 		m_eStage = e_Stage3_1;
 	}
-	else if (m_iLife > 60 && m_iLife <= 60){
+	else if (m_iLife > 120 && m_iLife <= 60){
 		m_eStage = e_Stage3_2;
 	}
-	else if (m_iLife > 40 && m_iLife <= 30){
+	else if (m_iLife > 60 && m_iLife <= 30){
 		m_eStage = e_Stage3_3;
 	}
 }

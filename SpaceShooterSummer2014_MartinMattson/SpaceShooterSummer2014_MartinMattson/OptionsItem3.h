@@ -19,9 +19,17 @@ public:
 	virtual void OnDrawWhenChosen();
 
 	virtual void OnChosen();
+	virtual bool CanMovePointer();
+
+	sf::Keyboard::Key GetKeyPressed();
 
 private:
 	int m_iKeyb;
+
+	float m_fStopTime,
+		m_fStopTimeStart;
+
+	bool m_bCanMovePointer;
 
 	sf::Text *m_xpText;
 

@@ -2,12 +2,12 @@
 
 #include "OptionsState.h"
 
-#include "OptionsItem.h"
+#include "MenuItem.h"
 
 #include "OptionsObject.h"
 #include "SceneObject.h"
 
-OptionsState::OptionsState(float p_fWaitTimeStart, std::vector<OptionsItem*> p_xpaOptions){
+OptionsState::OptionsState(float p_fWaitTimeStart, std::vector<MenuItem*> p_xpaOptions){
 	m_fWaitTimeStart = p_fWaitTimeStart;
 
 	m_xpScene = new SceneObject(0);

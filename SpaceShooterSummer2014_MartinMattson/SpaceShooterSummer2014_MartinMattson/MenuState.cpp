@@ -18,6 +18,7 @@ MenuState::~MenuState(){
 }
 
 bool MenuState::Enter(){
+	MusicMngr::Stop();
 	MusicMngr::Play("Bgm_Menu", 100);
 
 	return true;

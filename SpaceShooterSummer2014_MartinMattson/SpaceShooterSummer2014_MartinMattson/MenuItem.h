@@ -7,8 +7,8 @@ public:
 	MenuItem(std::string p_sState, std::string p_sChoice, sf::Vector2f p_vPosition);
 	~MenuItem();
 
-	sf::Vector2f GetPosition();
-	void SetPosition(sf::Vector2f p_vPosition);
+	virtual sf::Vector2f GetPosition();
+	virtual void SetPosition(sf::Vector2f p_vPosition);
 
 	std::string GetState();
 	void SetState(std::string p_sState);
@@ -16,11 +16,12 @@ public:
 	sf::Text* GetText();
 	void SetText(sf::Text *p_xpChoice);
 
-	void OnDraw();
-	void OnDrawWhenChosen();
+	virtual void OnDraw();
+	virtual void OnDrawWhenChosen();
 
 	virtual void OnChosen();
 	virtual bool CanMovePointer();
+	virtual bool IgnoreOption();
 
 private:
 	std::string m_sState;

@@ -6,7 +6,8 @@
 #include "FontMngr.h"
 #include "KeybMngr.h"
 
-OptionsItem0::OptionsItem0(sf::Vector2f p_vPos, std::string p_sText, bool *p_bpOption){
+OptionsItem0::OptionsItem0(sf::Vector2f p_vPos, std::string p_sText, bool *p_bpOption)
+: MenuItem(" ", p_sText, p_vPos){
 	m_bpOption = p_bpOption;
 	m_sChoice = p_sText;
 
