@@ -18,6 +18,8 @@
 #include "EnemyObject0.h"
 #include "EnemyObject1.h"
 
+#include <iostream>
+
 EnemyObject4::EnemyObject4(sf::Vector2f p_vPosition, sf::Vector2f p_vSpd){
 	m_vSpd = p_vSpd;
 
@@ -54,7 +56,7 @@ void EnemyObject4::SetAllPositions(sf::Vector2f p_vPosition){
 }
 
 void EnemyObject4::OnCreate(){
-	m_xpSprite = SpriteMngr::GetSprite("Enemy3");
+	m_xpSprite = SpriteMngr::GetSprite("Enemy4");
 	m_xpSprite->SetPosition(getPosition());
 
 	SetHitbox(CollisionMngr::NewHitbox(this, getPosition(), 35.f, 0));
@@ -188,10 +190,10 @@ void EnemyObject4::OnUpdateThis(){
 
 		if (m_fRingFire <= 0){
 			for (float i = 0; i <= 360; i += 22.5f){
-				GetParent()->AddChild(new EnemyBulletObject(getPosition(), sf::Vector2f(cosf(i * 3.141592 / 180) * 2000.f, sinf(i * 3.141592 / 180) * 2000.f), 95.f));
+				GetParent()->AddChild(new EnemyBulletObject(getPosition(), sf::Vector2f(cosf(i * 3.141592 / 180), sinf(i * 3.141592 / 180)), 95.f));
 			}
 
-			m_fRingFire = m_fRingFireMax * 2.5f;
+			m_fRingFire = m_fRingFireMax;
 		}
 
 		break;
@@ -213,18 +215,20 @@ void EnemyObject4::OnUpdateThis(){
 	if (m_iLife > 480 && m_fMoveInTime <= 0.f){
 		m_eStage = e_Stage1;
 	}
-	else if (m_iLife > 360 && m_iLife <= 240){
+	else if (m_iLife > 360 && m_iLife <= 480){
 		m_eStage = e_Stage2;
 	}
-	else if (m_iLife > 240 && m_iLife <= 120){
+	else if (m_iLife > 240 && m_iLife <= 360){
 		m_eStage = e_Stage3_1;
 	}
-	else if (m_iLife > 120 && m_iLife <= 60){
+	else if (m_iLife > 120 && m_iLife <= 240){
 		m_eStage = e_Stage3_2;
 	}
-	else if (m_iLife > 60 && m_iLife <= 30){
+	else if (m_iLife > 60 && m_iLife <= 120){
 		m_eStage = e_Stage3_3;
 	}
+
+	std::cout << m_iLife << std::endl;
 }
 
 void EnemyObject4::OnDrawThis(){
@@ -242,4 +246,29 @@ void EnemyObject4::OnCollision(GameObject *p_xpCollider){
 			DeleteMe();
 		}
 	}
+}
+
+sf::Vector2f EnemyObject4::GetSpeed(){
+	sf::Vector2f _vSpeed = sf::Vector2f(m_vSpd.x * TimeMngr::GetDtime(), 0);
+
+	if (m_xpPlayer->getPosition().x > getPosition().x && getPosition().x > 200.f){
+		if ((getPosition().x - _vSpeed.x) < 200.f){
+			SetAllPositions(sf::Vector2f(200, getPosition().y));
+			return sf::Vector2f(0, 0);
+		}
+		else {
+			return sf::Vector2f(-_vSpeed.x, 0);
+		}
+	}
+	else if (m_xpPlayer->getPosition().x < getPosition().x && getPosition().x < 600.f){
+		if ((getPosition().x + _vSpeed.x) > 600.f){
+			SetAllPositions(sf::Vector2f(600, getPosition().y));
+			return sf::Vector2f(0, 0);
+		}
+		else {
+			return sf::Vector2f(_vSpeed.x, 0);
+		}
+	}
+
+	return sf::Vector2f(0, 0);
 }

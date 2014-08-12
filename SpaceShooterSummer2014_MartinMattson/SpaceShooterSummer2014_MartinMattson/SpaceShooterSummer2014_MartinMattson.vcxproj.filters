@@ -49,12 +49,6 @@
     <Filter Include="Source Files\Game Objects\Player">
       <UniqueIdentifier>{8a9a65a8-b677-401e-9bec-2b1333fb0909}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Game Objects\MenuObjects">
-      <UniqueIdentifier>{3ff21bd3-4727-4c55-8b90-53bd0daf65e5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Game Objects\MenuObjects">
-      <UniqueIdentifier>{e377d17c-1876-482d-9ba9-5b0e3269557c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Other\Menu">
       <UniqueIdentifier>{62cb2bd5-b28a-4bab-b51b-09e4ea8beeb8}</UniqueIdentifier>
     </Filter>
@@ -128,9 +122,6 @@
     </ClInclude>
     <ClInclude Include="CollisionMngr.h">
       <Filter>Header Files\Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuObject.h">
-      <Filter>Header Files\Game Objects\MenuObjects</Filter>
     </ClInclude>
     <ClInclude Include="MenuState.h">
       <Filter>Header Files\States</Filter>
@@ -286,9 +277,6 @@
     </ClCompile>
     <ClCompile Include="CollisionMngr.cpp">
       <Filter>Source Files\Managers</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuObject.cpp">
-      <Filter>Source Files\Game Objects\MenuObjects</Filter>
     </ClCompile>
     <ClCompile Include="MenuState.cpp">
       <Filter>Source Files\States</Filter>

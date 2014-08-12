@@ -18,9 +18,9 @@ public:
 	virtual void OnDrawThis();
 	virtual void OnCollision(GameObject *p_xpCollider);
 
-private:
-	
+	sf::Vector2f GetSpeed();
 
+private:
 	enum AIStage {
 		e_Stage0,
 		e_Stage1,

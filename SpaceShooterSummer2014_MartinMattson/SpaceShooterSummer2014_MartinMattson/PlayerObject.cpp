@@ -61,8 +61,6 @@ void PlayerObject::OnCreate(){
 void PlayerObject::OnUpdateThis(){
 	std::vector<Button*> _Keys = KeybMngr::GetVector();
 
-	sf::Vector2f _vSpeed = sf::Vector2f((KeybMngr::GetVector()[3]->IsPressed() - KeybMngr::GetVector()[2]->IsPressed()), (KeybMngr::GetVector()[1]->IsPressed() - KeybMngr::GetVector()[0]->IsPressed()));
-
 	if (KeybMngr::GetButtonPressed(6)){
 		TimeMngr::SetPace(4);
 	}
@@ -96,7 +94,7 @@ void PlayerObject::OnUpdateThis(){
 		m_bDrawSprite = true;
 	}
 
-	SetAllPositions(getPosition() + ((_vSpeed * m_fAcceleration * TimeMngr::GetDtime(false)) / (1.f + KeybMngr::GetButtonPressed(4))) / (1.f + KeybMngr::GetButtonPressed(5)));
+	SetAllPositions(getPosition() + GetSpeed());
 }
 
 void PlayerObject::OnDrawThis(){
@@ -146,4 +144,29 @@ bool PlayerObject::CanFire(){
 	m_fFireRange += (-1 + (2 * m_bFireRangeUp)) * TimeMngr::GetDtime();
 
 	return false;
+}
+
+sf::Vector2f PlayerObject::GetSpeed(){
+	sf::Vector2f _vSpeed = sf::Vector2f((KeybMngr::GetVector()[3]->IsPressed() - KeybMngr::GetVector()[2]->IsPressed()), (KeybMngr::GetVector()[1]->IsPressed() - KeybMngr::GetVector()[0]->IsPressed()));
+	_vSpeed = sf::Vector2f((_vSpeed * m_fAcceleration * TimeMngr::GetDtime(false)) / (1.f + KeybMngr::GetButtonPressed(4))) / (1.f + KeybMngr::GetButtonPressed(5));
+
+	if (getPosition().x + _vSpeed.x > 790.f){
+		_vSpeed.x = 0.f;
+		SetAllPositions(sf::Vector2f(790.f, getPosition().y));
+	}
+	else if (getPosition().x + _vSpeed.x < 0.f){
+		_vSpeed.x = 0.f;
+		SetAllPositions(sf::Vector2f(0.f, getPosition().y));
+	}
+
+	if (getPosition().y + _vSpeed.y > 540.f){
+		_vSpeed.y = 0.f;
+		SetAllPositions(sf::Vector2f(getPosition().x, 540.f));
+	}
+	else if (getPosition().y + _vSpeed.y < 10.f){
+		_vSpeed.y = 0.f;
+		SetAllPositions(sf::Vector2f(getPosition().x, 10.f));
+	}
+
+	return _vSpeed;
 }

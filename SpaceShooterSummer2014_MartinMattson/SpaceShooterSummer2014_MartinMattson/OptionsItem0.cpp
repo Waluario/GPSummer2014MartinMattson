@@ -6,9 +6,10 @@
 #include "FontMngr.h"
 #include "KeybMngr.h"
 
-OptionsItem0::OptionsItem0(sf::Vector2f p_vPos, std::string p_sText, bool *p_bpOption)
+OptionsItem0::OptionsItem0(sf::Vector2f p_vPos, std::string p_sText, bool *p_bpOption, bool p_bShowOption)
 : MenuItem(" ", p_sText, p_vPos){
 	m_bpOption = p_bpOption;
+	m_bShowOption = p_bShowOption;
 	m_sChoice = p_sText;
 
 	if (p_bpOption){
@@ -45,32 +46,38 @@ void OptionsItem0::SetText(sf::Text *p_xpChoice){
 }
 
 void OptionsItem0::OnDraw(){
-	if (*m_bpOption){
+	if (*m_bpOption && m_bShowOption){
 		m_xpText->setString(sf::String(m_sChoice + " 1"));
 	}
-	else {
+	else if (!*m_bpOption && m_bShowOption) {
 		m_xpText->setString(sf::String(m_sChoice + " 0"));
+	}
+	else if (!m_bShowOption){
+		m_xpText->setString(sf::String(m_sChoice));
 	}
 
 	DrawMngr::Draw(m_xpText);
 }
 
 void OptionsItem0::OnDrawWhenChosen(){
-	if (*m_bpOption){
+	if (*m_bpOption && m_bShowOption){
 		m_xpText->setString(sf::String("<" + m_sChoice + " 1" + ">"));
 	}
-	else {
+	else if (!*m_bpOption && m_bShowOption) {
 		m_xpText->setString(sf::String("<" + m_sChoice + " 0" + ">"));
+	}
+	else if (!m_bShowOption){
+		m_xpText->setString(sf::String("<" + m_sChoice + ">"));
 	}
 
 	DrawMngr::DrawText(m_xpText);
 }
 
 void OptionsItem0::OnChosen(){
-	if (*m_bpOption && (KeybMngr::GetButtonPressedOnce(11) || KeybMngr::GetButtonPressedOnce(12) || KeybMngr::GetButtonPressedOnce(9))){
+	if (*m_bpOption && (KeybMngr::GetButtonPressedOnce(11) || KeybMngr::GetButtonPressedOnce(12) || (KeybMngr::GetButtonPressedOnce(9) && m_bShowOption))){
 		*m_bpOption = false;
 	}
-	else if (!*m_bpOption && (KeybMngr::GetButtonPressedOnce(11) || KeybMngr::GetButtonPressedOnce(12) || KeybMngr::GetButtonPressedOnce(10))){
+	else if (!*m_bpOption && (KeybMngr::GetButtonPressedOnce(11) || KeybMngr::GetButtonPressedOnce(12) || (KeybMngr::GetButtonPressedOnce(10) && m_bShowOption))){
 		*m_bpOption = true;
 	}
 }

@@ -3,6 +3,7 @@
 #include "GameState.h"
 
 #include "CollisionMngr.h"
+#include "KeybMngr.h"
 #include "LevelMngr.h"
 #include "MusicMngr.h"
 #include "ScoreMngr.h"
@@ -12,13 +13,20 @@
 #include "EnemyObject1.h"
 #include "EnemyObject2.h"
 #include "HUDObject.h"
+#include "OptionsObject.h"
 #include "PlayerObject.h"
 #include "SceneObject.h"
+
+#include "MenuItem.h"
+#include "OptionsItem0.h"
+#include "TextItem.h"
 
 #include <iostream>
 
 GameState::GameState(float p_fStageTimeStart){
 	m_fStageTimeStart = p_fStageTimeStart;
+
+	m_bpPlaying = new bool(true);
 }
 
 GameState::~GameState(){
@@ -31,6 +39,15 @@ bool GameState::Enter(){
 	m_xpScene->AddChild(new PlayerObject(sf::Vector2f(400, 500), 5, 256.0f));
 
 	m_fStageTimeStart = LevelMngr::GetTime();
+
+	m_xpPause = new SceneObject(2);
+	std::vector<MenuItem*> _xpaMenu;
+	_xpaMenu.push_back(new TextItem("-Game Paused-", sf::Vector2f(0, 0)));
+	_xpaMenu.push_back(new OptionsItem0(sf::Vector2f(0, 0), "Resume", m_bpPlaying, 0));
+	_xpaMenu.push_back(new MenuItem("MenuState", "Main Menu", sf::Vector2f(0, 0)));
+	m_xpPause->AddChild(new OptionsObject(sf::Vector2f(0, 0), _xpaMenu));
+
+	*m_bpPlaying = true;
 
 	ScoreMngr::SetScore(0);
 	ScoreMngr::SetLifes(ScoreMngr::GetStartLifes());
@@ -51,28 +68,49 @@ void GameState::Exit(){
 	LevelMngr::Clear();
 	CollisionMngr::ClearList(0);
 
+	delete m_xpPause;
+	m_xpPause = NULL;
+
 	MusicMngr::Stop();
 }
 
 bool GameState::Update(float p_fDtime){
-	m_xpScene->OnUpdate();
+	if (*m_bpPlaying){
+		m_xpScene->OnUpdate();
 
-	CollisionMngr::CheckForCollisions(0);
+		CollisionMngr::CheckForCollisions(0);
 
-	m_fStageTime -= p_fDtime * ScoreMngr::GetSpawn();
+		m_fStageTime -= p_fDtime * ScoreMngr::GetSpawn();
 
-	if (m_fStageTime <= 0.f){
-		StateMngr::SetNextState("GameOverState");
-		StateMngr::ChangeState();
+		if (m_fStageTime <= 0.f){
+			StateMngr::SetNextState("GameOverState");
+			StateMngr::ChangeState();
+		}
+
+		LevelMngr::Update(m_xpScene, p_fDtime);
+
+		if (KeybMngr::GetButtonPressedOnce(13)){
+			*m_bpPlaying = false;
+		}
 	}
+	else {
+		m_xpPause->OnUpdate();
 
-	LevelMngr::Update(m_xpScene, p_fDtime);
+		if (KeybMngr::GetButtonPressedOnce(13)){
+			*m_bpPlaying = true;
+		}
+	}
 
 	return true;
 }
 
 void GameState::Draw(){
-	m_xpScene->OnDraw();
+	if (*m_bpPlaying){
+		m_xpScene->OnDraw();
+	}
+	else {
+		m_xpPause->OnDraw();
+	}
 }
 
 std::string GameState::Next(){

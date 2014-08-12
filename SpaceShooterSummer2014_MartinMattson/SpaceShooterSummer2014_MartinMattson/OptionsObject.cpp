@@ -42,6 +42,10 @@ void OptionsObject::OnUpdateThis(){
 		if (m_xpaOptions[m_iCurrentChoice]->IgnoreOption()){
 			m_iCurrentChoice--;
 		}
+
+		if (m_iCurrentChoice < 0.f){
+			m_iCurrentChoice = m_xpaOptions.size() - 1;
+		}
 	}
 
 	if (KeybMngr::GetVector()[8]->IsPressedOnce() && m_xpaOptions[m_iCurrentChoice]->CanMovePointer()){
@@ -54,6 +58,14 @@ void OptionsObject::OnUpdateThis(){
 		if (m_xpaOptions[m_iCurrentChoice]->IgnoreOption()){
 			m_iCurrentChoice++;
 		}
+
+		if (m_iCurrentChoice >= m_xpaOptions.size()){
+			m_iCurrentChoice = 0;
+		}
+	}
+
+	if (m_xpaOptions[m_iCurrentChoice]->IgnoreOption()){
+		m_iCurrentChoice++;
 	}
 
 	m_xpaOptions[m_iCurrentChoice]->OnChosen();

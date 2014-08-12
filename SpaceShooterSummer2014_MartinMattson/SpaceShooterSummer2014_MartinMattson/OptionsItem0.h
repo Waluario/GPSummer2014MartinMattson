@@ -6,7 +6,7 @@
 
 class OptionsItem0 : public MenuItem {
 public:
-	OptionsItem0(sf::Vector2f p_vPos, std::string p_sText, bool *p_bpOption);
+	OptionsItem0(sf::Vector2f p_vPos, std::string p_sText, bool *p_bpOption, bool p_bShowOption);
 	~OptionsItem0();
 
 	virtual sf::Vector2f GetPosition();
@@ -21,7 +21,8 @@ public:
 	virtual void OnChosen();
 
 private:
-	bool *m_bpOption;
+	bool *m_bpOption,
+		m_bShowOption;
 
 	sf::Text *m_xpText;
 

@@ -19,8 +19,11 @@ public:
 	bool IsType(const std::string &p_sType);// Parameter_StringType
 
 private:
-	SceneObject *m_xpScene;
+	SceneObject *m_xpScene,
+		*m_xpPause;
 
 	float m_fStageTime,
 		m_fStageTimeStart;
+
+	bool *m_bpPlaying;
 };

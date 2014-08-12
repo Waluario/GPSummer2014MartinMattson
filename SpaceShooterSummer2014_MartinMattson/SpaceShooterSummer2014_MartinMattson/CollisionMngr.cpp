@@ -76,7 +76,6 @@ void CollisionMngr::DeleteHitbox(Hitbox* p_xpHitbox){
 	for (int i = 0; i < m_xpaHitboxes.size(); i++){
 		for (int ii = 0; ii < m_xpaHitboxes[i].size(); ii++){
 			if (m_xpaHitboxes[i][ii] == p_xpHitbox){
-				std::cout << "Hitbox: " << i << " " << ii << " deleted!\n";
 				delete m_xpaHitboxes[i][ii];
 				m_xpaHitboxes[i][ii] = NULL;
 				m_xpaHitboxes[i].erase(m_xpaHitboxes[i].begin() + ii);

@@ -19,8 +19,8 @@ GameObject::GameObject(){
 }
 
 GameObject::~GameObject(){
-	WriteTags();
-	std::cout << " deleted!\n";
+	/*WriteTags();
+	std::cout << " deleted!\n";*/
 	if (HasHitbox()){
 		CollisionMngr::DeleteHitbox(m_xpHitbox);
 	}

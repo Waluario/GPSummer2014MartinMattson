@@ -181,7 +181,7 @@ bool Core::Init(){
 	_xpaOptions.push_back(new OptionsItem1(sf::Vector2f(0, 0), "Lifes", m_xpScoreMngr->GetStartLifesPointer(), 0, 5));
 	_xpaOptions.push_back(new OptionsItem2(sf::Vector2f(0, 0), "Sfx Volume", m_xpSoundMngr->GetVolumePointer(), 0.f, 100.f, 5.f));
 	_xpaOptions.push_back(new OptionsItem2(sf::Vector2f(0, 0), "Bgm Volume", m_xpMusicMngr->GetVolumePointer(), 0.f, 100.f, 5.f));
-	_xpaOptions.push_back(new OptionsItem0(sf::Vector2f(0, 0), "Fullscreen", m_bFullScreen0));
+	_xpaOptions.push_back(new OptionsItem0(sf::Vector2f(0, 0), "Fullscreen", m_bFullScreen0, 1));
 	
 	_xpaOptions.push_back(new TextItem("Controls:", sf::Vector2f(0, 0)));
 	_xpaOptions.push_back(new OptionsItem3(sf::Vector2f(0, 0), "- Up", 0));
@@ -249,6 +249,7 @@ void Core::UpdEvents(){
 
 			// Initializes the window
 			m_xpScreen = new sf::RenderWindow(sf::VideoMode(800, 600), "Space Shooter Summer 2014", sf::Style::Fullscreen);
+			m_xpScreen->setMouseCursorVisible(false);
 			m_xpDrawMngr->SetScreen(m_xpScreen);
 
 			m_xpScreen->setPosition(sf::Vector2i(0, 0));
@@ -261,6 +262,7 @@ void Core::UpdEvents(){
 
 			// Initializes the window
 			m_xpScreen = new sf::RenderWindow(sf::VideoMode(800, 600), "Space Shooter Summer 2014", sf::Style::Default);
+			m_xpScreen->setMouseCursorVisible(true);
 			m_xpDrawMngr->SetScreen(m_xpScreen);
 
 			*m_bFullScreen0 = false;

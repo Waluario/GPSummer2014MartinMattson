@@ -4,13 +4,22 @@
 
 #include "MusicMngr.h"
 
-#include "MenuObject.h"
+#include "OptionsObject.h"
 #include "SceneObject.h"
+
+#include "MenuItem.h"
 
 MenuState::MenuState(){
 	m_xpScene = new SceneObject(0);
 
-	m_xpScene->AddChild(new MenuObject());
+	std::vector<MenuItem*> _xpaItems;
+	_xpaItems.push_back(new MenuItem("GameState", "Start Game", sf::Vector2f(0, 0)));
+	_xpaItems.push_back(new MenuItem("HowToPlayState", "How To Play", sf::Vector2f(0, 35)));
+	_xpaItems.push_back(new MenuItem("OptionsState", "Options", sf::Vector2f(0, 70)));
+	_xpaItems.push_back(new MenuItem("CreditsState", "Credits", sf::Vector2f(0, 105)));
+	_xpaItems.push_back(new MenuItem("EndState", "Exit", sf::Vector2f(0, 140)));
+
+	m_xpScene->AddChild(new OptionsObject(sf::Vector2f(0, 0), _xpaItems));
 }
 
 MenuState::~MenuState(){

@@ -20,6 +20,7 @@ public:
 
 public:
 	bool CanFire();
+	sf::Vector2f GetSpeed();
 
 private:
 	float m_fAcceleration,
