@@ -44,7 +44,7 @@ bool GameState::Enter(){
 	std::vector<MenuItem*> _xpaMenu;
 	_xpaMenu.push_back(new TextItem("-Game Paused-", sf::Vector2f(0, 0)));
 	_xpaMenu.push_back(new OptionsItem0(sf::Vector2f(0, 0), "Resume", m_bpPlaying, 0));
-	_xpaMenu.push_back(new MenuItem("MenuState", "Main Menu", sf::Vector2f(0, 0)));
+	_xpaMenu.push_back(new MenuItem("GameOverState", "Main Menu", sf::Vector2f(0, 0)));
 	m_xpPause->AddChild(new OptionsObject(sf::Vector2f(0, 0), _xpaMenu));
 
 	*m_bpPlaying = true;

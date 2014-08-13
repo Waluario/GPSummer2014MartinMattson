@@ -52,6 +52,8 @@ bool Core::Init(){
 	if (q == 6){
 		// Initializes the window
 		m_xpScreen = new sf::RenderWindow(sf::VideoMode(800, 600), "Space Shooter Summer 2014", sf::Style::Fullscreen);
+		m_xpScreen->setMouseCursorVisible(false);
+
 		if (m_xpScreen == NULL){
 			return false;
 		}
@@ -63,6 +65,8 @@ bool Core::Init(){
 	else if (q == 7){
 		// Initializes the window
 		m_xpScreen = new sf::RenderWindow(sf::VideoMode(800, 600), "Space Shooter Summer 2014", sf::Style::Default);
+		m_xpScreen->setMouseCursorVisible(true);
+
 		if (m_xpScreen == NULL){
 			return false;
 		}
