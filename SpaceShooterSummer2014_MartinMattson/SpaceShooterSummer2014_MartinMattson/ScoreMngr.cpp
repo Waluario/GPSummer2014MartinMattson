@@ -43,6 +43,10 @@ void ScoreMngr::SetScore(int p_iScore){
 void ScoreMngr::PlusScore(int p_iScore, bool p_bModifier){
 	// Increases score by a set amount, the Score Modifier can be used if one so wishes
 	m_iScore += (p_iScore * GetScoreModifier());
+
+	if (m_iScore >= m_iNextScore){
+		PlusLife();
+	}
 }
 
 int ScoreMngr::GetHiScore(){
@@ -138,6 +142,7 @@ void ScoreMngr::MinusLife(){
 void ScoreMngr::PlusLife(){
 	// Player Life is increased by 1
 	m_iLifes++;
+	PlusNextScore();
 }
 
 int ScoreMngr::GetStartLifes(){

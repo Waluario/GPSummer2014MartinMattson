@@ -28,7 +28,7 @@ void HowToPlayState::Exit(){
 }
 
 bool HowToPlayState::Update(float p_fDtime){
-	if (KeybMngr::GetButtonPressedOnce(4) && m_fWaitTime <= 0.f){
+	if ((KeybMngr::GetButtonPressedOnce(11) || KeybMngr::GetButtonPressedOnce(12)) && m_fWaitTime <= 0.f){
 		StateMngr::SetNextState("MenuState");
 		StateMngr::ChangeState();
 	}

@@ -47,10 +47,10 @@ void OptionsItem0::SetText(sf::Text *p_xpChoice){
 
 void OptionsItem0::OnDraw(){
 	if (*m_bpOption && m_bShowOption){
-		m_xpText->setString(sf::String(m_sChoice + " 1"));
+		m_xpText->setString(sf::String(m_sChoice + " Yes"));
 	}
 	else if (!*m_bpOption && m_bShowOption) {
-		m_xpText->setString(sf::String(m_sChoice + " 0"));
+		m_xpText->setString(sf::String(m_sChoice + " No"));
 	}
 	else if (!m_bShowOption){
 		m_xpText->setString(sf::String(m_sChoice));
@@ -61,10 +61,10 @@ void OptionsItem0::OnDraw(){
 
 void OptionsItem0::OnDrawWhenChosen(){
 	if (*m_bpOption && m_bShowOption){
-		m_xpText->setString(sf::String("<" + m_sChoice + " 1" + ">"));
+		m_xpText->setString(sf::String("<" + m_sChoice + " Yes" + ">"));
 	}
 	else if (!*m_bpOption && m_bShowOption) {
-		m_xpText->setString(sf::String("<" + m_sChoice + " 0" + ">"));
+		m_xpText->setString(sf::String("<" + m_sChoice + " No" + ">"));
 	}
 	else if (!m_bShowOption){
 		m_xpText->setString(sf::String("<" + m_sChoice + ">"));

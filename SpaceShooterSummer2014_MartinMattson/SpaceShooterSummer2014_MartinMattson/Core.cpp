@@ -187,6 +187,8 @@ bool Core::Init(){
 	_xpaOptions.push_back(new OptionsItem2(sf::Vector2f(0, 0), "Bgm Volume", m_xpMusicMngr->GetVolumePointer(), 0.f, 100.f, 5.f));
 	_xpaOptions.push_back(new OptionsItem0(sf::Vector2f(0, 0), "Fullscreen", m_bFullScreen0, 1));
 	
+	_xpaOptions.push_back(new TextItem(" ", sf::Vector2f(0, 0)));
+
 	_xpaOptions.push_back(new TextItem("Controls:", sf::Vector2f(0, 0)));
 	_xpaOptions.push_back(new OptionsItem3(sf::Vector2f(0, 0), "- Up", 0));
 	_xpaOptions.push_back(new OptionsItem3(sf::Vector2f(0, 0), "- Down", 1));
@@ -194,6 +196,9 @@ bool Core::Init(){
 	_xpaOptions.push_back(new OptionsItem3(sf::Vector2f(0, 0), "- Right", 3));
 	_xpaOptions.push_back(new OptionsItem3(sf::Vector2f(0, 0), "- Fire", 4));
 	_xpaOptions.push_back(new OptionsItem3(sf::Vector2f(0, 0), "- Focus", 5));
+	_xpaOptions.push_back(new TextItem("(Note: Menu controls cannot be changed!)", sf::Vector2f(0, 0)));
+
+	_xpaOptions.push_back(new TextItem(" ", sf::Vector2f(0, 0)));
 
 	_xpaOptions.push_back(new MenuItem("MenuState", "Back", sf::Vector2f(0, 0)));
 

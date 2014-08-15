@@ -39,7 +39,7 @@ void OptionsObject::OnUpdateThis(){
 			m_iCurrentChoice = m_xpaOptions.size() - 1;
 		}
 
-		if (m_xpaOptions[m_iCurrentChoice]->IgnoreOption()){
+		while (m_xpaOptions[m_iCurrentChoice]->IgnoreOption()){
 			m_iCurrentChoice--;
 		}
 
@@ -55,7 +55,7 @@ void OptionsObject::OnUpdateThis(){
 			m_iCurrentChoice = 0;
 		}
 
-		if (m_xpaOptions[m_iCurrentChoice]->IgnoreOption()){
+		while (m_xpaOptions[m_iCurrentChoice]->IgnoreOption()){
 			m_iCurrentChoice++;
 		}
 

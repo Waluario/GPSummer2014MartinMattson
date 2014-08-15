@@ -51,6 +51,8 @@ bool GameState::Enter(){
 
 	ScoreMngr::SetScore(0);
 	ScoreMngr::SetLifes(ScoreMngr::GetStartLifes());
+	ScoreMngr::SetNextScore(2000);
+	ScoreMngr::SetNextScoreUp(500);
 	ScoreMngr::SetSpawn(true);
 
 	MusicMngr::Stop();
