@@ -1,0 +1,68 @@
+﻿Build started 2014-08-15 13:58:33.
+     1>Project "C:\Users\MartinM93\Documents\GitHub\GPSummer2014MartinMattson\SpaceShooterSummer2014_MartinMattson\SpaceShooterSummer2014_MartinMattson\SpaceShooterSummer2014_MartinMattson.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"..\deps\SFML-2.1\include" /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Release\SpaceShooterSummer2014_MartinMattson.pch" /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /FIstdafx.h /analyze- /errorReport:prompt GameState.cpp
+         GameState.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\MartinM93\Documents\GitHub\GPSummer2014MartinMattson\SpaceShooterSummer2014_MartinMattson\Release\SpaceShooterSummer2014_MartinMattson.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"..\deps\SFML-2.1\lib" "sfml-graphics.lib" "sfml-audio.lib" "sfml-window.lib" "sfml-system.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\MartinM93\Documents\GitHub\GPSummer2014MartinMattson\SpaceShooterSummer2014_MartinMattson\Release\SpaceShooterSummer2014_MartinMattson.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\MartinM93\Documents\GitHub\GPSummer2014MartinMattson\SpaceShooterSummer2014_MartinMattson\Release\SpaceShooterSummer2014_MartinMattson.lib" /MACHINE:X86 /SAFESEH Release\EnemyObject2.obj
+         Release\EnemyObject3.obj
+         Release\EnemyObject4.obj
+         Release\HowToPlayState.obj
+         Release\InfoObject.obj
+         Release\CreditsState.obj
+         Release\EnemyObject1.obj
+         Release\GameOverState.obj
+         Release\LevelItem.obj
+         Release\LevelMngr.obj
+         Release\MusicMngr.obj
+         Release\OptionsItem0.obj
+         Release\OptionsItem2.obj
+         Release\OptionsItem3.obj
+         Release\OptionsObject.obj
+         Release\OptionsItem1.obj
+         Release\OptionsState.obj
+         Release\SoundMngr.obj
+         Release\Bgm.obj
+         Release\Button.obj
+         Release\CollisionMngr.obj
+         Release\Core.obj
+         Release\DrawMngr.obj
+         Release\EnemyBulletObject.obj
+         Release\EnemyObject.obj
+         Release\EnemyObject0.obj
+         Release\Font.obj
+         Release\FontMngr.obj
+         Release\GameObject.obj
+         Release\GameObjectMngr.obj
+         Release\GameState.obj
+         Release\Hitbox.obj
+         Release\HUDObject.obj
+         Release\KeybMngr.obj
+         Release\Main.obj
+         Release\MenuItem.obj
+         Release\MenuState.obj
+         Release\PlayerBulletObject.obj
+         Release\PlayerObject.obj
+         Release\SceneObject.obj
+         Release\ScoreObject.obj
+         Release\Sfx.obj
+         Release\Sprite.obj
+         Release\SpriteMngr.obj
+         Release\StateMngr.obj
+         Release\ScoreMngr.obj
+         Release\stdafx.obj
+         Release\TextItem.obj
+         Release\Texture.obj
+         Release\TimeMngr.obj
+         Generating code
+     1>c:\users\martinm93\documents\github\gpsummer2014martinmattson\spaceshootersummer2014_martinmattson\spaceshootersummer2014_martinmattson\fontmngr.cpp(36): warning C4715: 'FontMngr::GetFont' : not all control paths return a value
+     1>c:\users\martinm93\documents\github\gpsummer2014martinmattson\spaceshootersummer2014_martinmattson\spaceshootersummer2014_martinmattson\soundmngr.cpp(55): warning C4715: 'SoundMngr::Load' : not all control paths return a value
+     1>c:\users\martinm93\documents\github\gpsummer2014martinmattson\spaceshootersummer2014_martinmattson\spaceshootersummer2014_martinmattson\button.cpp(196): warning C4715: 'Button::GetKeySymbol' : not all control paths return a value
+     1>c:\users\martinm93\documents\github\gpsummer2014martinmattson\spaceshootersummer2014_martinmattson\spaceshootersummer2014_martinmattson\scoremngr.cpp(91): warning C4715: 'ScoreMngr::LoadHiScore' : not all control paths return a value
+         Finished generating code
+         SpaceShooterSummer2014_MartinMattson.vcxproj -> C:\Users\MartinM93\Documents\GitHub\GPSummer2014MartinMattson\SpaceShooterSummer2014_MartinMattson\Release\SpaceShooterSummer2014_MartinMattson.exe
+     1>Done Building Project "C:\Users\MartinM93\Documents\GitHub\GPSummer2014MartinMattson\SpaceShooterSummer2014_MartinMattson\SpaceShooterSummer2014_MartinMattson\SpaceShooterSummer2014_MartinMattson.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.70
