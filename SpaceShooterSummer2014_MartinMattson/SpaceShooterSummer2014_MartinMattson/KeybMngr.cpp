@@ -31,6 +31,7 @@ KeybMngr::~KeybMngr(){
 	for (int i = KeybMngr::m_xpaKeybPress.size() - 1; i >= 0; i--){
 		delete KeybMngr::m_xpaKeybPress[i];
 		KeybMngr::m_xpaKeybPress[i] = NULL;
+		m_xpaKeybPress.erase(m_xpaKeybPress.begin() + i);
 	}
 }
 

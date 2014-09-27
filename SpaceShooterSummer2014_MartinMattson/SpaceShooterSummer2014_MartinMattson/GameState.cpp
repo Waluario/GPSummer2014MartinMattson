@@ -30,7 +30,8 @@ GameState::GameState(float p_fStageTimeStart){
 }
 
 GameState::~GameState(){
-
+	delete m_bpPlaying;
+	m_bpPlaying = NULL;
 }
 
 bool GameState::Enter(){
@@ -46,6 +47,10 @@ bool GameState::Enter(){
 	_xpaMenu.push_back(new OptionsItem0(sf::Vector2f(0, 0), "Resume", m_bpPlaying, 0));
 	_xpaMenu.push_back(new MenuItem("GameOverState", "Main Menu", sf::Vector2f(0, 0)));
 	m_xpPause->AddChild(new OptionsObject(sf::Vector2f(0, 0), _xpaMenu));
+
+	for (int i = _xpaMenu.size() - 1; i >= 0; i--){
+		_xpaMenu[i] = NULL;
+	}
 
 	*m_bpPlaying = true;
 

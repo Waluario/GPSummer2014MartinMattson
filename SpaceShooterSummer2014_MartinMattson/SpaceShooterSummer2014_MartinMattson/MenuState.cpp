@@ -20,6 +20,10 @@ MenuState::MenuState(){
 	_xpaItems.push_back(new MenuItem("EndState", "Exit", sf::Vector2f(0, 140)));
 
 	m_xpScene->AddChild(new OptionsObject(sf::Vector2f(0, 0), _xpaItems));
+
+	for (int i = _xpaItems.size() - 1; i >= 0; i--){
+		_xpaItems[i] = NULL;
+	}
 }
 
 MenuState::~MenuState(){

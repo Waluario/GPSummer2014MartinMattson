@@ -15,7 +15,25 @@ GameOverState::GameOverState(float p_fWaitTimeStart){
 }
 
 GameOverState::~GameOverState(){
+	if (m_xpText != NULL){
+		delete m_xpText;
+		m_xpText = NULL;
+	}
 
+	if (m_xpScoreText != NULL){
+		delete m_xpScoreText;
+		m_xpScoreText = NULL;
+	}
+
+	if (m_xpHiScoreText != NULL){
+		delete m_xpHiScoreText;
+		m_xpHiScoreText = NULL;
+	}
+
+	if (m_xpContinueText != NULL){
+		delete m_xpContinueText;
+		m_xpContinueText = NULL;
+	}
 }
 
 bool GameOverState::Enter(){

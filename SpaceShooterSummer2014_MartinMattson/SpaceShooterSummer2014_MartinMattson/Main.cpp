@@ -7,6 +7,8 @@
 #include <stdlib.h>
 #include <time.h>
 
+//#include <vld.h>
+
 int _tmain(int argc, _TCHAR* argv[]){
 	// Sets the randomizer
 	srand(time(NULL));

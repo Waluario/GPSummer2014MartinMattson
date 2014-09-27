@@ -11,7 +11,6 @@ DrawMngr::DrawMngr(sf::RenderWindow *p_xpScreen){
 }
 
 DrawMngr::~DrawMngr(){
-	delete m_xpScreen;
 	m_xpScreen = NULL;
 }
 

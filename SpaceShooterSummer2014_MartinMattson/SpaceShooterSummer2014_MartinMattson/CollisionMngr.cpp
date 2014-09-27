@@ -14,7 +14,9 @@ CollisionMngr::CollisionMngr(){
 }
 
 CollisionMngr::~CollisionMngr(){
-
+	for (int i = 0; i < m_xpaHitboxes.size(); i++){
+		ClearList(i);
+	}
 }
 
 void CollisionMngr::NewList(){

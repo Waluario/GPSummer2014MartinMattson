@@ -15,7 +15,8 @@ MenuItem::MenuItem(std::string p_sState, std::string p_sChoice, sf::Vector2f p_v
 }
 
 MenuItem::~MenuItem(){
-
+	delete m_xpChoice;
+	m_xpChoice = NULL;
 }
 
 sf::Vector2f MenuItem::GetPosition(){

@@ -13,10 +13,18 @@ Hitbox::Hitbox(GameObject *p_xpGameObject, sf::Vector2f p_vPosition, float p_fSi
 	m_fSize = p_fSize;
 	m_vPosition = p_vPosition;
 	m_xpGameObject = p_xpGameObject;
+
+	m_xpShape = new sf::CircleShape(m_fSize);
+	m_xpShape->setFillColor(sf::Color(0xff, 0xff, 0x00));
+	m_xpShape->setOrigin(sf::Vector2f(m_fSize / 1, m_fSize / 1));
+	m_xpShape->setPosition(GetPosition());
 }
 
 Hitbox::~Hitbox(){
 	m_xpGameObject = NULL;
+
+	delete m_xpShape;
+	m_xpShape = NULL;
 }
 
 float Hitbox::GetSize(){
@@ -44,13 +52,9 @@ void Hitbox::SetGameObject(GameObject *p_xpGameObject){
 }
 
 sf::CircleShape* Hitbox::GetShape(){
-	sf::CircleShape _xShape(m_fSize);
-
-	_xShape.setFillColor(sf::Color(0xff, 0xff, 0x00));
-	_xShape.setPosition(GetPosition());
-	_xShape.setOrigin(sf::Vector2f(m_fSize / 1, m_fSize / 1));
+	m_xpShape->setPosition(GetPosition());
 	
-	return new sf::CircleShape(_xShape);
+	return m_xpShape;
 }
 
 bool Hitbox::Overlap(Hitbox *p_xpHitbox){

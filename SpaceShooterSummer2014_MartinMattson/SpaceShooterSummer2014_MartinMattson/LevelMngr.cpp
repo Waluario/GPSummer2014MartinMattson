@@ -30,7 +30,7 @@ LevelMngr::LevelMngr(std::string p_sPath){
 }
 
 LevelMngr::~LevelMngr(){
-
+	Clear();
 }
 
 SceneObject* LevelMngr::LoadFromFile(std::string p_sFile, int p_iSceneNum){
@@ -205,6 +205,12 @@ void LevelMngr::Build(SceneObject *p_xpScene, std::vector<float> p_faLevel){
 }
 
 void LevelMngr::Clear(){
+	for (int i = m_xpaLevel.size() - 1; i >= 0; i--){
+		delete m_xpaLevel[i];
+		m_xpaLevel[i] = NULL;
+		m_xpaLevel.erase(m_xpaLevel.begin() + i);
+	}
+
 	m_xpaLevel.clear();
 }
 

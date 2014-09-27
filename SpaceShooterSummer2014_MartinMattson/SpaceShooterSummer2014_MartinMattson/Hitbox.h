@@ -28,5 +28,7 @@ private:
 
 	sf::Vector2f m_vPosition;
 
+	sf::CircleShape *m_xpShape;
+
 	GameObject *m_xpGameObject;
 };

@@ -13,10 +13,10 @@ OptionsItem0::OptionsItem0(sf::Vector2f p_vPos, std::string p_sText, bool *p_bpO
 	m_sChoice = p_sText;
 
 	if (p_bpOption){
-		m_xpText = new sf::Text(sf::String(sf::String(p_sText + " 1")), *FontMngr::GetFont("Arial"));
+		m_xpText = new sf::Text(sf::String(sf::String(p_sText + " Yes")), *FontMngr::GetFont("Arial"));
 	}
 	else {
-		m_xpText = new sf::Text(sf::String(sf::String(p_sText + " 0")), *FontMngr::GetFont("Arial"));
+		m_xpText = new sf::Text(sf::String(sf::String(p_sText + " No")), *FontMngr::GetFont("Arial"));
 	}
 
 	 SetPosition(p_vPos);

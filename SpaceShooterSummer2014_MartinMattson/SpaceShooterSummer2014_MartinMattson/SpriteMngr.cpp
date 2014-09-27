@@ -76,7 +76,9 @@ Texture* SpriteMngr::LoadTexture(std::string p_sName, std::string p_sFname, sf::
 	_xpTex->SetName(p_sName);
 	m_xpaTextures.push_back(_xpTex);
 
-	return _xpTex;
+	_xpTex = NULL;
+
+	return m_xpaTextures[m_xpaTextures.size() - 1];
 }
 
 void SpriteMngr::DeleteSprite(Sprite *p_xpSprite){

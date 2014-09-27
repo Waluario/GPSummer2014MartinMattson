@@ -41,15 +41,15 @@ Core::Core(){
 }
 
 Core::~Core(){
-
+	Cleanup();
 }
 
 bool Core::Init(){
+	// The following two lines and all code concerning message boxes in this program were taken from the example at: http://msdn.microsoft.com/en-us/library/windows/desktop/ms645505%28v=vs.85%29.aspx
 	INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow);
+	int q = MessageBox(NULL, L"Play Space Shooter Summer 2014 in Fullscreen?", L"Space Shooter Summer 2014", MB_YESNO);
 
-	int q = MessageBox(NULL, L"Play game in Fullscreen?", L"Space Shooter Summer 2014", MB_YESNO);
-
-	if (q == 6){
+	if (q == IDYES){
 		// Initializes the window
 		m_xpScreen = new sf::RenderWindow(sf::VideoMode(800, 600), "Space Shooter Summer 2014", sf::Style::Fullscreen);
 		m_xpScreen->setMouseCursorVisible(false);
@@ -62,7 +62,7 @@ bool Core::Init(){
 		m_bFullScreen0 = new bool(true);
 		m_bFullScreen1 = true;
 	}
-	else if (q == 7){
+	else if (q == IDNO){
 		// Initializes the window
 		m_xpScreen = new sf::RenderWindow(sf::VideoMode(800, 600), "Space Shooter Summer 2014", sf::Style::Default);
 		m_xpScreen->setMouseCursorVisible(true);
@@ -212,6 +212,12 @@ bool Core::Init(){
 	m_xpStateMngr->Add(new MenuState());
 	m_xpStateMngr->Add(new OptionsState(.5f, _xpaOptions));
 
+	for (int i = _xpaOptions.size() - 1; i >= 0; i--){
+		//delete _xpaOptions[i];
+		_xpaOptions[i] = NULL;
+		_xpaOptions.erase(_xpaOptions.begin() + i);
+	}
+
 	m_xpStateMngr->SetState("MenuState");
 
 	return true;
@@ -253,12 +259,16 @@ void Core::UpdEvents(){
 
 	if (*m_bFullScreen0 != m_bFullScreen1){
 		if (*m_bFullScreen0){
+			m_xpScreen->clear();
 			m_xpScreen->close();
+			
 			delete m_xpScreen;
+			m_xpScreen = NULL;
 
 			// Initializes the window
 			m_xpScreen = new sf::RenderWindow(sf::VideoMode(800, 600), "Space Shooter Summer 2014", sf::Style::Fullscreen);
 			m_xpScreen->setMouseCursorVisible(false);
+			m_xpDrawMngr->SetScreen(NULL);
 			m_xpDrawMngr->SetScreen(m_xpScreen);
 
 			m_xpScreen->setPosition(sf::Vector2i(0, 0));
@@ -266,12 +276,15 @@ void Core::UpdEvents(){
 			m_bFullScreen1 = true;
 		}
 		else if (!*m_bFullScreen0){
+			m_xpScreen->clear();
 			m_xpScreen->close();
 			delete m_xpScreen;
+			m_xpScreen = NULL;
 
 			// Initializes the window
 			m_xpScreen = new sf::RenderWindow(sf::VideoMode(800, 600), "Space Shooter Summer 2014", sf::Style::Default);
 			m_xpScreen->setMouseCursorVisible(true);
+			m_xpDrawMngr->SetScreen(NULL);
 			m_xpDrawMngr->SetScreen(m_xpScreen);
 
 			*m_bFullScreen0 = false;
@@ -286,9 +299,12 @@ void Core::UpdEvents(){
 
 void Core::Cleanup(){
 	// Cleans up all of the Managers
-	delete m_bFullScreen0;
-	m_bFullScreen0 = NULL;
+	if (m_bFullScreen0 != NULL){
+		delete m_bFullScreen0;
+		m_bFullScreen0 = NULL;
+	}
 
+	delete m_xpScreen;
 	m_xpScreen = NULL;
 
 	if (m_xpStateMngr != NULL){

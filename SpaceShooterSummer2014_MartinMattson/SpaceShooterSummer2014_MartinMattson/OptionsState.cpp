@@ -16,7 +16,8 @@ OptionsState::OptionsState(float p_fWaitTimeStart, std::vector<MenuItem*> p_xpaO
 }
 
 OptionsState::~OptionsState(){
-
+	delete m_xpScene;
+	m_xpScene = NULL;
 }
 
 bool OptionsState::Enter(){

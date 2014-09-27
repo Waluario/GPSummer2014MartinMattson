@@ -21,5 +21,6 @@ private:
 	static sf::Clock *m_xpClock; // THe Time Manager's Clock
 
 	static sf::Time m_xDtime, // THe Delta TIme itself
-		m_xFps; // THe Fps - How often the game should be updated
+		m_xFps, // THe Fps - How often the game should be updated
+		m_xMaxFps; // The maximum allowed value of the delta time. Primarely set to 110 % of the normal FPS.
 };
