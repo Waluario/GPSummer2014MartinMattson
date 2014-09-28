@@ -6,13 +6,13 @@
 #include "FontMngr.h"
 #include "KeybMngr.h"
 
-OptionsItem0::OptionsItem0(sf::Vector2f p_vPos, std::string p_sText, bool *p_bpOption, bool p_bShowOption)
+OptionsItem0::OptionsItem0(sf::Vector2f p_vPos, std::string p_sText, bool &p_brOption, bool p_bShowOption)
 : MenuItem(" ", p_sText, p_vPos){
-	m_bpOption = p_bpOption;
+	m_bpOption = &p_brOption;
 	m_bShowOption = p_bShowOption;
 	m_sChoice = p_sText;
 
-	if (p_bpOption){
+	if (*m_bpOption){
 		m_xpText = new sf::Text(sf::String(sf::String(p_sText + " Yes")), *FontMngr::GetFont("Arial"));
 	}
 	else {

@@ -1,47 +1,39 @@
-﻿Build started 2014-09-27 21:35:55.
+﻿Build started 2014-09-29 01:07:29.
      1>Project "C:\Users\MartinM93\Documents\GitHub\GPSummer2014MartinMattson\SpaceShooterSummer2014_MartinMattson\SpaceShooterSummer2014_MartinMattson\SpaceShooterSummer2014_MartinMattson.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"..\deps\SFML-2.1\include" /I..\deps\VLD\include /ZI /nologo /W3 /WX- /Od /Oy- /D SWIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\SpaceShooterSummer2014_MartinMattson.pch" /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /FIstdafx.h /analyze- /errorReport:prompt CollisionMngr.cpp Core.cpp EnemyBulletObject.cpp EnemyObject0.cpp EnemyObject1.cpp EnemyObject2.cpp EnemyObject3.cpp EnemyObject4.cpp GameOverState.cpp GameState.cpp Hitbox.cpp KeybMngr.cpp LevelMngr.cpp MenuItem.cpp MenuState.cpp OptionsItem0.cpp PlayerBulletObject.cpp PlayerObject.cpp ScoreObject.cpp SpriteMngr.cpp
-         SpriteMngr.cpp
-     1>c:\users\martinm93\documents\github\gpsummer2014martinmattson\spaceshootersummer2014_martinmattson\spaceshootersummer2014_martinmattson\spritemngr.cpp(38): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\martinm93\documents\github\gpsummer2014martinmattson\spaceshootersummer2014_martinmattson\spaceshootersummer2014_martinmattson\spritemngr.cpp(46): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\martinm93\documents\github\gpsummer2014martinmattson\spaceshootersummer2014_martinmattson\spaceshootersummer2014_martinmattson\spritemngr.cpp(86): warning C4018: '<' : signed/unsigned mismatch
-         OptionsItem0.cpp
-         MenuState.cpp
-         MenuItem.cpp
-         LevelMngr.cpp
-     1>c:\users\martinm93\documents\github\gpsummer2014martinmattson\spaceshootersummer2014_martinmattson\spaceshootersummer2014_martinmattson\levelmngr.cpp(187): warning C4018: '<' : signed/unsigned mismatch
-         KeybMngr.cpp
-     1>c:\users\martinm93\documents\github\gpsummer2014martinmattson\spaceshootersummer2014_martinmattson\spaceshootersummer2014_martinmattson\keybmngr.cpp(40): warning C4018: '<' : signed/unsigned mismatch
-         Hitbox.cpp
-         GameState.cpp
-         GameOverState.cpp
-     1>c:\users\martinm93\documents\github\gpsummer2014martinmattson\spaceshootersummer2014_martinmattson\spaceshootersummer2014_martinmattson\gameoverstate.cpp(54): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"..\deps\SFML-2.1\include" /I..\deps\VLD\include /ZI /nologo /W3 /WX- /Od /Oy- /D SWIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\SpaceShooterSummer2014_MartinMattson.pch" /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /FIstdafx.h /analyze- /errorReport:prompt Core.cpp EnemyObject.cpp EnemyObject0.cpp EnemyObject1.cpp EnemyObject2.cpp EnemyObject3.cpp EnemyObject4.cpp GameOverState.cpp GameState.cpp HUDObject.cpp LevelMngr.cpp MenuState.cpp MusicMngr.cpp OptionsItem1.cpp OptionsItem2.cpp OptionsObject.cpp PlayerBulletObject.cpp PlayerObject.cpp ScoreMngr.cpp ScoreObject.cpp SoundMngr.cpp
+         SoundMngr.cpp
+     1>c:\users\martinm93\documents\github\gpsummer2014martinmattson\spaceshootersummer2014_martinmattson\spaceshootersummer2014_martinmattson\soundmngr.cpp(64): warning C4018: '<' : signed/unsigned mismatch
+         ScoreMngr.cpp
+     1>c:\users\martinm93\documents\github\gpsummer2014martinmattson\spaceshootersummer2014_martinmattson\spaceshootersummer2014_martinmattson\scoremngr.cpp(45): warning C4244: '+=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\martinm93\documents\github\gpsummer2014martinmattson\spaceshootersummer2014_martinmattson\spaceshootersummer2014_martinmattson\scoremngr.cpp(86): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+         OptionsItem2.cpp
+         OptionsItem1.cpp
+         MusicMngr.cpp
+     1>c:\users\martinm93\documents\github\gpsummer2014martinmattson\spaceshootersummer2014_martinmattson\spaceshootersummer2014_martinmattson\musicmngr.cpp(53): warning C4018: '<' : signed/unsigned mismatch
          Core.cpp
      1>c:\users\martinm93\documents\github\gpsummer2014martinmattson\spaceshootersummer2014_martinmattson\spaceshootersummer2014_martinmattson\core.cpp(136): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
          Generating Code...
+     1>c:\users\martinm93\documents\github\gpsummer2014martinmattson\spaceshootersummer2014_martinmattson\spaceshootersummer2014_martinmattson\scoremngr.cpp(91): warning C4715: 'ScoreMngr::LoadHiScore' : not all control paths return a value
+     1>c:\users\martinm93\documents\github\gpsummer2014martinmattson\spaceshootersummer2014_martinmattson\spaceshootersummer2014_martinmattson\soundmngr.cpp(55): warning C4715: 'SoundMngr::Load' : not all control paths return a value
          Compiling...
-         CollisionMngr.cpp
-     1>c:\users\martinm93\documents\github\gpsummer2014martinmattson\spaceshootersummer2014_martinmattson\spaceshootersummer2014_martinmattson\collisionmngr.cpp(17): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\martinm93\documents\github\gpsummer2014martinmattson\spaceshootersummer2014_martinmattson\spaceshootersummer2014_martinmattson\collisionmngr.cpp(31): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\martinm93\documents\github\gpsummer2014martinmattson\spaceshootersummer2014_martinmattson\spaceshootersummer2014_martinmattson\collisionmngr.cpp(33): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\martinm93\documents\github\gpsummer2014martinmattson\spaceshootersummer2014_martinmattson\spaceshootersummer2014_martinmattson\collisionmngr.cpp(34): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\martinm93\documents\github\gpsummer2014martinmattson\spaceshootersummer2014_martinmattson\spaceshootersummer2014_martinmattson\collisionmngr.cpp(51): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\martinm93\documents\github\gpsummer2014martinmattson\spaceshootersummer2014_martinmattson\spaceshootersummer2014_martinmattson\collisionmngr.cpp(53): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\martinm93\documents\github\gpsummer2014martinmattson\spaceshootersummer2014_martinmattson\spaceshootersummer2014_martinmattson\collisionmngr.cpp(54): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\martinm93\documents\github\gpsummer2014martinmattson\spaceshootersummer2014_martinmattson\spaceshootersummer2014_martinmattson\collisionmngr.cpp(78): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\martinm93\documents\github\gpsummer2014martinmattson\spaceshootersummer2014_martinmattson\spaceshootersummer2014_martinmattson\collisionmngr.cpp(79): warning C4018: '<' : signed/unsigned mismatch
+         GameState.cpp
          Generating Code...
          Skipping... (no relevant changes detected)
          ScoreObject.cpp
          PlayerObject.cpp
          PlayerBulletObject.cpp
+         OptionsObject.cpp
+         MenuState.cpp
+         LevelMngr.cpp
+         HUDObject.cpp
+         GameOverState.cpp
          EnemyObject4.cpp
          EnemyObject3.cpp
          EnemyObject2.cpp
          EnemyObject1.cpp
          EnemyObject0.cpp
-         EnemyBulletObject.cpp
+         EnemyObject.cpp
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\MartinM93\Documents\GitHub\GPSummer2014MartinMattson\SpaceShooterSummer2014_MartinMattson\Debug\SpaceShooterSummer2014_MartinMattson.exe" /INCREMENTAL /NOLOGO /LIBPATH:"..\deps\SFML-2.1\lib" /LIBPATH:..\deps\VLD\lib\Win32 vld.lib "sfml-graphics-d.lib" "sfml-audio-d.lib" "sfml-window-d.lib" "sfml-system-d.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\MartinM93\Documents\GitHub\GPSummer2014MartinMattson\SpaceShooterSummer2014_MartinMattson\Debug\SpaceShooterSummer2014_MartinMattson.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\MartinM93\Documents\GitHub\GPSummer2014MartinMattson\SpaceShooterSummer2014_MartinMattson\Debug\SpaceShooterSummer2014_MartinMattson.lib" /MACHINE:X86 Debug\EnemyObject2.obj
          Debug\EnemyObject3.obj
@@ -98,4 +90,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:03.09
+Time Elapsed 00:00:02.35

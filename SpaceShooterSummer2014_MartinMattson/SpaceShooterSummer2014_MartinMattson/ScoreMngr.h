@@ -28,8 +28,7 @@ public:
 	static void MinusLife(); // Reduces Lifes by 1
 	static void PlusLife(); // Increases lifes by 1
 
-	static int GetStartLifes(); // Returns StartLifes
-	static int* GetStartLifesPointer();
+	static int &GetStartLifes(); // Returns StartLifes
 	static void SetStartLifes(int p_iStartLifes); // Sets StartLifes
 
 	static float GetScoreModifier(); // Returns the Score Modifier that is calculated from the amount of lifes the player started out with
@@ -43,7 +42,7 @@ private:
 		m_iNextScore, // How much score is needed for an extra life
 		m_iNextScoreUp, // How much NextScore is to be increased by every time an extra life is gained
 		m_iLifes, // How many lifes the player has left
-		*m_ipStartLifes; // How many lifes the player starts with
+		m_iStartLifes; // How many lifes the player starts with
 
 	static bool m_bSpawn; // Determines if the level time will pass and if more enemies will spawn
 };

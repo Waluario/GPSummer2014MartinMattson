@@ -22,8 +22,7 @@ public:
 	static sf::Vector2f GetListenerPosition(); // Returns the listeneer position
 
 	static void SetVolume(float p_fVolume); // Sets the volume
-	static float GetVolume(); // Returns the volume
-	static float* GetVolumePointer(); // returns a pointer to the volume
+	static float &GetVolume(); // Returns the volume
 
 	static std::vector<sf::Sound*> GetSoundVector(); // Teturns the Sound Vector
 	static std::vector<Sfx*> GetSfxVector(); // Returns the vector with SOund Buffers
@@ -38,5 +37,5 @@ private:
 		m_fAttenuation,
 		m_fMinDistance2D,
 		m_fMinDistance3D,
-		*m_fpVolume; // Current Master Volume
+		m_fVolume; // Current Master Volume
 };

@@ -20,8 +20,7 @@ public:
 	static void Stop(); // 
 
 	static void SetVolume(float p_fVolume = 100.f); // Sets the music voume, is set to 100 by default
-	static float GetVolume(); // returns the volume
-	static float* GetVolumePointer(); // returns a pointer to the volume
+	static float &GetVolume(); // returns the volume
 
 private:
 	static std::string m_sDir; // the directory where music will be loaded from
@@ -29,5 +28,5 @@ private:
 	static std::vector<Bgm*> m_xpaMusic; // the vector of background music
 	static Bgm *m_xpCurrent; // Points at the current background music
 
-	static float *m_fpVolume; // current volume
+	static float m_fVolume; // current volume
 };

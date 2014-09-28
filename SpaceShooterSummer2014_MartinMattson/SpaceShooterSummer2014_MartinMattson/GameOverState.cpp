@@ -12,6 +12,11 @@
 
 GameOverState::GameOverState(float p_fWaitTimeStart){
 	m_fWaitTimeStart = p_fWaitTimeStart;
+
+	m_xpText = NULL;
+	m_xpScoreText = NULL;
+	m_xpHiScoreText = NULL;
+	m_xpContinueText = NULL;
 }
 
 GameOverState::~GameOverState(){

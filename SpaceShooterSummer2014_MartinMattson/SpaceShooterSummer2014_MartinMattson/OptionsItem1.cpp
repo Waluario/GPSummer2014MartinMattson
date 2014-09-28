@@ -8,9 +8,9 @@
 
 #include <sstream>
 
-OptionsItem1::OptionsItem1(sf::Vector2f p_vPos, std::string p_sText, int *p_ipOption, int p_iMin, int p_iMax)
+OptionsItem1::OptionsItem1(sf::Vector2f p_vPos, std::string p_sText, int &p_irOption, int p_iMin, int p_iMax)
 : MenuItem(" ", p_sText, p_vPos){
-	m_ipOption = p_ipOption;
+	m_ipOption = &p_irOption;
 	m_sChoice = p_sText;
 
 	m_iMin = p_iMin;

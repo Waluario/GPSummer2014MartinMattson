@@ -59,7 +59,7 @@ bool Core::Init(){
 		}
 
 		m_xpScreen->setPosition(sf::Vector2i(0, 0));
-		m_bFullScreen0 = new bool(true);
+		m_bFullScreen0 = true;
 		m_bFullScreen1 = true;
 	}
 	else if (q == IDNO){
@@ -71,7 +71,7 @@ bool Core::Init(){
 			return false;
 		}
 
-		m_bFullScreen0 = new bool(false);
+		m_bFullScreen0 = false;
 		m_bFullScreen1 = false;
 	}
 	else {
@@ -133,7 +133,7 @@ bool Core::Init(){
 	m_xpMusicMngr->SetVolume(100.f);
 
 	// Initializes the Score Manager
-	m_xpScoreMngr = new ScoreMngr(0, ScoreMngr::LoadHiScore("../rec/High_Score.txt"), 2000, 500, 2);
+	m_xpScoreMngr = new ScoreMngr(0, ScoreMngr::LoadHiScore("../rec/High_Score.txt"), 1000, 500, 2);
 	if (m_xpScoreMngr == NULL){
 		return false;
 	}
@@ -182,9 +182,9 @@ bool Core::Init(){
 
 	// Sets up the game options menu
 	std::vector<MenuItem*> _xpaOptions;
-	_xpaOptions.push_back(new OptionsItem1(sf::Vector2f(0, 0), "Lifes", m_xpScoreMngr->GetStartLifesPointer(), 0, 5));
-	_xpaOptions.push_back(new OptionsItem2(sf::Vector2f(0, 0), "Sfx Volume", m_xpSoundMngr->GetVolumePointer(), 0.f, 100.f, 5.f));
-	_xpaOptions.push_back(new OptionsItem2(sf::Vector2f(0, 0), "Bgm Volume", m_xpMusicMngr->GetVolumePointer(), 0.f, 100.f, 5.f));
+	_xpaOptions.push_back(new OptionsItem1(sf::Vector2f(0, 0), "Lifes", m_xpScoreMngr->GetStartLifes(), 0, 5));
+	_xpaOptions.push_back(new OptionsItem2(sf::Vector2f(0, 0), "Sfx Volume", m_xpSoundMngr->GetVolume(), 0.f, 100.f, 5.f));
+	_xpaOptions.push_back(new OptionsItem2(sf::Vector2f(0, 0), "Bgm Volume", m_xpMusicMngr->GetVolume(), 0.f, 100.f, 5.f));
 	_xpaOptions.push_back(new OptionsItem0(sf::Vector2f(0, 0), "Fullscreen", m_bFullScreen0, 1));
 	
 	_xpaOptions.push_back(new TextItem(" ", sf::Vector2f(0, 0)));
@@ -257,8 +257,8 @@ void Core::UpdEvents(){
 		}
 	}
 
-	if (*m_bFullScreen0 != m_bFullScreen1){
-		if (*m_bFullScreen0){
+	if (m_bFullScreen0 != m_bFullScreen1){
+		if (m_bFullScreen0){
 			m_xpScreen->clear();
 			m_xpScreen->close();
 			
@@ -272,10 +272,10 @@ void Core::UpdEvents(){
 			m_xpDrawMngr->SetScreen(m_xpScreen);
 
 			m_xpScreen->setPosition(sf::Vector2i(0, 0));
-			*m_bFullScreen0 = true;
+			m_bFullScreen0 = true;
 			m_bFullScreen1 = true;
 		}
-		else if (!*m_bFullScreen0){
+		else if (!m_bFullScreen0){
 			m_xpScreen->clear();
 			m_xpScreen->close();
 			delete m_xpScreen;
@@ -287,7 +287,7 @@ void Core::UpdEvents(){
 			m_xpDrawMngr->SetScreen(NULL);
 			m_xpDrawMngr->SetScreen(m_xpScreen);
 
-			*m_bFullScreen0 = false;
+			m_bFullScreen0 = false;
 			m_bFullScreen1 = false;
 		}
 	}
@@ -299,10 +299,10 @@ void Core::UpdEvents(){
 
 void Core::Cleanup(){
 	// Cleans up all of the Managers
-	if (m_bFullScreen0 != NULL){
+	/*if (m_bFullScreen0 != NULL){
 		delete m_bFullScreen0;
 		m_bFullScreen0 = NULL;
-	}
+	}*/
 
 	delete m_xpScreen;
 	m_xpScreen = NULL;
